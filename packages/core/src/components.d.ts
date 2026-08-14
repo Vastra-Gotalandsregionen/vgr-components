@@ -5,64 +5,91 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { VgrButtonVariant } from "./components/vgr-button/vgr-button";
+export { VgrButtonVariant } from "./components/vgr-button/vgr-button";
 export namespace Components {
-    interface MyComponent {
+    interface VgrButton {
         /**
-          * The first name
+          * Disables the button and prevents the click event from firing.
+          * @default false
          */
-        "first"?: string;
+        "disabled": boolean;
         /**
-          * The last name
+          * Native button type — matters when the button sits inside a <form>.
+          * @default 'button'
          */
-        "last"?: string;
+        "type": 'button' | 'submit' | 'reset';
         /**
-          * The middle name
+          * Visual style of the button.
+          * @default 'primary'
          */
-        "middle"?: string;
+        "variant": VgrButtonVariant;
     }
 }
+export interface VgrButtonCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLVgrButtonElement;
+}
 declare global {
-    interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
+    interface HTMLVgrButtonElementEventMap {
+        "vgrClick": void;
     }
-    var HTMLMyComponentElement: {
-        prototype: HTMLMyComponentElement;
-        new (): HTMLMyComponentElement;
+    interface HTMLVgrButtonElement extends Components.VgrButton, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLVgrButtonElementEventMap>(type: K, listener: (this: HTMLVgrButtonElement, ev: VgrButtonCustomEvent<HTMLVgrButtonElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLVgrButtonElementEventMap>(type: K, listener: (this: HTMLVgrButtonElement, ev: VgrButtonCustomEvent<HTMLVgrButtonElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLVgrButtonElement: {
+        prototype: HTMLVgrButtonElement;
+        new (): HTMLVgrButtonElement;
     };
     interface HTMLElementTagNameMap {
-        "my-component": HTMLMyComponentElement;
+        "vgr-button": HTMLVgrButtonElement;
     }
 }
 declare namespace LocalJSX {
-    interface MyComponent {
+    interface VgrButton {
         /**
-          * The first name
+          * Disables the button and prevents the click event from firing.
+          * @default false
          */
-        "first"?: string;
+        "disabled"?: boolean;
         /**
-          * The last name
+          * Emitted when the button is clicked (and not disabled).
          */
-        "last"?: string;
+        "onVgrClick"?: (event: VgrButtonCustomEvent<void>) => void;
         /**
-          * The middle name
+          * Native button type — matters when the button sits inside a <form>.
+          * @default 'button'
          */
-        "middle"?: string;
+        "type"?: 'button' | 'submit' | 'reset';
+        /**
+          * Visual style of the button.
+          * @default 'primary'
+         */
+        "variant"?: VgrButtonVariant;
     }
 
-    interface MyComponentAttributes {
-        "first": string;
-        "middle": string;
-        "last": string;
+    interface VgrButtonAttributes {
+        "variant": VgrButtonVariant;
+        "disabled": boolean;
+        "type": 'button' | 'submit' | 'reset';
     }
 
     interface IntrinsicElements {
-        "my-component": Omit<MyComponent, keyof MyComponentAttributes> & { [K in keyof MyComponent & keyof MyComponentAttributes]?: MyComponent[K] } & { [K in keyof MyComponent & keyof MyComponentAttributes as `attr:${K}`]?: MyComponentAttributes[K] } & { [K in keyof MyComponent & keyof MyComponentAttributes as `prop:${K}`]?: MyComponent[K] };
+        "vgr-button": Omit<VgrButton, keyof VgrButtonAttributes> & { [K in keyof VgrButton & keyof VgrButtonAttributes]?: VgrButton[K] } & { [K in keyof VgrButton & keyof VgrButtonAttributes as `attr:${K}`]?: VgrButtonAttributes[K] } & { [K in keyof VgrButton & keyof VgrButtonAttributes as `prop:${K}`]?: VgrButton[K] };
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "my-component": LocalJSX.IntrinsicElements["my-component"] & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+            "vgr-button": LocalJSX.IntrinsicElements["vgr-button"] & JSXBase.HTMLAttributes<HTMLVgrButtonElement>;
         }
     }
 }

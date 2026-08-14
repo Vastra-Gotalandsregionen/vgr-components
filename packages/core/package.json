@@ -13,9 +13,9 @@
       "import": "./dist/vgregion-components/vgregion-components.esm.js",
       "require": "./dist/vgregion-components/vgregion-components.cjs.js"
     },
-    "./my-component": {
-      "import": "./dist/components/my-component.js",
-      "types": "./dist/components/my-component.d.ts"
+    "./vgr-button": {
+      "import": "./dist/components/vgr-button.js",
+      "types": "./dist/components/vgr-button.d.ts"
     },
     "./loader": {
       "import": "./loader/index.js",
