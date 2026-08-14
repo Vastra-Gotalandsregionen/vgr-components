@@ -49,5 +49,8 @@
     "playwright": "^1.52.0",
     "vitest": "^4.0.0"
   },
+  "dependencies": {
+    "@vgregion/design-tokens": "0.1.0"
+  },
   "license": "MIT"
 }

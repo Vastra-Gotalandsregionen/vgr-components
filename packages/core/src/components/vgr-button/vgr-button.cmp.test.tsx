@@ -1,4 +1,4 @@
-import { render, h, describe, it, expect } from '@stencil/vitest';
+import { describe, it, expect } from '@stencil/vitest';
 
 import { newSpecPage } from '@stencil/core/testing';
 import { VgrButton } from './vgr-button';

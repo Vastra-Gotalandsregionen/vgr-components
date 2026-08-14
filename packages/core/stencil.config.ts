@@ -17,7 +17,13 @@ export const config: Config = {
     },
     {
       type: 'www',
-      serviceWorker: null, // disable service workers
+      serviceWorker: null,
+      copy: [
+        {
+          src: '../../../node_modules/@vgregion/design-tokens/dist/css/tokens.css',
+          dest: 'tokens.css',
+        },
+      ],
     },
   ],
 };
