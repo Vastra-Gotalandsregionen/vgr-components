@@ -1,0 +1,27 @@
+{
+  "name": "@vgregion/components-react",
+  "version": "0.1.0",
+  "description": "React components for the design system, generated from @vgregion/components-core.",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/types/index.d.ts",
+  "files": ["dist/"],
+  "scripts": {
+    "build": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@vgregion/components-core": "0.0.1",
+    "@stencil/react-output-target": "^1.1.1"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.3",
+    "@types/react": "^18.3.0"
+  },
+  "publishConfig": {
+    "access": "restricted"
+  }
+}
