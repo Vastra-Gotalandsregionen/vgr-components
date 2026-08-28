@@ -1,93 +1,134 @@
-# VGR Components
+# VGR components
 
+Komponentbibliotek för VGR's designsystem — byggt en gång som webbkomponenter (Stencil), och tillgängligt i React, Angular och Vue via genererade wrapper-paket.
 
+Källan till design (färger, spacing, typografi m.m.) är Figma/Zero Height, och synkas automatiskt hit som design tokens.
 
-## Getting started
+## Kom igång
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+**Krav:**
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+- Node.js >=18
+- npm
 
-## Add your files
+**Installera projektet:**
 
-* [Create](https://docs.gitlab.com/user/project/repository/web_editor/#create-a-file) or [upload](https://docs.gitlab.com/user/project/repository/web_editor/#upload-a-file) files
-* [Add files using the command line](https://docs.gitlab.com/topics/git/add_files/#add-files-to-a-git-repository) or push an existing Git repository with the following command:
+```bash
+git clone https://github.com/Vastra-Gotalandsregionen/vgr-components.git
+cd vgr-components
+npm install
+```
+
+`npm install` körs **alltid från repo-roten**. Projektet är ett npm workspaces-monorepo — root-`package.json` länkar ihop alla paket under `packages/` lokalt, så att t.ex. `packages/react` kan använda `packages/core` utan att den behöver publiceras till npm först.
+
+## Projektstruktur
 
 ```
-cd existing_repo
-git remote add origin https://git.vgregion.se/ellbr9/vgr-components.git
-git branch -M main
-git push -uf origin main
+packages/
+  core/      @vgregion/components-core   — Stencil-komponenterna (källan till allt)
+  react/     @vgregion/components-react  — genererad React-wrapper
+  tokens/    @vgregion/design-tokens     — design tokens från Figma/Zero Height
+  angular/   (kommer snart)
+  vue/       (kommer snart)
 ```
 
-## Integrate with your tools
+Varje paket har sin egen `package.json` med egna scripts (`build`, `start`, `test` osv). Det finns i dagsläget inga samlade root-scripts — gå in i respektive paketmapp för att köra kommandon.
 
-* [Set up project integrations](https://git.vgregion.se/ellbr9/vgr-components/-/settings/integrations)
+## Arbeta med komponenterna (packages/core)
 
-## Collaborate with your team
+```bash
+cd packages/core
+npm start
+```
 
-* [Invite team members and collaborators](https://docs.gitlab.com/user/project/members/)
-* [Create a new merge request](https://docs.gitlab.com/user/project/merge_requests/creating_merge_requests/)
-* [Automatically close issues from merge requests](https://docs.gitlab.com/user/project/issues/managing_issues/#closing-issues-automatically)
-* [Enable merge request approvals](https://docs.gitlab.com/user/project/merge_requests/approvals/)
-* [Set auto-merge](https://docs.gitlab.com/user/project/merge_requests/auto_merge/)
+Startar en lokal dev-server med hot reload (`src/index.html`). Ändra i en `.tsx`-fil och spara för automatisk uppdatering.
 
-## Test and Deploy
+```bash
+npm run build
+```
 
-Use the built-in continuous integration in GitLab.
+Bygger paketet på riktigt (bland annat `dist/`-mappen som andra paket och konsumenter använder). Kör detta innan du bygger `react`-paketet, så att den senaste koden faktiskt genererar wrapper-komponenter för de olika ramverken.
 
-* [Get started with GitLab CI/CD](https://docs.gitlab.com/ci/quick_start/)
-* [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/user/application_security/sast/)
-* [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/topics/autodevops/requirements/)
-* [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/user/clusters/agent/)
-* [Set up protected environments](https://docs.gitlab.com/ci/environments/protected_environments/)
+### Namnkonvention
 
-***
+Varje komponent döps enligt mönstret `vgr-<namn>` (t.ex. `vgr-button`) — obligatoriskt bindestreck enligt webbstandarden för custom elements, och `vgr`-prefixet skyddar mot namnkrockar med andra bibliotek. Events från komponenterna prefixas på samma sätt (`vgrClick` osv.).
 
-# Editing this README
+### Testa
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
+```bash
+npm test
+```
 
-## Suggestions for a good README
+Kör Stencils spec-tester (renderar komponenterna i en simulerad DOM och kollar output). E2e-tester (riktig headless-browser via Playwright) är förberedda men pausade tills vidare — kommer aktiveras senare i projektet.
 
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+Första gången du kör e2e-tester behöver du hämta browser-binärer:
 
-## Name
-Choose a self-explaining name for your project.
+```bash
+npx playwright install
+```
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+## Design tokens (packages/tokens)
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+Tokens (färger, spacing osv.) kommer från Figma via Zero Heights automatiska synk, som skapar en pull request mot det här repot när design ändras. PR:en granskas och mergas som vilken annan ändring som helst innan den slår igenom.
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+Källfilerna ligger i `packages/tokens/tokens/*.json`. Bygg om till CSS:
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+```bash
+cd packages/tokens
+npm run build
+```
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+Resultatet hamnar i `packages/tokens/dist/css/tokens.css`.
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+**Om du utvecklar lokalt i `packages/core`** och vill se rätt tokens-styling: kör `npm run build` i `packages/tokens` (så filen finns i `node_modules` via workspace-länken), sedan `npm run build` (eller `npm start`) i `packages/core` — tokens-filen kopieras då automatiskt in i dev-servern.
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+**Riktiga konsumenter** (andra team) laddar tokens en gång i sin app:
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+```ts
+import "@vgregion/design-tokens/dist/css/tokens.css";
+```
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+## React (packages/react)
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+Genereras automatiskt från `packages/core` — filerna under `src/components/stencil-generated/` ska aldrig redigeras för hand.
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+```bash
+cd packages/core && npm run build   # genererar wrapper-koden
+cd ../react && npm run build        # bygger React-paketet
+```
 
-## License
-For open source projects, say how it is licensed.
+Användning i en React-app:
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+```tsx
+import { VgrButton } from "@vgregion/components-react";
+import "@vgregion/design-tokens/dist/css/tokens.css";
+
+<VgrButton variant="primary" onVgrClick={() => console.log("klick!")}>
+  Spara
+</VgrButton>;
+```
+
+## Angular (packages/angular)
+
+Kommer snart.
+
+## Vue (packages/vue)
+
+Kommer snart.
+
+## Storybook
+
+Kommer snart.
+
+## Publicering / versionshantering
+
+Kommer eventuellt — paketen är i dagsläget inte publicerade någonstans, bara konsumerbara internt i det här repot via workspace-länkning.
+
+## Bidra
+
+1. Skapa en branch från `main`.
+2. Gör dina ändringar. Om du ändrar en komponent i `packages/core`, kör `npm run build` i `core` och sedan i `react` för att säkerställa att wrapper-koden fortfarande genereras korrekt.
+3. Kör `npm test` i `packages/core` innan du öppnar en pull request.
+4. Öppna en pull request mot `main` för granskning.
+
+**Committa aldrig** `node_modules/`, `dist/`, `www/` eller `loader/` — de är gitignorade och ska genereras lokalt via `npm install`/`npm run build`.
