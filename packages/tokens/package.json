@@ -5,10 +5,10 @@
   "main": "dist/css/tokens.css",
   "files": ["dist/"],
   "scripts": {
-    "build": "style-dictionary build"
+    "build": "node build.mjs"
   },
   "devDependencies": {
-    "style-dictionary": "^4.3.0"
+    "style-dictionary": "^5.0.0"
   },
   "publishConfig": {
     "access": "restricted"

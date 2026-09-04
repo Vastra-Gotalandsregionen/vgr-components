@@ -21,8 +21,8 @@ export const config: Config = {
       serviceWorker: null,
       copy: [
         {
-          src: '../../../node_modules/@vgregion/design-tokens/dist/css/tokens.css',
-          dest: 'tokens.css',
+          src: '../../../node_modules/@vgregion/design-tokens/dist/css',
+          dest: 'tokens',
         },
       ],
     },

@@ -1,0 +1,1417 @@
+{
+  "Color tokens": {
+    "Accent": {
+      "Orange": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.6509803921568628,
+            0.22745098039215686,
+            0.12156862745098039
+          ],
+          "alpha": 1.0,
+          "hex": "#a63a1f"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3101011
+        }
+      },
+      "Red": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.7529411764705882,
+            0.0,
+            0.0
+          ],
+          "alpha": 1.0,
+          "hex": "#c00000"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3101009
+        }
+      },
+      "Brown": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.4196078431372549,
+            0.3568627450980392,
+            0.3333333333333333
+          ],
+          "alpha": 1.0,
+          "hex": "#6b5b55"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3101007
+        }
+      },
+      "Lime": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.3607843137254902,
+            0.38823529411764707,
+            0.12941176470588237
+          ],
+          "alpha": 1.0,
+          "hex": "#5c6321"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3101005
+        }
+      },
+      "Pink": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.7098039215686275,
+            0.11372549019607843,
+            0.3058823529411765
+          ],
+          "alpha": 1.0,
+          "hex": "#b51d4e"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3101003
+        }
+      },
+      "Cyan": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.06666666666666667,
+            0.40784313725490196,
+            0.4588235294117647
+          ],
+          "alpha": 1.0,
+          "hex": "#116875"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3101001
+        }
+      },
+      "Yellow": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.5529411764705883,
+            0.3058823529411765,
+            0.09411764705882353
+          ],
+          "alpha": 1.0,
+          "hex": "#8d4e18"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100999
+        }
+      },
+      "Green": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.17254901960784313,
+            0.4196078431372549,
+            0.1803921568627451
+          ],
+          "alpha": 1.0,
+          "hex": "#2c6b2e"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100997
+        }
+      },
+      "Purple": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.43529411764705883,
+            0.27058823529411763,
+            0.7333333333333333
+          ],
+          "alpha": 1.0,
+          "hex": "#6f45bb"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100995
+        }
+      },
+      "OrangeSurfaceMinimal": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1.0,
+            0.9294117647058824,
+            0.9098039215686274
+          ],
+          "alpha": 1.0,
+          "hex": "#ffede8"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100985
+        }
+      },
+      "OrangeSurface": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1.0,
+            0.8588235294117647,
+            0.8235294117647058
+          ],
+          "alpha": 1.0,
+          "hex": "#ffdbd2"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100983
+        }
+      },
+      "OrangeSurfaceBold": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.996078431372549,
+            0.7098039215686275,
+            0.6352941176470588
+          ],
+          "alpha": 1.0,
+          "hex": "#feb5a2"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100981
+        }
+      },
+      "OrangeGraphic": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9882352941176471,
+            0.34901960784313724,
+            0.18823529411764706
+          ],
+          "alpha": 1.0,
+          "hex": "#fc5930"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100979
+        }
+      },
+      "RedSurfaceMinimal": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1.0,
+            0.9254901960784314,
+            0.9254901960784314
+          ],
+          "alpha": 1.0,
+          "hex": "#ffecec"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100977
+        }
+      },
+      "RedSurface": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1.0,
+            0.8549019607843137,
+            0.8549019607843137
+          ],
+          "alpha": 1.0,
+          "hex": "#ffdada"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100975
+        }
+      },
+      "RedSurfaceBold": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1.0,
+            0.7019607843137254,
+            0.7019607843137254
+          ],
+          "alpha": 1.0,
+          "hex": "#ffb3b3"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100973
+        }
+      },
+      "RedGraphic": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1.0,
+            0.3254901960784314,
+            0.3254901960784314
+          ],
+          "alpha": 1.0,
+          "hex": "#ff5353"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100971
+        }
+      },
+      "BrownSurfaceMinimal": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9529411764705882,
+            0.9411764705882353,
+            0.9372549019607843
+          ],
+          "alpha": 1.0,
+          "hex": "#f3f0ef"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100969
+        }
+      },
+      "BrownSurface": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9058823529411765,
+            0.8823529411764706,
+            0.8745098039215686
+          ],
+          "alpha": 1.0,
+          "hex": "#e7e1df"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100967
+        }
+      },
+      "BrownSurfaceBold": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.8156862745098039,
+            0.7686274509803922,
+            0.7490196078431373
+          ],
+          "alpha": 1.0,
+          "hex": "#d0c4bf"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100965
+        }
+      },
+      "BrownGraphic": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.6431372549019608,
+            0.5490196078431373,
+            0.5137254901960784
+          ],
+          "alpha": 1.0,
+          "hex": "#a48c83"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100963
+        }
+      },
+      "LimeSurfaceMinimal": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9372549019607843,
+            0.9568627450980393,
+            0.7764705882352941
+          ],
+          "alpha": 1.0,
+          "hex": "#eff4c6"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100961
+        }
+      },
+      "LimeSurface": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.8784313725490196,
+            0.9137254901960784,
+            0.5686274509803921
+          ],
+          "alpha": 1.0,
+          "hex": "#e0e991"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100959
+        }
+      },
+      "LimeSurfaceBold": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.8,
+            0.8588235294117647,
+            0.28627450980392155
+          ],
+          "alpha": 1.0,
+          "hex": "#ccdb49"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100957
+        }
+      },
+      "LimeGraphic": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.5529411764705883,
+            0.592156862745098,
+            0.19607843137254902
+          ],
+          "alpha": 1.0,
+          "hex": "#8d9732"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100955
+        }
+      },
+      "PinkSurfaceMinimal": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9921568627450981,
+            0.9294117647058824,
+            0.9490196078431372
+          ],
+          "alpha": 1.0,
+          "hex": "#fdedf2"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100953
+        }
+      },
+      "PinkSurface": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.984313725490196,
+            0.8549019607843137,
+            0.8980392156862745
+          ],
+          "alpha": 1.0,
+          "hex": "#fbdae5"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100951
+        }
+      },
+      "PinkSurfaceBold": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9686274509803922,
+            0.7333333333333333,
+            0.8156862745098039
+          ],
+          "alpha": 1.0,
+          "hex": "#f7bbd0"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100949
+        }
+      },
+      "PinkGraphic": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9333333333333333,
+            0.39215686274509803,
+            0.5725490196078431
+          ],
+          "alpha": 1.0,
+          "hex": "#ee6492"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100947
+        }
+      },
+      "CyanSurfaceMinimal": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.8705882352941177,
+            0.9607843137254902,
+            0.9764705882352941
+          ],
+          "alpha": 1.0,
+          "hex": "#def5f9"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100937
+        }
+      },
+      "CyanSurface": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.7372549019607844,
+            0.9215686274509803,
+            0.9490196078431372
+          ],
+          "alpha": 1.0,
+          "hex": "#bcebf2"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100935
+        }
+      },
+      "CyanSurfaceBold": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.4549019607843137,
+            0.8352941176470589,
+            0.8941176470588236
+          ],
+          "alpha": 1.0,
+          "hex": "#74d5e4"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100933
+        }
+      },
+      "CyanGraphic": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.10196078431372549,
+            0.6235294117647059,
+            0.7019607843137254
+          ],
+          "alpha": 1.0,
+          "hex": "#1a9fb3"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100931
+        }
+      },
+      "YellowSurfaceMinimal": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1.0,
+            0.9254901960784314,
+            0.7019607843137254
+          ],
+          "alpha": 1.0,
+          "hex": "#ffecb3"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100929
+        }
+      },
+      "YellowSurface": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1.0,
+            0.8666666666666667,
+            0.5176470588235295
+          ],
+          "alpha": 1.0,
+          "hex": "#ffdd84"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100927
+        }
+      },
+      "YellowSurfaceBold": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1.0,
+            0.7568627450980392,
+            0.027450980392156862
+          ],
+          "alpha": 1.0,
+          "hex": "#ffc107"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100925
+        }
+      },
+      "YellowGraphic": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.8117647058823529,
+            0.49411764705882355,
+            0.12156862745098039
+          ],
+          "alpha": 1.0,
+          "hex": "#cf7e1f"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100923
+        }
+      },
+      "GreenSurfaceMinimal": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.8784313725490196,
+            0.9686274509803922,
+            0.8823529411764706
+          ],
+          "alpha": 1.0,
+          "hex": "#e0f7e1"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100921
+        }
+      },
+      "GreenSurface": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.7529411764705882,
+            0.9333333333333333,
+            0.7607843137254902
+          ],
+          "alpha": 1.0,
+          "hex": "#c0eec2"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100919
+        }
+      },
+      "GreenSurfaceBold": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.47843137254901963,
+            0.8627450980392157,
+            0.49411764705882355
+          ],
+          "alpha": 1.0,
+          "hex": "#7adc7e"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100917
+        }
+      },
+      "GreenGraphic": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.2627450980392157,
+            0.6431372549019608,
+            0.2784313725490196
+          ],
+          "alpha": 1.0,
+          "hex": "#43a447"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100915
+        }
+      },
+      "PurpleGraphic": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.5843137254901961,
+            0.4588235294117647,
+            0.803921568627451
+          ],
+          "alpha": 1.0,
+          "hex": "#9575cd"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100883
+        }
+      },
+      "PurpleSurfaceMinimal": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9529411764705882,
+            0.9372549019607843,
+            0.9764705882352941
+          ],
+          "alpha": 1.0,
+          "hex": "#f3eff9"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100847
+        }
+      },
+      "PurpleSurface": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9019607843137255,
+            0.8745098039215686,
+            0.9529411764705882
+          ],
+          "alpha": 1.0,
+          "hex": "#e6dff3"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100845
+        }
+      },
+      "PurpleSurfaceBold": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.8196078431372549,
+            0.7686274509803922,
+            0.9137254901960784
+          ],
+          "alpha": 1.0,
+          "hex": "#d1c4e9"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100843
+        }
+      },
+      "$extensions": {
+        "com.zeroheight.tokenGroupId": 609025
+      }
+    },
+    "Elevation": {
+      "Elevation 5": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "alpha": 1.0,
+          "hex": "#ffffff"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100945
+        }
+      },
+      "Elevation 4": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "alpha": 1.0,
+          "hex": "#ffffff"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100943
+        }
+      },
+      "Elevation 3": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "alpha": 1.0,
+          "hex": "#ffffff"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100941
+        }
+      },
+      "Elevation 2": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "alpha": 1.0,
+          "hex": "#ffffff"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100939
+        }
+      },
+      "Elevation 1": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "alpha": 1.0,
+          "hex": "#ffffff"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100853
+        }
+      },
+      "Background": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9803921568627451,
+            0.9764705882352941,
+            0.9764705882352941
+          ],
+          "alpha": 1.0,
+          "hex": "#faf9f9"
+        },
+        "$type": "color",
+        "$description": "This is out used background in apps and webb",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100851
+        }
+      },
+      "$extensions": {
+        "com.zeroheight.tokenGroupId": 609026
+      }
+    },
+    "Neutral": {
+      "TextInverted": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9764705882352941,
+            0.9764705882352941,
+            0.9764705882352941
+          ],
+          "alpha": 1.0,
+          "hex": "#f9f9f9"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100989
+        }
+      },
+      "TextFixed": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.07058823529411765,
+            0.07058823529411765,
+            0.07058823529411765
+          ],
+          "alpha": 1.0,
+          "hex": "#121212"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100987
+        }
+      },
+      "DividerVariant": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.8862745098039215,
+            0.8862745098039215,
+            0.8862745098039215
+          ],
+          "alpha": 1.0,
+          "hex": "#e2e2e2"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100897
+        }
+      },
+      "Border": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.07058823529411765,
+            0.07058823529411765,
+            0.07058823529411765
+          ],
+          "alpha": 1.0,
+          "hex": "#121212"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100895
+        }
+      },
+      "BorderDisabled": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.8862745098039215,
+            0.8862745098039215,
+            0.8862745098039215
+          ],
+          "alpha": 1.0,
+          "hex": "#e2e2e2"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100893
+        }
+      },
+      "SurfaceDisabled": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9450980392156862,
+            0.9450980392156862,
+            0.9450980392156862
+          ],
+          "alpha": 1.0,
+          "hex": "#f1f1f1"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100891
+        }
+      },
+      "TextDisabled": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.8862745098039215,
+            0.8862745098039215,
+            0.8862745098039215
+          ],
+          "alpha": 1.0,
+          "hex": "#e2e2e2"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100889
+        }
+      },
+      "TextVariant": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.45098039215686275,
+            0.45098039215686275,
+            0.45098039215686275
+          ],
+          "alpha": 1.0,
+          "hex": "#737373"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100887
+        }
+      },
+      "TextInvertedFixed": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9764705882352941,
+            0.9764705882352941,
+            0.9764705882352941
+          ],
+          "alpha": 1.0,
+          "hex": "#f9f9f9"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100885
+        }
+      },
+      "Divider": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.7764705882352941,
+            0.7764705882352941,
+            0.7764705882352941
+          ],
+          "alpha": 1.0,
+          "hex": "#c6c6c6"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100855
+        }
+      },
+      "Text": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.07058823529411765,
+            0.07058823529411765,
+            0.07058823529411765
+          ],
+          "alpha": 1.0,
+          "hex": "#121212"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100849
+        }
+      },
+      "$extensions": {
+        "com.zeroheight.tokenGroupId": 609027
+      }
+    },
+    "Primary": {
+      "ActionInverted": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9215686274509803,
+            0.9490196078431372,
+            0.9607843137254902
+          ],
+          "alpha": 1.0,
+          "hex": "#ebf2f5"
+        },
+        "$type": "color",
+        "$description": "Primary action color to use on buttons and links that are on a dark surface (in light mode)",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100993
+        }
+      },
+      "ActionInvertedFixed": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9215686274509803,
+            0.9490196078431372,
+            0.9607843137254902
+          ],
+          "alpha": 1.0,
+          "hex": "#ebf2f5"
+        },
+        "$type": "color",
+        "$description": "Primary action color to use on buttons and links that are on a dark surface (in light mode and dark mode)",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100991
+        }
+      },
+      "Action": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.0,
+            0.3568627450980392,
+            0.5372549019607843
+          ],
+          "alpha": 1.0,
+          "hex": "#005b89"
+        },
+        "$type": "color",
+        "$description": "Primary action color to use on buttons and links",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100881
+        }
+      },
+      "ActionVariant": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9215686274509803,
+            0.9490196078431372,
+            0.9607843137254902
+          ],
+          "alpha": 1.0,
+          "hex": "#ebf2f5"
+        },
+        "$type": "color",
+        "$description": "Primary action color to use on backgrounds and action surface",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100879
+        }
+      },
+      "BaseSurfaceFocus": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.21568627450980393,
+            0.2784313725490196,
+            0.30980392156862746
+          ],
+          "alpha": 1.0,
+          "hex": "#37474f"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100877
+        }
+      },
+      "BaseSurfaceMinimal": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9411764705882353,
+            0.9450980392156862,
+            0.9450980392156862
+          ],
+          "alpha": 1.0,
+          "hex": "#f0f1f1"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100875
+        }
+      },
+      "BaseSurface": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.8784313725490196,
+            0.8901960784313725,
+            0.8941176470588236
+          ],
+          "alpha": 1.0,
+          "hex": "#e0e3e4"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100873
+        }
+      },
+      "BaseSurfaceBold": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.7607843137254902,
+            0.7803921568627451,
+            0.792156862745098
+          ],
+          "alpha": 1.0,
+          "hex": "#c2c7ca"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100871
+        }
+      },
+      "BaseGraphic": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.5372549019607843,
+            0.5725490196078431,
+            0.592156862745098
+          ],
+          "alpha": 1.0,
+          "hex": "#899297"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100869
+        }
+      },
+      "Base": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.21568627450980393,
+            0.2784313725490196,
+            0.30980392156862746
+          ],
+          "alpha": 1.0,
+          "hex": "#37474f"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100867
+        }
+      },
+      "BlueSurfaceFocus": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.0,
+            0.3568627450980392,
+            0.5372549019607843
+          ],
+          "alpha": 1.0,
+          "hex": "#005b89"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100865
+        }
+      },
+      "BlueSurfaceMinimal": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9215686274509803,
+            0.9490196078431372,
+            0.9607843137254902
+          ],
+          "alpha": 1.0,
+          "hex": "#ebf2f5"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100863
+        }
+      },
+      "BlueSurface": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.8431372549019608,
+            0.8941176470588236,
+            0.9254901960784314
+          ],
+          "alpha": 1.0,
+          "hex": "#d7e4ec"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100861
+        }
+      },
+      "BlueSurfaceBold": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.6784313725490196,
+            0.7843137254901961,
+            0.8392156862745098
+          ],
+          "alpha": 1.0,
+          "hex": "#adc8d6"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100859
+        }
+      },
+      "Blue": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.0,
+            0.3568627450980392,
+            0.5372549019607843
+          ],
+          "alpha": 1.0,
+          "hex": "#005b89"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100857
+        }
+      },
+      "BlueGraphic": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.39215686274509803,
+            0.592156862745098,
+            0.7019607843137254
+          ],
+          "alpha": 1.0,
+          "hex": "#6497b3"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100841
+        }
+      },
+      "$extensions": {
+        "com.zeroheight.tokenGroupId": 609028
+      }
+    },
+    "Status": {
+      "InformationSurface": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9529411764705882,
+            0.9411764705882353,
+            0.9372549019607843
+          ],
+          "alpha": 1.0,
+          "hex": "#f3f0ef"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100913
+        }
+      },
+      "InformationText": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.4196078431372549,
+            0.3568627450980392,
+            0.3333333333333333
+          ],
+          "alpha": 1.0,
+          "hex": "#6b5b55"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100911
+        }
+      },
+      "WarningSurface": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1.0,
+            0.9254901960784314,
+            0.7019607843137254
+          ],
+          "alpha": 1.0,
+          "hex": "#ffecb3"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100909
+        }
+      },
+      "WarningText": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.5529411764705883,
+            0.3058823529411765,
+            0.09411764705882353
+          ],
+          "alpha": 1.0,
+          "hex": "#8d4e18"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100907
+        }
+      },
+      "SuccesSurface": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.8784313725490196,
+            0.9686274509803922,
+            0.8823529411764706
+          ],
+          "alpha": 1.0,
+          "hex": "#e0f7e1"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100905
+        }
+      },
+      "SuccessText": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.17254901960784313,
+            0.4196078431372549,
+            0.1803921568627451
+          ],
+          "alpha": 1.0,
+          "hex": "#2c6b2e"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100903
+        }
+      },
+      "ErrorSurface": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1.0,
+            0.9254901960784314,
+            0.9254901960784314
+          ],
+          "alpha": 1.0,
+          "hex": "#ffecec"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100901
+        }
+      },
+      "ErrorText": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.7529411764705882,
+            0.0,
+            0.0
+          ],
+          "alpha": 1.0,
+          "hex": "#c00000"
+        },
+        "$type": "color",
+        "$extensions": {
+          "com.zeroheight.tokenId": 3100899
+        }
+      },
+      "$extensions": {
+        "com.zeroheight.tokenGroupId": 609029
+      }
+    },
+    "$extensions": {
+      "com.zeroheight.collectionId": 3267
+    }
+  },
+  "$extensions": {
+    "com.zeroheight.tokenSetId": 7075,
+    "com.zeroheight.tokenSetVersionId": 20078
+  }
+}
