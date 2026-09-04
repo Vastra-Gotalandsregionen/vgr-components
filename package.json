@@ -2,15 +2,31 @@
   "name": "vgr-components",
   "private": true,
   "version": "0.0.0",
-  "workspaces": ["packages/*", "apps/*"],
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
   "scripts": {
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "format:diff": "prettier --write --list-different ."
+    "format:diff": "prettier --write --list-different .",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "devDependencies": {
     "@prettier/plugin-xml": "^3.4.2",
     "prettier": "3.9.6",
-    "prettier-plugin-vue": "1.1.6"
+    "prettier-plugin-vue": "1.1.6",
+    "storybook": "^10.6.0",
+    "@storybook/web-components-vite": "^10.6.0",
+    "@chromatic-com/storybook": "latest",
+    "@storybook/addon-vitest": "^10.6.0",
+    "@storybook/addon-a11y": "^10.6.0",
+    "@storybook/addon-docs": "^10.6.0",
+    "lit": "latest",
+    "vitest": "latest",
+    "playwright": "latest",
+    "@vitest/browser-playwright": "latest",
+    "@vitest/coverage-v8": "latest"
   }
 }
