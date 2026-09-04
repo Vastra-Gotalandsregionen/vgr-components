@@ -7,8 +7,6 @@ www/
 loader/
 .stencil/
 
-# Stencil-genererade wrapper-filer (regenereras av build, se kommentar nedan)
-
 # Logs
 npm-debug.log*
 *.log
