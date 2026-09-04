@@ -11,8 +11,16 @@
   "exports": {
     ".": {
       "types": "./dist/types/index.d.ts",
-      "import": "./dist/vgregion-components/vgregion-components.esm.js",
-      "require": "./dist/vgregion-components/vgregion-components.cjs.js"
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs.js"
+    },
+    "./components": {
+      "import": "./dist/components/index.js",
+      "types": "./dist/components/index.d.ts"
+    },
+    "./components/*": {
+      "import": "./dist/components/*",
+      "types": "./dist/components/*"
     },
     "./dist/components": {
       "import": "./dist/components/index.js",
@@ -21,19 +29,6 @@
     "./dist/*": {
       "import": "./dist/*",
       "types": "./dist/*"
-    },
-    "./components": {
-  "import": "./dist/components/index.js",
-  "types": "./dist/components/index.d.ts"
-},
-"./components/*": {
-  "import": "./dist/components/*",
-  "types": "./dist/components/*"
-},
-    "./loader": {
-      "import": "./loader/index.js",
-      "require": "./loader/index.cjs",
-      "types": "./loader/index.d.ts"
     }
   },
   "publishConfig": {
