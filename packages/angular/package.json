@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "main": "dist/fesm2022/vgregion-components-angular.mjs",
   "module": "dist/fesm2022/vgregion-components-angular.mjs",
-  "types": "dist/index.d.ts",
+  "types": "dist/types/vgregion-components-angular.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/types/vgregion-components-angular.d.ts",
       "default": "./dist/fesm2022/vgregion-components-angular.mjs"
     }
   },
