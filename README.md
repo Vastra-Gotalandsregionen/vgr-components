@@ -110,7 +110,41 @@ import "@vgregion/design-tokens/dist/css/tokens.css";
 
 ## Angular (packages/angular)
 
-Kommer snart.
+Genereras automatiskt från `packages/core` via `@stencil/angular-output-target`, som standalone-komponenter (inget NgModule krävs). Byggs med `ng-packagr` (Angulars officiella biblioteksverktyg) — **inte** `tsc`, eftersom Angular kräver Ivy-kompilerad kod för att känna igen en komponent som importerbar.
+
+```bash
+cd packages/core && npm run build   # genererar wrapper-koden
+cd ../angular && npm run build      # kompilerar med ng-packagr
+```
+
+Användning i en Angular-app (standalone-komponent):
+
+```typescript
+import { Component } from "@angular/core";
+import { VgrButton } from "@vgregion/components-angular";
+
+@Component({
+  selector: "app-root",
+  standalone: true,
+  imports: [VgrButton],
+  templateUrl: "./app.html",
+})
+export class App {}
+```
+
+```html
+<vgr-button variant="primary" (vgrClick)="onSave()">Spara</vgr-button>
+```
+
+**Viktigt — design tokens laddas annorlunda än i React.** Angular CLI förstår inte en CSS-import skriven direkt i en `.ts`-fil. Lägg istället till en `@import`-rad i appens globala `src/styles.css`:
+
+```css
+@import "@vgregion/design-tokens/dist/css/tokens.css";
+```
+
+Utan den raden laddas aldrig tokens, och komponenterna visas ostylade trots att allt annat fungerar.
+
+**Versionskrav:** Angular `>=22.0.0`. Håll `@angular/compiler`, `@angular/compiler-cli`, `ng-packagr` och `typescript` synkade mot varandra i `packages/angular/package.json` — se kommentar i filen om `peerDependencies` vid uppgradering.
 
 ## Vue (packages/vue)
 
