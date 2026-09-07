@@ -85,7 +85,7 @@ Resultatet hamnar i `packages/tokens/dist/css/tokens.css`.
 **Riktiga konsumenter** (andra team) laddar tokens en gång i sin app:
 
 ```ts
-import "@vgregion/design-tokens/dist/css/tokens.css";
+import '@vgregion/design-tokens/dist/css/tokens.css';
 ```
 
 ## React (packages/react)
@@ -100,10 +100,10 @@ cd ../react && npm run build        # bygger React-paketet
 Användning i en React-app:
 
 ```tsx
-import { VgrButton } from "@vgregion/components-react";
-import "@vgregion/design-tokens/dist/css/tokens.css";
+import { VgrButton } from '@vgregion/components-react';
+import '@vgregion/design-tokens/dist/css/tokens.css';
 
-<VgrButton variant="primary" onVgrClick={() => console.log("klick!")}>
+<VgrButton variant="primary" onVgrClick={() => console.log('klick!')}>
   Spara
 </VgrButton>;
 ```

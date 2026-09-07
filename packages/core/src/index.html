@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html dir="ltr" lang="en">
   <head>
     <meta charset="utf-8" />
@@ -8,25 +8,23 @@
     <script type="module" src="/build/vgregion-components.esm.js"></script>
 
     <script nomodule src="/build/vgregion-components.js"></script>
-<link rel="stylesheet" href="/tokens/tokens.css" />
+    <link rel="stylesheet" href="/tokens/tokens.css" />
   </head>
-  <body style="background-color: var(--accent-orange);">
-<vgr-button variant="primary">Spara</vgr-button>
-<vgr-button variant="secondary">Avbryt</vgr-button>
-<vgr-button variant="danger" disabled>Ta bort</vgr-button>  
-<button id="theme-toggle">Växla tema</button>
+  <body style="background-color: var(--accent-orange)">
+    <vgr-button variant="primary">Spara</vgr-button>
+    <vgr-button variant="secondary">Avbryt</vgr-button>
+    <vgr-button variant="danger" disabled>Ta bort</vgr-button>
+    <button id="theme-toggle">Växla tema</button>
+  </body>
 
-</body>
-
-<script>
-  document.getElementById('theme-toggle').addEventListener('click', () => {
-    const html = document.documentElement;
-    if (html.getAttribute('data-theme') === 'dark') {
-      html.removeAttribute('data-theme');
-    } else {
-      html.setAttribute('data-theme', 'dark');
-    }
-  });
-</script>
+  <script>
+    document.getElementById('theme-toggle').addEventListener('click', () => {
+      const html = document.documentElement;
+      if (html.getAttribute('data-theme') === 'dark') {
+        html.removeAttribute('data-theme');
+      } else {
+        html.setAttribute('data-theme', 'dark');
+      }
+    });
+  </script>
 </html>
-
