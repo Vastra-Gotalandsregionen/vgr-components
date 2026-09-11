@@ -1,0 +1,17 @@
+{
+  "name": "storybook-app",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  },
+  "dependencies": {
+    "@vgregion/components-core": "0.0.1"
+  },
+  "devDependencies": {
+    "storybook": "^10.6.0",
+    "@storybook/web-components-vite": "^10.6.0"
+  }
+}
