@@ -1,4 +1,5 @@
 import { defineCustomElements } from '@vgregion/components-core/loader';
+import '@vgregion/design-tokens/dist/css/tokens.css';
 
 defineCustomElements();
 

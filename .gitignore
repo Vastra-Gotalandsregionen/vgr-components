@@ -6,6 +6,7 @@ dist/
 www/
 loader/
 .stencil/
+storybook-static/
 
 # Logs
 npm-debug.log*
