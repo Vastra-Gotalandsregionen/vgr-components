@@ -29,6 +29,11 @@
     "./dist/*": {
       "import": "./dist/*",
       "types": "./dist/*"
+    },
+    "./loader": {
+      "types": "./loader/index.d.ts",
+      "import": "./loader/index.js",
+      "require": "./loader/index.cjs.js"
     }
   },
   "publishConfig": {
