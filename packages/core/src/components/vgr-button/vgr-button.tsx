@@ -6,6 +6,7 @@ export type VgrButtonVariant = 'primary' | 'secondary';
   tag: 'vgr-button',
   styleUrl: 'vgr-button.css',
   shadow: true,
+  scoped: false,
 })
 export class VgrButton {
   @Prop() variant: VgrButtonVariant = 'primary';
