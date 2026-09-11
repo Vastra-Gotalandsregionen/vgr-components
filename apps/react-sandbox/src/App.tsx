@@ -3,9 +3,11 @@ import '@vgregion/design-tokens/dist/css/tokens.css';
 
 function App() {
   return (
-    <VgrButton variant="primary" onVgrClick={() => alert('Reactknapp!')}>
-      Spara
-    </VgrButton>
+    <VgrButton
+      variant="primary"
+      onVgrClick={() => alert('Reactknapp!')}
+      text="Sparaa"
+    />
   );
 }
 

@@ -2,7 +2,9 @@
   display: block;
 }
 
-button.variant-primary {
-  background: var(--accent-green);
-  color: white;
+.vgr-button {
+  &.variant-primary {
+    background: var(--accent-green);
+    color: white;
+  }
 }

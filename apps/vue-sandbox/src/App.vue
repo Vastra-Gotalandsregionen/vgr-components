@@ -7,5 +7,5 @@ function onSave() {
 </script>
 
 <template>
-  <VgrButton variant="primary" @vgrClick="onSave">Spara</VgrButton>
+  <VgrButton variant="primary" @vgrClick="onSave" text="Spara!" />
 </template>
