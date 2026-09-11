@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit-html';
+// TODO: Put in a more general file
+import '@vgregion/design-tokens/dist/css/tokens.css';
 
 interface VgrButtonArgs {
   variant: 'primary' | 'secondary' | 'danger';
