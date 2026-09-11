@@ -1,6 +1,7 @@
 {
   "name": "@vgregion/components-vue",
   "version": "0.1.0",
+  "type": "module",
   "main": "dist/index.js",
   "types": "dist/src/index.d.ts",
   "files": ["dist/"],
