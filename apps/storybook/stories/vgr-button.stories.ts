@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit-html';
 
 interface VgrButtonArgs {
-  variant: 'primary' | 'secondary' | 'danger';
+  variant: 'primary' | 'secondary';
   disabled: boolean;
   text: string;
 }
@@ -21,7 +21,7 @@ const meta: Meta<VgrButtonArgs> = {
   argTypes: {
     variant: {
       control: { type: 'select' },
-      options: ['primary', 'secondary', 'danger'],
+      options: ['primary', 'secondary'],
     },
     disabled: { control: { type: 'boolean' } },
     text: { control: { type: 'text' } },
