@@ -13,7 +13,7 @@ export namespace Components {
           * @default false
          */
         "disabled": boolean;
-        "text": String;
+        "text": string;
         /**
           * @default 'button'
          */
@@ -57,7 +57,7 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         "onVgrClick"?: (event: VgrButtonCustomEvent<void>) => void;
-        "text"?: String;
+        "text"?: string;
         /**
           * @default 'button'
          */
@@ -72,6 +72,7 @@ declare namespace LocalJSX {
         "variant": VgrButtonVariant;
         "disabled": boolean;
         "type": 'button' | 'submit' | 'reset';
+        "text": string;
     }
 
     interface IntrinsicElements {

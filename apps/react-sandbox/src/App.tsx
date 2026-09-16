@@ -1,5 +1,5 @@
 import { VgrButton } from '@vgregion/components-react';
-import '@vgregion/design-tokens/dist/css/tokens.css';
+import '@vgregion/components-core/dist/styles.css';
 
 function App() {
   return (
