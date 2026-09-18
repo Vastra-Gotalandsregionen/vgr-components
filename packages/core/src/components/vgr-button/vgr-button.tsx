@@ -32,19 +32,19 @@ export class VgrButton {
 
     const variantClasses = {
       primary: `
-        bg-[var(--primary-action)]
-        text-[var(--neutral-text-inverted)]
-        hover:bg-[var(--neutral-text)]
-        disabled:bg-[var(--neutral-divider)]
-        disabled:text-[var(--neutral-text-variant)]
-      `,
+    bg-primary-action
+    text-neutral-text-inverted
+    hover:bg-neutral-text
+    disabled:bg-neutral-divider
+    disabled:text-neutral-text-variant
+  `,
       secondary: `
-        bg-transparent
-        text-[var(--primary-action)]
-        border-2 border-[var(--primary-action)]
-        hover:text-[var(--neutral-text)]
-        disabled:text-[var(--neutral-divider)]
-      `,
+    bg-transparent
+    text-primary-action
+    border-2 border-primary-action
+    hover:text-neutral-text
+    disabled:text-neutral-divider
+  `,
     };
 
     return `${baseClasses} ${variantClasses[this.variant] || ''}`.trim();
