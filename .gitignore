@@ -6,6 +6,8 @@ dist/
 www/
 loader/
 .stencil/
+.tailwind-build/
+storybook-static/
 
 # Logs
 npm-debug.log*

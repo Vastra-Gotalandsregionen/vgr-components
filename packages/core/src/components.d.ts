@@ -10,17 +10,15 @@ export { VgrButtonVariant } from "./components/vgr-button/vgr-button";
 export namespace Components {
     interface VgrButton {
         /**
-          * Disables the button and prevents the click event from firing.
           * @default false
          */
         "disabled": boolean;
+        "text": string;
         /**
-          * Native button type — matters when the button sits inside a <form>.
           * @default 'button'
          */
         "type": 'button' | 'submit' | 'reset';
         /**
-          * Visual style of the button.
           * @default 'primary'
          */
         "variant": VgrButtonVariant;
@@ -55,21 +53,16 @@ declare global {
 declare namespace LocalJSX {
     interface VgrButton {
         /**
-          * Disables the button and prevents the click event from firing.
           * @default false
          */
         "disabled"?: boolean;
-        /**
-          * Emitted when the button is clicked (and not disabled).
-         */
         "onVgrClick"?: (event: VgrButtonCustomEvent<void>) => void;
+        "text"?: string;
         /**
-          * Native button type — matters when the button sits inside a <form>.
           * @default 'button'
          */
         "type"?: 'button' | 'submit' | 'reset';
         /**
-          * Visual style of the button.
           * @default 'primary'
          */
         "variant"?: VgrButtonVariant;
@@ -79,6 +72,7 @@ declare namespace LocalJSX {
         "variant": VgrButtonVariant;
         "disabled": boolean;
         "type": 'button' | 'submit' | 'reset';
+        "text": string;
     }
 
     interface IntrinsicElements {

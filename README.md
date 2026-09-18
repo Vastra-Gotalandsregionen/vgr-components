@@ -120,14 +120,14 @@ cd ../angular && npm run build      # kompilerar med ng-packagr
 Användning i en Angular-app (standalone-komponent):
 
 ```typescript
-import { Component } from "@angular/core";
-import { VgrButton } from "@vgregion/components-angular";
+import { Component } from '@angular/core';
+import { VgrButton } from '@vgregion/components-angular';
 
 @Component({
-  selector: "app-root",
+  selector: 'app-root',
   standalone: true,
   imports: [VgrButton],
-  templateUrl: "./app.html",
+  templateUrl: './app.html',
 })
 export class App {}
 ```
@@ -139,7 +139,7 @@ export class App {}
 **Viktigt — design tokens laddas annorlunda än i React.** Angular CLI förstår inte en CSS-import skriven direkt i en `.ts`-fil. Lägg istället till en `@import`-rad i appens globala `src/styles.css`:
 
 ```css
-@import "@vgregion/design-tokens/dist/css/tokens.css";
+@import '@vgregion/components-core/dist/styles.css';
 ```
 
 Utan den raden laddas aldrig tokens, och komponenterna visas ostylade trots att allt annat fungerar.

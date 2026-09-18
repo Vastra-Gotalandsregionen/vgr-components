@@ -1,12 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit-html';
-// TODO: Put in a more general file
-import '@vgregion/design-tokens/dist/css/tokens.css';
 
 interface VgrButtonArgs {
-  variant: 'primary' | 'secondary' | 'danger';
+  variant: 'primary' | 'secondary';
   disabled: boolean;
-  label: string;
+  text: string;
 }
 
 const meta: Meta<VgrButtonArgs> = {
@@ -16,22 +14,22 @@ const meta: Meta<VgrButtonArgs> = {
       variant=${args.variant}
       ?disabled=${args.disabled}
       @vgrClick=${() => console.log('vgrClick fired')}
+      text=${args.text}
     >
-      ${args.label}
     </vgr-button>
   `,
   argTypes: {
     variant: {
       control: { type: 'select' },
-      options: ['primary', 'secondary', 'danger'],
+      options: ['primary', 'secondary'],
     },
     disabled: { control: { type: 'boolean' } },
-    label: { control: { type: 'text' } },
+    text: { control: { type: 'text' } },
   },
   args: {
     variant: 'primary',
     disabled: false,
-    label: 'Klicka här',
+    text: 'Klicka här',
   },
 };
 

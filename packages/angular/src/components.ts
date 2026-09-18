@@ -9,14 +9,14 @@ import type { Components } from '@vgregion/components-core/components';
 import { defineCustomElement as defineVgrButton } from '@vgregion/components-core/components/vgr-button.js';
 @ProxyCmp({
   defineCustomElementFn: defineVgrButton,
-  inputs: ['disabled', 'type', 'variant']
+  inputs: ['disabled', 'text', 'type', 'variant']
 })
 @Component({
   selector: 'vgr-button',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['disabled', 'type', 'variant'],
+  inputs: ['disabled', 'text', 'type', 'variant'],
   outputs: ['vgrClick'],
 })
 export class VgrButton {
@@ -32,9 +32,7 @@ export class VgrButton {
 import type { VgrButtonCustomEvent } from '@vgregion/components-core/components';
 
 export declare interface VgrButton extends Components.VgrButton {
-  /**
-   * Emitted when the button is clicked (and not disabled).
-   */
+
   vgrClick: EventEmitter<VgrButtonCustomEvent<void>>;
 }
 
