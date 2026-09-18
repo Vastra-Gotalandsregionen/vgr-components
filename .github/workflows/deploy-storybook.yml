@@ -30,7 +30,7 @@ jobs:
         run: npm ci
         working-directory: ./apps/storybook
       - name: Build Storybook
-        run: npm run build-storybook -- --no-rollback
+        run: npm run build-storybook
         working-directory: ./apps/storybook
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
