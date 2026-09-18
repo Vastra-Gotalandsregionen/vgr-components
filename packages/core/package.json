@@ -26,6 +26,7 @@
       "import": "./dist/components/index.js",
       "types": "./dist/components/index.d.ts"
     },
+    "./dist/styles.css": "./dist/styles.css",
     "./dist/*": {
       "import": "./dist/*",
       "types": "./dist/*"

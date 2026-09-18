@@ -10,11 +10,10 @@
       "default": "./dist/fesm2022/vgregion-components-angular.mjs"
     }
   },
-  "files": [
-    "dist/"
-  ],
+  "files": ["dist/"],
   "scripts": {
-    "build": "ng-packagr -p ng-package.json"
+    "build": "ng-packagr -p ng-package.json",
+    "start": "ng serve"
   },
   "dependencies": {
     "@vgregion/components-core": "0.0.1",
