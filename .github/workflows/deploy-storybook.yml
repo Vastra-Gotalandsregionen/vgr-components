@@ -2,7 +2,7 @@ name: Build and Publish Storybook to GitHub Pages
 on:
   push:
     branches:
-      - 'main'
+      - 'feature/publish-storybook'
 permissions:
   contents: read
   pages: write
@@ -30,7 +30,7 @@ jobs:
         run: npm ci
         working-directory: ./apps/storybook
       - name: Build Storybook
-        run: npm run build-storybook
+        run: npm run build-storybook -- --no-rollback
         working-directory: ./apps/storybook
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
