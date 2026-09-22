@@ -6,6 +6,9 @@ const config: StorybookConfig = {
     name: '@storybook/web-components-vite',
     options: {},
   },
+  core: {
+    builder: '@storybook/builder-webpack5',
+  },
 };
 
 export default config;
