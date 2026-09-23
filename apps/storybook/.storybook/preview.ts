@@ -1,7 +1,5 @@
-import { defineCustomElements } from '@vgregion/components-core/loader';
+import '@vgregion/components-core/dist/components/define-all.js';
 import '@vgregion/components-core/dist/styles.css';
-
-defineCustomElements();
 
 const preview = {
   parameters: {

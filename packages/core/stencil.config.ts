@@ -40,7 +40,6 @@ export const config: Config = {
       outputType: 'standalone',
       directivesProxyFile: '../angular/src/components.ts',
     }),
-    { type: 'dist-custom-elements' },
     vueOutputTarget({
       componentCorePackage: '@vgregion/components-core',
       proxiesFile: '../vue/src/components.ts',
