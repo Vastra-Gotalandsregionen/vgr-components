@@ -1,5 +1,6 @@
 import { defineVitestConfig } from '@stencil/vitest/config';
 import { playwright } from '@vitest/browser-playwright';
+import { stencilVitestPlugin } from '@stencil/vitest/plugin';
 
 export default defineVitestConfig({
   stencilConfig: './stencil.config.ts',
@@ -7,6 +8,7 @@ export default defineVitestConfig({
     projects: [
       // Unit tests - stencil environment for component logic
       {
+        plugins: [stencilVitestPlugin()],
         test: {
           name: 'unit',
           include: ['src/**/*.unit.test.{ts,tsx}'],

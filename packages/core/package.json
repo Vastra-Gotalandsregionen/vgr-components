@@ -67,6 +67,10 @@
     "@tailwindcss/cli": "^4.3.3",
     "@types/node": "^22.13.5",
     "@vitest/browser-playwright": "^4.0.0",
+    "jest": "^30.5.2",
+    "jest-config": "^30.5.2",
+    "jest-environment-node": "^30.5.2",
+    "jest-runner": "^30.5.2",
     "playwright": "^1.52.0",
     "tailwindcss": "^4.3.3",
     "vitest": "^4.0.0"
