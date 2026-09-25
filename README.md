@@ -274,3 +274,17 @@ npm run dev --workspace=vue-sandbox
 ```
 
 ---
+
+## Bygga ny komponent
+
+1. Kör igång Stencils komponentgenerator.
+
+```bash
+cd packages/core
+npm run generate
+```
+
+2. Inställningar
+
+- Döp komponenten enligt konvention vgr-komponentnamn
+- Vi behöver i dagsläget inga av de extra alternativen, stylesheet eller tests, eftersom vi stylar med Tailwind och testen skrivs lite annorlunda

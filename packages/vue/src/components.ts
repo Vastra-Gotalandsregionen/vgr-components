@@ -20,3 +20,6 @@ export const VgrButton: StencilVueComponent<JSX.VgrButton> = /*@__PURE__*/ defin
 ]);
 
 
+export const VgrIcon: StencilVueComponent<JSX.VgrIcon> = /*@__PURE__*/ defineContainer<JSX.VgrIcon>('vgr-icon', undefined);
+
+

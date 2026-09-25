@@ -14,6 +14,7 @@ import React from 'react';
 import { type VgrButtonCustomEvent } from "@vgregion/components-core";
 import type { Components } from "@vgregion/components-core/dist/components";
 import { VgrButton as VgrButtonElement, defineCustomElement as defineVgrButton } from "@vgregion/components-core/dist/components/vgr-button.js";
+import { VgrIcon as VgrIconElement, defineCustomElement as defineVgrIcon } from "@vgregion/components-core/dist/components/vgr-icon.js";
 
 export type VgrButtonEvents = { onVgrClick: EventName<VgrButtonCustomEvent<void>> };
 
@@ -24,4 +25,15 @@ export const VgrButton: StencilReactComponent<VgrButtonElement, VgrButtonEvents,
     react: React,
     events: { onVgrClick: 'vgrClick' } as VgrButtonEvents,
     defineCustomElement: defineVgrButton
+});
+
+export type VgrIconEvents = NonNullable<unknown>;
+
+export const VgrIcon: StencilReactComponent<VgrIconElement, VgrIconEvents, Components.VgrIcon> = /*@__PURE__*/ createComponent<VgrIconElement, VgrIconEvents, Components.VgrIcon>({
+    tagName: 'vgr-icon',
+    elementClass: VgrIconElement,
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    react: React,
+    events: {} as VgrIconEvents,
+    defineCustomElement: defineVgrIcon
 });

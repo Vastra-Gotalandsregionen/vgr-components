@@ -23,6 +23,8 @@ export namespace Components {
          */
         "variant": VgrButtonVariant;
     }
+    interface VgrIcon {
+    }
 }
 export interface VgrButtonCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -46,8 +48,15 @@ declare global {
         prototype: HTMLVgrButtonElement;
         new (): HTMLVgrButtonElement;
     };
+    interface HTMLVgrIconElement extends Components.VgrIcon, HTMLStencilElement {
+    }
+    var HTMLVgrIconElement: {
+        prototype: HTMLVgrIconElement;
+        new (): HTMLVgrIconElement;
+    };
     interface HTMLElementTagNameMap {
         "vgr-button": HTMLVgrButtonElement;
+        "vgr-icon": HTMLVgrIconElement;
     }
 }
 declare namespace LocalJSX {
@@ -67,6 +76,8 @@ declare namespace LocalJSX {
          */
         "variant"?: VgrButtonVariant;
     }
+    interface VgrIcon {
+    }
 
     interface VgrButtonAttributes {
         "variant": VgrButtonVariant;
@@ -77,6 +88,7 @@ declare namespace LocalJSX {
 
     interface IntrinsicElements {
         "vgr-button": Omit<VgrButton, keyof VgrButtonAttributes> & { [K in keyof VgrButton & keyof VgrButtonAttributes]?: VgrButton[K] } & { [K in keyof VgrButton & keyof VgrButtonAttributes as `attr:${K}`]?: VgrButtonAttributes[K] } & { [K in keyof VgrButton & keyof VgrButtonAttributes as `prop:${K}`]?: VgrButton[K] };
+        "vgr-icon": VgrIcon;
     }
 }
 export { LocalJSX as JSX };
@@ -84,6 +96,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "vgr-button": LocalJSX.IntrinsicElements["vgr-button"] & JSXBase.HTMLAttributes<HTMLVgrButtonElement>;
+            "vgr-icon": LocalJSX.IntrinsicElements["vgr-icon"] & JSXBase.HTMLAttributes<HTMLVgrIconElement>;
         }
     }
 }
