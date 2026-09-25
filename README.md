@@ -160,3 +160,72 @@ Publicering via npm kommer eventuellt.
 4. Öppna en pull request mot `main` för granskning.
 
 **Committa aldrig** `node_modules/`, `dist/`, `www/` eller `loader/` — de är gitignorade och ska genereras lokalt via `npm install`/`npm run build`.
+
+## TLDR Kom igång i projektet
+
+### Klona projektet och installera beroenden
+
+```bash
+git clone https://github.com/Vastra-Gotalandsregionen/vgr-components.git
+cd vgr-components
+npm install
+```
+
+### Bygg design tokens-filer
+
+```bash
+npm run build --workspace=@vgregion/design-tokens
+```
+
+### Bygg Stencil-komponenter, nödvändiga config-filer och stylesheets
+
+```bash
+npm run build-core
+```
+
+### Bygg paketen för respektive ramverk
+
+```bash
+npm run build --workspace=@vgregion/components-react
+```
+
+```bash
+npm run build --workspace=@vgregion/components-angular
+```
+
+```bash
+npm run build --workspace=@vgregion/components-vue
+```
+
+### Starta dev-servers
+
+#### Core
+
+```bash
+npm run start --workspace=@vgregion/components-core
+```
+
+#### React
+
+```bash
+npm run dev --workspace=react-sandbox
+```
+
+#### Storybook
+
+```bash
+npm run storybook --workspace=storybook-app
+```
+
+#### Angular
+
+```bash
+npm run build --workspace=angular-sandbox
+npm run start --workspace=angular-sandbox
+```
+
+#### Vue
+
+```bash
+npm run dev --workspace=vue-sandbox
+```
