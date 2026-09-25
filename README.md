@@ -172,6 +172,16 @@ cd vgr-components
 
 ---
 
+### Installera Playwright
+
+För att kunna köra tester.
+
+```bash
+npx playwright install
+```
+
+---
+
 ### Installera korrekt node-version
 
 Inte ett måste för att köra projektet, men det underlättar samarbete. Aktuell node-version ligger i .nvmrc i rooten.
