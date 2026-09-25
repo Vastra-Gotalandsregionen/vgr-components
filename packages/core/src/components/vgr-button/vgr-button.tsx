@@ -35,7 +35,7 @@ export class VgrButton {
     bg-primary-action
     text-neutral-text-inverted
     hover:bg-neutral-text
-    disabled:bg-neutral-divider
+    disabled:bg-neutral-disabled
     disabled:text-neutral-text-variant
   `,
       secondary: `
@@ -43,7 +43,7 @@ export class VgrButton {
     text-primary-action
     border-2 border-primary-action
     hover:text-neutral-text
-    disabled:text-neutral-divider
+    disabled:text-neutral-disabled
   `,
     };
 
