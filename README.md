@@ -69,9 +69,9 @@ npx playwright install
 
 ## Design tokens (packages/tokens)
 
-Tokens (färger, spacing osv.) kommer från Figma via Zero Heights automatiska synk, som skapar en pull request mot det här repot när design ändras. PR:en granskas och mergas som vilken annan ändring som helst innan den slår igenom.
+Tokens (färger, spacing osv.) kommer från Figma via zeroheights automatiska synk, som skapar en pull request mot det här repot när design ändras. PR:en granskas och mergas som vilken annan ändring som helst innan den slår igenom.
 
-Källfilerna ligger i `packages/tokens/tokens/*.json`. Bygg om till CSS:
+Källfilerna ligger i `packages/tokens/tokens/*.json`. Bygg om till CSS efter en import av nya tokens:
 
 ```bash
 cd packages/tokens
@@ -81,12 +81,6 @@ npm run build
 Resultatet hamnar i `packages/tokens/dist/css/tokens.css`.
 
 **Om du utvecklar lokalt i `packages/core`** och vill se rätt tokens-styling: kör `npm run build` i `packages/tokens` (så filen finns i `node_modules` via workspace-länken), sedan `npm run build` (eller `npm start`) i `packages/core` — tokens-filen kopieras då automatiskt in i dev-servern.
-
-**Riktiga konsumenter** (andra team) laddar tokens en gång i sin app:
-
-```ts
-import '@vgregion/design-tokens/dist/css/tokens.css';
-```
 
 ## React (packages/react)
 
@@ -101,7 +95,7 @@ Användning i en React-app:
 
 ```tsx
 import { VgrButton } from '@vgregion/components-react';
-import '@vgregion/design-tokens/dist/css/tokens.css';
+import '@vgregion/components-core/dist/styles.css';
 
 <VgrButton variant="primary" onVgrClick={() => console.log('klick!')}>
   Spara
@@ -136,13 +130,11 @@ export class App {}
 <vgr-button variant="primary" (vgrClick)="onSave()">Spara</vgr-button>
 ```
 
-**Viktigt — design tokens laddas annorlunda än i React.** Angular CLI förstår inte en CSS-import skriven direkt i en `.ts`-fil. Lägg istället till en `@import`-rad i appens globala `src/styles.css`:
+**Viktigt — css laddas annorlunda än i React.** Angular CLI förstår inte en CSS-import skriven direkt i en `.ts`-fil. Lägg istället till en `@import`-rad i appens globala `src/styles.css`:
 
 ```css
 @import '@vgregion/components-core/dist/styles.css';
 ```
-
-Utan den raden laddas aldrig tokens, och komponenterna visas ostylade trots att allt annat fungerar.
 
 **Versionskrav:** Angular `>=22.0.0`. Håll `@angular/compiler`, `@angular/compiler-cli`, `ng-packagr` och `typescript` synkade mot varandra i `packages/angular/package.json` — se kommentar i filen om `peerDependencies` vid uppgradering.
 
@@ -152,11 +144,13 @@ Kommer snart.
 
 ## Storybook
 
-Kommer snart.
+Under utveckling kan man köra appen med hjälp av `npm run storybook` i mappen `apps/storybook.` Storybook-appen publiceras även via Github Pages, se nedan.
 
 ## Publicering / versionshantering
 
-Kommer eventuellt — paketen är i dagsläget inte publicerade någonstans, bara konsumerbara internt i det här repot via workspace-länkning.
+Projektet publiceras i nuläget via Github Pages vid push till `main`, och kan ses på https://vastra-gotalandsregionen.github.io/vgr-components/. Vi utgår ifrån projektets Storybook-app eftersom det i dagsläget är det som är intressant att publicera, både för direkt översikt över komponenterna och för inbäddning via zeroheight.
+
+Publicering via npm kommer eventuellt.
 
 ## Bidra
 
