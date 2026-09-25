@@ -1,7 +1,6 @@
 import { describe, it, expect } from '@stencil/vitest';
-
 import { newSpecPage } from '@stencil/core/testing';
-import { VgrButton } from './vgr-button';
+import { VgrButton } from '../../../dist/collection/components/vgr-button/vgr-button';
 
 describe('vgr-button', () => {
   it('renders with default variant and text content', async () => {
