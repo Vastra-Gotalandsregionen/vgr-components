@@ -163,11 +163,38 @@ Publicering via npm kommer eventuellt.
 
 ## TLDR Kom igång i projektet
 
-### Klona projektet och installera beroenden
+### Klona projektet
 
 ```bash
 git clone https://github.com/Vastra-Gotalandsregionen/vgr-components.git
 cd vgr-components
+```
+
+---
+
+### Installera korrekt node-version
+
+Inte ett måste för att köra projektet, men det underlättar samarbete. Aktuell node-version ligger i .nvmrc i rooten.
+
+Rekommendation är att använda nvm för att byta node-version. Installera versionen i .nvmrc och sedan:
+
+På mac räcker detta för att använda versionen från .nvmrc:
+
+```bash
+nvm use
+```
+
+På PC sätter man den manuellt:
+
+```bash
+nvm use v.X.X.X
+```
+
+---
+
+### Installera beroenden
+
+```bash
 npm install
 ```
 
@@ -177,11 +204,15 @@ npm install
 npm run build --workspace=@vgregion/design-tokens
 ```
 
+---
+
 ### Bygg Stencil-komponenter, nödvändiga config-filer och stylesheets
 
 ```bash
 npm run build-core
 ```
+
+---
 
 ### Bygg paketen för respektive ramverk
 
@@ -197,6 +228,8 @@ npm run build --workspace=@vgregion/components-angular
 npm run build --workspace=@vgregion/components-vue
 ```
 
+---
+
 ### Starta dev-servers
 
 #### Core
@@ -205,16 +238,16 @@ npm run build --workspace=@vgregion/components-vue
 npm run start --workspace=@vgregion/components-core
 ```
 
-#### React
-
-```bash
-npm run dev --workspace=react-sandbox
-```
-
 #### Storybook
 
 ```bash
 npm run storybook --workspace=storybook-app
+```
+
+#### React
+
+```bash
+npm run dev --workspace=react-sandbox
 ```
 
 #### Angular
@@ -229,3 +262,5 @@ npm run start --workspace=angular-sandbox
 ```bash
 npm run dev --workspace=vue-sandbox
 ```
+
+---
