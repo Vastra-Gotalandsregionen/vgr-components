@@ -29,7 +29,7 @@ export const VgrButton: StencilReactComponent<VgrButtonElement, VgrButtonEvents,
 
 export type VgrIconEvents = NonNullable<unknown>;
 
-export const VgrIcon: StencilReactComponent<VgrIconElement, VgrIconEvents, Components.VgrIcon> = /*@__PURE__*/ createComponent<VgrIconElement, VgrIconEvents, Components.VgrIcon>({
+export const VgrIcon: StencilReactComponent<VgrIconElement, VgrIconEvents, Components.VgrIcon, 'icon'> = /*@__PURE__*/ createComponent<VgrIconElement, VgrIconEvents, Components.VgrIcon, 'icon'>({
     tagName: 'vgr-icon',
     elementClass: VgrIconElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.

@@ -13,6 +13,7 @@ export namespace Components {
           * @default false
          */
         "disabled": boolean;
+        "icon"?: string;
         "text": string;
         /**
           * @default 'button'
@@ -24,6 +25,10 @@ export namespace Components {
         "variant": VgrButtonVariant;
     }
     interface VgrIcon {
+        /**
+          * SVG markup for the icon. Must come from our own icon package, never from user input, since it is rendered with innerHTML.
+         */
+        "icon": string;
     }
 }
 export interface VgrButtonCustomEvent<T> extends CustomEvent<T> {
@@ -60,11 +65,14 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    type OneOf<K extends string, PropT, AttrT = PropT> = { [P in K]: PropT } & { [P in `attr:${K}`]?: never } | { [P in `attr:${K}`]: AttrT } & { [P in K]?: never };
+
     interface VgrButton {
         /**
           * @default false
          */
         "disabled"?: boolean;
+        "icon"?: string;
         "onVgrClick"?: (event: VgrButtonCustomEvent<void>) => void;
         "text"?: string;
         /**
@@ -77,6 +85,10 @@ declare namespace LocalJSX {
         "variant"?: VgrButtonVariant;
     }
     interface VgrIcon {
+        /**
+          * SVG markup for the icon. Must come from our own icon package, never from user input, since it is rendered with innerHTML.
+         */
+        "icon": string;
     }
 
     interface VgrButtonAttributes {
@@ -84,11 +96,15 @@ declare namespace LocalJSX {
         "disabled": boolean;
         "type": 'button' | 'submit' | 'reset';
         "text": string;
+        "icon": string;
+    }
+    interface VgrIconAttributes {
+        "icon": string;
     }
 
     interface IntrinsicElements {
         "vgr-button": Omit<VgrButton, keyof VgrButtonAttributes> & { [K in keyof VgrButton & keyof VgrButtonAttributes]?: VgrButton[K] } & { [K in keyof VgrButton & keyof VgrButtonAttributes as `attr:${K}`]?: VgrButtonAttributes[K] } & { [K in keyof VgrButton & keyof VgrButtonAttributes as `prop:${K}`]?: VgrButton[K] };
-        "vgr-icon": VgrIcon;
+        "vgr-icon": Omit<VgrIcon, keyof VgrIconAttributes> & { [K in keyof VgrIcon & keyof VgrIconAttributes]?: VgrIcon[K] } & { [K in keyof VgrIcon & keyof VgrIconAttributes as `attr:${K}`]?: VgrIconAttributes[K] } & { [K in keyof VgrIcon & keyof VgrIconAttributes as `prop:${K}`]?: VgrIcon[K] } & OneOf<"icon", VgrIcon["icon"], VgrIconAttributes["icon"]>;
     }
 }
 export { LocalJSX as JSX };
