@@ -8,7 +8,7 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
-    "@vastra-gotalandsregionen/components-core": "0.0.2"
+    "@vastra-gotalandsregionen/components-core": "*"
   },
   "devDependencies": {
     "storybook": "^10.6.0",
