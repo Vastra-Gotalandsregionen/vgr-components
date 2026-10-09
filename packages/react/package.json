@@ -1,7 +1,7 @@
 {
-  "name": "@vgregion/components-react",
+  "name": "@vastra-gotalandsregionen/components-react",
   "version": "0.1.0",
-  "description": "React components for the design system, generated from @vgregion/components-core.",
+  "description": "React components for the design system, generated from @vastra-gotalandsregionen/components-core.",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/types/index.d.ts",
@@ -12,7 +12,7 @@
     "build": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@vgregion/components-core": "0.0.1",
+    "@vastra-gotalandsregionen/components-core": "0.0.1",
     "@stencil/react-output-target": "^1.1.1"
   },
   "peerDependencies": {
@@ -24,6 +24,10 @@
     "@types/react": "^18.3.0"
   },
   "publishConfig": {
-    "access": "restricted"
+    "registry": "https://npm.pkg.github.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vastra-Gotalandsregionen/vgr-components.git"
   }
 }

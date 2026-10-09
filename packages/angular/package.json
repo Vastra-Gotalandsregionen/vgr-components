@@ -1,22 +1,24 @@
 {
-  "name": "@vgregion/components-angular",
+  "name": "@vastra-gotalandsregionen/components-angular",
   "version": "0.1.0",
-  "main": "dist/fesm2022/vgregion-components-angular.mjs",
-  "module": "dist/fesm2022/vgregion-components-angular.mjs",
-  "types": "dist/types/vgregion-components-angular.d.ts",
+  "main": "dist/fesm2022/vastra-gotalandsregionen-components-angular.mjs",
+  "module": "dist/fesm2022/vastra-gotalandsregionen-components-angular.mjs",
+  "types": "dist/types/vastra-gotalandsregionen-components-angular.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/types/vgregion-components-angular.d.ts",
-      "default": "./dist/fesm2022/vgregion-components-angular.mjs"
+      "types": "./dist/types/vastra-gotalandsregionen-components-angular.d.ts",
+      "default": "./dist/fesm2022/vastra-gotalandsregionen-components-angular.mjs"
     }
   },
-  "files": ["dist/"],
+  "files": [
+    "dist/"
+  ],
   "scripts": {
     "build": "ng-packagr -p ng-package.json",
     "start": "ng serve"
   },
   "dependencies": {
-    "@vgregion/components-core": "0.0.1",
+    "@vastra-gotalandsregionen/components-core": "0.0.1",
     "tslib": "^2.3.0"
   },
   "peerDependencies": {
@@ -29,6 +31,10 @@
     "typescript": "^6.0.3"
   },
   "publishConfig": {
-    "access": "restricted"
+    "registry": "https://npm.pkg.github.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vastra-Gotalandsregionen/vgr-components.git"
   }
 }

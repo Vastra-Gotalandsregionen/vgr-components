@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "workspaces": ["packages/*", "apps/*"],
   "scripts": {
-    "build-core": "npm run build --workspace=@vgregion/components-core",
+    "build-core": "npm run build --workspace=@vastra-gotalandsregionen/components-core",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "format:diff": "prettier --write --list-different ."

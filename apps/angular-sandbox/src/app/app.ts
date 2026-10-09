@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { VgrButton } from '@vgregion/components-angular';
+import { VgrButton } from '@vastra-gotalandsregionen/components-angular';
 
 @Component({
   selector: 'app-root',

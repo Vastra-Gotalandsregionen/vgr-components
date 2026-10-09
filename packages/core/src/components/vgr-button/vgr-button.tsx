@@ -11,7 +11,7 @@ export class VgrButton {
   @Prop() variant: VgrButtonVariant = 'primary';
   @Prop() disabled = false;
   @Prop() type: 'button' | 'submit' | 'reset' = 'button';
-  @Prop() text: string;
+  @Prop() text!: string;
 
   @Event() vgrClick: EventEmitter<void>;
 
