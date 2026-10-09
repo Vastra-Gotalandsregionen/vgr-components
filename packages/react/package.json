@@ -1,6 +1,6 @@
 {
   "name": "@vastra-gotalandsregionen/components-react",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "React components for the design system, generated from @vastra-gotalandsregionen/components-core.",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -12,7 +12,7 @@
     "build": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@vastra-gotalandsregionen/components-core": "0.0.1",
+    "@vastra-gotalandsregionen/components-core": "0.0.2",
     "@stencil/react-output-target": "^1.1.1"
   },
   "peerDependencies": {

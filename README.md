@@ -309,12 +309,31 @@ Användarnamn är ditt GitHub-användarnamn, lösenord är token. Den sparas i `
 
 ### Publicera
 
-1. Höj `version` i de paket som ändrats. En publicerad version kan inte publiceras om.
-2. Om core fått ny version: uppdatera versionen i `dependencies` i react, angular och vue så att den matchar exakt.
+1. Höj `version` i de paket som ändrats. En publicerad version kan inte publiceras om. Om alla ska höjas (t ex om en helt ny komponent introducerats):
+```powershell
+npm version X.X.X --no-git-tag-version --workspace=@vastra-gotalandsregionen/components-core
+foreach ($p in 'react','angular','vue') {
+  npm version Y.Y.Y --no-git-tag-version --workspace=@vastra-gotalandsregionen/components-$p
+}
+```
+2. Om core fått ny version: uppdatera versionen i `dependencies` för packages/react, angular och vue så att den matchar den nya versionen.
+
+```
+"@vastra-gotalandsregionen/components-core": "X.X.X",
+```
+Och samma sak i apps/react-sandbox, vue-sandbox, angular-sandbox och storybook:
+```
+"@vastra-gotalandsregionen/components-core": "X.X.X",
+```
+och 
+```
+"@vastra-gotalandsregionen/components-[react/vue/angular]": "Y.Y.Y",
+```
+
 3. Bygg och publicera, core först:
 
 ```powershell
-npm run --workspace=@vastra-gotalandsregionen/components-core
+npm run build --workspace=@vastra-gotalandsregionen/components-core
 npm publish --dry-run --workspace=@vastra-gotalandsregionen/components-core
 ```
 
@@ -327,11 +346,26 @@ npm publish --workspace=@vastra-gotalandsregionen/components-core
 
 6. Upprepa steg 3 till 5 för react, angular och vue, med `npm run build --workspace=...` som byggsteg.
 
-Bygg och publicera sedan react, angular och vue på samma sätt. Kör alltså `build`, `publish --dry-run` och sedan `publish` i följande workspaces:
+Bygg och publicera sedan react, angular och vue på samma sätt. Kör alltså `build`, `publish --dry-run` och sedan `publish`. Här är en smidig loop för var och ett av stegen.
+```powershell
+foreach ($p in 'core','react','angular','vue') {
+  Write-Host "=== $p ===" -ForegroundColor Cyan
+  npm run build --workspace=@vastra-gotalandsregionen/components-$p
+  if ($LASTEXITCODE -ne 0) { Write-Host "Bygget för $p felade" -ForegroundColor Red; break }
+}
 ```
---workspace=@vastra-gotalandsregionen/components-react
---workspace=@vastra-gotalandsregionen/components-angular
---workspace=@vastra-gotalandsregionen/components-vue
+```powershell
+foreach ($p in 'react','angular','vue') {
+  Write-Host "=== $p ===" -ForegroundColor Cyan
+  npm publish --dry-run --workspace=@vastra-gotalandsregionen/components-$p 2>&1 |
+    Select-String 'Publishing to|total files|package size|test|stories'
+}
+```
+```powershell
+foreach ($p in 'react','angular','vue') {
+  Write-Host "=== $p ===" -ForegroundColor Cyan
+  npm publish --workspace=@vastra-gotalandsregionen/components-$p
+}
 ```
 
 ### Installera paketen i en app
