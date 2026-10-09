@@ -38,15 +38,16 @@
     }
   },
   "publishConfig": {
-    "access": "restricted"
+    "registry": "https://npm.pkg.github.com"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/stenciljs/component-starter.git"
+    "url": "git+https://github.com/Vastra-Gotalandsregionen/vgr-components.git"
   },
   "files": [
     "dist/",
-    "loader/"
+    "loader/",
+    "!dist/**/*.test.*"
   ],
   "scripts": {
     "build:styles": "tailwindcss -i src/global/master.css -o .tailwind-build/styles.css --content \"./src/**/*.tsx\"",
@@ -58,6 +59,7 @@
     "generate": "stencil generate"
   },
   "devDependencies": {
+    "@vastra-gotalandsregionen/design-tokens": "0.1.0",
     "@stencil/angular-output-target": "^1.4.1",
     "@stencil/core": "^4.27.1 || ^5.0.0-0",
     "@stencil/react-output-target": "^1.6.2",
@@ -70,9 +72,6 @@
     "playwright": "^1.52.0",
     "tailwindcss": "^4.3.3",
     "vitest": "^4.0.0"
-  },
-  "dependencies": {
-    "@vastra-gotalandsregionen/design-tokens": "0.1.0"
   },
   "license": "MIT"
 }

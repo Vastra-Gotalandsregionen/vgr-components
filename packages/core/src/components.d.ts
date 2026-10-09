@@ -51,13 +51,15 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    type OneOf<K extends string, PropT, AttrT = PropT> = { [P in K]: PropT } & { [P in `attr:${K}`]?: never } | { [P in `attr:${K}`]: AttrT } & { [P in K]?: never };
+
     interface VgrButton {
         /**
           * @default false
          */
         "disabled"?: boolean;
         "onVgrClick"?: (event: VgrButtonCustomEvent<void>) => void;
-        "text"?: string;
+        "text": string;
         /**
           * @default 'button'
          */
@@ -76,7 +78,7 @@ declare namespace LocalJSX {
     }
 
     interface IntrinsicElements {
-        "vgr-button": Omit<VgrButton, keyof VgrButtonAttributes> & { [K in keyof VgrButton & keyof VgrButtonAttributes]?: VgrButton[K] } & { [K in keyof VgrButton & keyof VgrButtonAttributes as `attr:${K}`]?: VgrButtonAttributes[K] } & { [K in keyof VgrButton & keyof VgrButtonAttributes as `prop:${K}`]?: VgrButton[K] };
+        "vgr-button": Omit<VgrButton, keyof VgrButtonAttributes> & { [K in keyof VgrButton & keyof VgrButtonAttributes]?: VgrButton[K] } & { [K in keyof VgrButton & keyof VgrButtonAttributes as `attr:${K}`]?: VgrButtonAttributes[K] } & { [K in keyof VgrButton & keyof VgrButtonAttributes as `prop:${K}`]?: VgrButton[K] } & OneOf<"text", VgrButton["text"], VgrButtonAttributes["text"]>;
     }
 }
 export { LocalJSX as JSX };

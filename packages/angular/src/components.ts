@@ -16,7 +16,7 @@ import { defineCustomElement as defineVgrButton } from '@vastra-gotalandsregione
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['disabled', 'text', 'type', 'variant'],
+  inputs: ['disabled', { name: 'text', required: true }, 'type', 'variant'],
   outputs: ['vgrClick'],
 })
 export class VgrButton {

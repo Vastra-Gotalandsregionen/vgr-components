@@ -17,7 +17,7 @@ import { VgrButton as VgrButtonElement, defineCustomElement as defineVgrButton }
 
 export type VgrButtonEvents = { onVgrClick: EventName<VgrButtonCustomEvent<void>> };
 
-export const VgrButton: StencilReactComponent<VgrButtonElement, VgrButtonEvents, Components.VgrButton> = /*@__PURE__*/ createComponent<VgrButtonElement, VgrButtonEvents, Components.VgrButton>({
+export const VgrButton: StencilReactComponent<VgrButtonElement, VgrButtonEvents, Components.VgrButton, 'text'> = /*@__PURE__*/ createComponent<VgrButtonElement, VgrButtonEvents, Components.VgrButton, 'text'>({
     tagName: 'vgr-button',
     elementClass: VgrButtonElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.

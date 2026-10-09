@@ -24,6 +24,10 @@
     "@types/react": "^18.3.0"
   },
   "publishConfig": {
-    "access": "restricted"
+    "registry": "https://npm.pkg.github.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vastra-Gotalandsregionen/vgr-components.git"
   }
 }

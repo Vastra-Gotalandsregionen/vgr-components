@@ -274,3 +274,63 @@ npm run dev --workspace=vue-sandbox
 ```
 
 ---
+
+## Publicering av paket
+
+Just nu publiceras paketen för hand till GitHub Packages (`npm.pkg.github.com`) under scopet `@vastra-gotalandsregionen`. Detta ska ses som ett test tills vidare.
+
+### Logga in (en gång per dator)
+
+Du behöver registrera en personal access token (classic) I Github, och den behöver ha `write:packages` och `read:packages`.
+
+Kör sedan:
+
+```powershell
+npm login --scope=@vastra-gotalandsregionen --auth-type=legacy --registry=https://npm.pkg.github.com
+```
+
+Användarnamn är ditt GitHub-användarnamn, lösenord är token. Den sparas i `.npmrc` i din hemkatalog, aldrig i repot.
+
+### Publicera
+
+1. Höj `version` i de paket som ändrats. En publicerad version kan inte publiceras om.
+2. Om core fått ny version: uppdatera versionen i `dependencies` i react, angular och vue så att den matchar exakt.
+3. Bygg och publicera, core först:
+
+```powershell
+npm run --workspace=@vastra-gotalandsregionen/components-core
+npm publish --dry-run --workspace=@vastra-gotalandsregionen/components-core
+```
+
+4. Kontrollera i utskriften att det står `Publishing to https://npm.pkg.github.com/` och att filistan bara innehåller det avsedda.
+5. Stämmer det, kör samma kommando utan `--dry-run`, alltså:
+
+```powershell
+npm publish --workspace=@vastra-gotalandsregionen/components-core
+```
+
+6. Upprepa steg 3 till 5 för react, angular och vue, med `npm run build --workspace=...` som byggsteg.
+
+Bygg och publicera sedan react, angular och vue på samma sätt. Kör alltså `build`, `publish --dry-run` och sedan `publish` i följande workspaces:
+```
+--workspace=@vastra-gotalandsregionen/components-react
+--workspace=@vastra-gotalandsregionen/components-angular
+--workspace=@vastra-gotalandsregionen/components-vue
+```
+
+### Installera paketen i en app
+
+1. Logga in enligt ovan (varje utvecklare behöver en egen token med rätt behörigheter).
+2. Skapa en `.npmrc` i appens rot med den här raden. Filen kan med fördel checkas in med Git.
+
+```
+@vastra-gotalandsregionen:registry=https://npm.pkg.github.com
+```
+
+3. Installera:
+
+Exempel för React:
+
+```powershell
+npm install @vastra-gotalandsregionen/components-react
+```
