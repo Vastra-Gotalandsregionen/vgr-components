@@ -1,14 +1,15 @@
 name: Publish packages
 
 on:
+  # Tagg release-x.y.z publicerar alla fyra paketen med version x.y.z
   push:
     tags: ['release-*']
   workflow_dispatch:
     inputs:
-      dry_run:
-        description: 'Dry run (publish nothing)'
-        type: boolean
-        default: true
+      version:
+        description: 'Version to use in the dry run (x.y.z)'
+        type: string
+        default: '0.0.0'
 
 jobs:
   publish:
@@ -28,6 +29,17 @@ jobs:
       - name: Install
         run: npm ci
 
+      - name: Set versions
+        env:
+          INPUT_VERSION: ${{ inputs.version }}
+        run: |
+          if [ "$GITHUB_EVENT_NAME" = "push" ]; then
+            VERSION="${GITHUB_REF_NAME#release-}"
+          else
+            VERSION="$INPUT_VERSION"
+          fi
+          node scripts/set-version.mjs "$VERSION"
+
       - name: Build
         run: |
           npm run build --workspace=@vastra-gotalandsregionen/design-tokens
@@ -39,10 +51,9 @@ jobs:
       - name: Publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          DRY_RUN: ${{ inputs.dry_run }}
         run: |
           FLAG=""
-          if [ "$DRY_RUN" = "true" ]; then FLAG="--dry-run"; fi
+          if [ "$GITHUB_EVENT_NAME" = "workflow_dispatch" ]; then FLAG="--dry-run"; fi
           for p in core react angular vue; do
             npm publish --workspace=@vastra-gotalandsregionen/components-$p $FLAG
           done

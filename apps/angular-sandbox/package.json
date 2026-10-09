@@ -11,7 +11,8 @@
   "private": true,
   "packageManager": "npm@11.16.0",
   "dependencies": {
-    "@vastra-gotalandsregionen/components-angular": "0.1.1",    "@angular/common": "^22.1.0",
+    "@vastra-gotalandsregionen/components-angular": "*",    
+    "@angular/common": "^22.1.0",
     "@angular/compiler": "^22.1.0",
     "@angular/core": "^22.1.0",
     "@angular/forms": "^22.1.0",

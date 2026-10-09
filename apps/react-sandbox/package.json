@@ -12,7 +12,7 @@
   "dependencies": {
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
-    "@vastra-gotalandsregionen/components-react": "0.1.1"
+    "@vastra-gotalandsregionen/components-react": "*"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
