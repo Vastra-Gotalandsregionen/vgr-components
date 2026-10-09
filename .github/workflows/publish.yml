@@ -1,0 +1,48 @@
+name: Publish packages
+
+on:
+  push:
+    tags: ['release-*']
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Dry run (publish nothing)'
+        type: boolean
+        default: true
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 'lts/*'
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@vastra-gotalandsregionen'
+
+      - name: Install
+        run: npm ci
+
+      - name: Build
+        run: |
+          npm run build --workspace=@vastra-gotalandsregionen/design-tokens
+          npm run build --workspace=@vastra-gotalandsregionen/components-core
+          npm run build --workspace=@vastra-gotalandsregionen/components-react
+          npm run build --workspace=@vastra-gotalandsregionen/components-angular
+          npm run build --workspace=@vastra-gotalandsregionen/components-vue
+
+      - name: Publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DRY_RUN: ${{ inputs.dry_run }}
+        run: |
+          FLAG=""
+          if [ "$DRY_RUN" = "true" ]; then FLAG="--dry-run"; fi
+          for p in core react angular vue; do
+            npm publish --workspace=@vastra-gotalandsregionen/components-$p $FLAG
+          done
