@@ -4,10 +4,10 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Even
 
 import { ProxyCmp } from './angular-component-lib/utils';
 
-import type { Components } from '@vgregion/components-core/components';
+import type { Components } from '@vastra-gotalandsregionen/components-core/components';
 
-import { defineCustomElement as defineVgrButton } from '@vgregion/components-core/components/vgr-button.js';
-import { defineCustomElement as defineVgrIcon } from '@vgregion/components-core/components/vgr-icon.js';
+import { defineCustomElement as defineVgrButton } from '@vastra-gotalandsregionen/components-core/components/vgr-button.js';
+import { defineCustomElement as defineVgrIcon } from '@vastra-gotalandsregionen/components-core/components/vgr-icon.js';
 @ProxyCmp({
   defineCustomElementFn: defineVgrButton,
   inputs: ['disabled', 'icon', 'text', 'type', 'variant']
@@ -17,7 +17,7 @@ import { defineCustomElement as defineVgrIcon } from '@vgregion/components-core/
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['disabled', 'icon', 'text', 'type', 'variant'],
+  inputs: ['disabled', 'icon', { name: 'text', required: true }, 'type', 'variant'],
   outputs: ['vgrClick'],
 })
 export class VgrButton {
@@ -30,7 +30,7 @@ export class VgrButton {
 }
 
 
-import type { VgrButtonCustomEvent } from '@vgregion/components-core/components';
+import type { VgrButtonCustomEvent } from '@vastra-gotalandsregionen/components-core/components';
 
 export declare interface VgrButton extends Components.VgrButton {
 

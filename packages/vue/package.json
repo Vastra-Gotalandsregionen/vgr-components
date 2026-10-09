@@ -1,16 +1,18 @@
 {
-  "name": "@vgregion/components-vue",
+  "name": "@vastra-gotalandsregionen/components-vue",
   "version": "0.1.0",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/src/index.d.ts",
-  "files": ["dist/"],
+  "files": [
+    "dist/"
+  ],
   "scripts": {
     "build": "vite build"
   },
   "dependencies": {
     "@stencil/vue-output-target": "^0.14.2",
-    "@vgregion/components-core": "0.0.1"
+    "@vastra-gotalandsregionen/components-core": "0.0.1"
   },
   "peerDependencies": {
     "vue": ">=3.0.0"
@@ -22,6 +24,10 @@
     "vue": "^3.5.0"
   },
   "publishConfig": {
-    "access": "restricted"
+    "registry": "https://npm.pkg.github.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vastra-Gotalandsregionen/vgr-components.git"
   }
 }

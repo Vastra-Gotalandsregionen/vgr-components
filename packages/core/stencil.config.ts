@@ -23,7 +23,7 @@ export const config: Config = {
       serviceWorker: null,
       copy: [
         {
-          src: '../../../node_modules/@vgregion/design-tokens/dist/css',
+          src: '../../../node_modules/@vastra-gotalandsregionen/design-tokens/dist/css',
           dest: 'tokens',
         },
         {
@@ -36,12 +36,12 @@ export const config: Config = {
       outDir: '../react/src/components/stencil-generated/',
     }),
     angularOutputTarget({
-      componentCorePackage: '@vgregion/components-core',
+      componentCorePackage: '@vastra-gotalandsregionen/components-core',
       outputType: 'standalone',
       directivesProxyFile: '../angular/src/components.ts',
     }),
     vueOutputTarget({
-      componentCorePackage: '@vgregion/components-core',
+      componentCorePackage: '@vastra-gotalandsregionen/components-core',
       proxiesFile: '../vue/src/components.ts',
     }),
   ],

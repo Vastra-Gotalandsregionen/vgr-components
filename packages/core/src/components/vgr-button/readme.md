@@ -5,13 +5,13 @@
 
 ## Properties
 
-| Property   | Attribute  | Description | Type                              | Default     |
-| ---------- | ---------- | ----------- | --------------------------------- | ----------- |
-| `disabled` | `disabled` |             | `boolean`                         | `false`     |
-| `icon`     | `icon`     |             | `string`                          | `undefined` |
-| `text`     | `text`     |             | `string`                          | `undefined` |
-| `type`     | `type`     |             | `"button" \| "reset" \| "submit"` | `'button'`  |
-| `variant`  | `variant`  |             | `"primary" \| "secondary"`        | `'primary'` |
+| Property            | Attribute  | Description | Type                              | Default     |
+| ------------------- | ---------- | ----------- | --------------------------------- | ----------- |
+| `disabled`          | `disabled` |             | `boolean`                         | `false`     |
+| `icon`              | `icon`     |             | `string`                          | `undefined` |
+| `text` _(required)_ | `text`     |             | `string`                          | `undefined` |
+| `type`              | `type`     |             | `"button" \| "reset" \| "submit"` | `'button'`  |
+| `variant`           | `variant`  |             | `"primary" \| "secondary"`        | `'primary'` |
 
 
 ## Events
