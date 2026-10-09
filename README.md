@@ -293,93 +293,49 @@ npm run generate
 
 ## Publicering av paket
 
-Just nu publiceras paketen för hand till GitHub Packages (`npm.pkg.github.com`) under scopet `@vastra-gotalandsregionen`. Detta ska ses som ett test tills vidare.
+Paketen publiceras till GitHub Packages (`npm.pkg.github.com`) under scopet `@vastra-gotalandsregionen`. Du behöver inte bygga eller publicera något själv: du pushar en git-tagg, och GitHub Actions gör resten. 
 
-### Logga in (en gång per dator)
+Alla fyra paket (core, react, angular, vue) har alltid samma version.
 
-Du behöver registrera en personal access token (classic) I Github, och den behöver ha `write:packages` och `read:packages`.
+### Göra en release
 
-Kör sedan:
+1. Se till att allt som ska med ligger på `main`.
+2. Välj nästa versionsnummer. Kolla vad som är senast släppt med `git tag`. En version kan aldrig användas två gånger. I det här exemplet använder vi 0.2.2 som version.
+3. Tagga och pusha:
+
+```powershell
+git checkout main
+git pull
+git tag release-0.2.2
+git push origin release-0.2.2
+```
+
+4. Följ körningen under Actions, i workflowet "Publish packages". När den är klar ligger alla fyra paketen i registret med den nya versionen.
+
+Taggen `release-0.2.2` ger version `0.2.2` åt alla paket. Det är bygget som sätter numret, så du behöver aldrig höja versioner för hand, och versionerna i `package.json` i repot ändras inte. Vad som är släppt ser du på taggarna och i registret. Bara den som har rätt att skapa `release-*`-taggar kan göra en release. 
+
+Om en körning fallerar efter att något paket hunnit publiceras går det versionsnumret inte att använda igen. Välj nästa nummer och tagga på nytt.
+
+### Installera paketen i en app
+
+Paketen är privata, så varje utvecklare behöver en egen token för att kunna använda sig av dem.
+
+1. Skapa en personal access token (classic) på GitHub med behörigheten `read:packages`.
+2. Logga in en gång per dator:
 
 ```powershell
 npm login --scope=@vastra-gotalandsregionen --auth-type=legacy --registry=https://npm.pkg.github.com
 ```
 
-Användarnamn är ditt GitHub-användarnamn, lösenord är token. Den sparas i `.npmrc` i din hemkatalog, aldrig i repot.
+Användarnamn är ditt GitHub-användarnamn och lösenord är den token du skapade förut. Den sparas i `.npmrc` i din hemkatalog (skedde automatiskt när du körde npm login), denna läggs aldrig i repot.
 
-### Publicera
-
-1. Höj `version` i de paket som ändrats. En publicerad version kan inte publiceras om. Om alla ska höjas (t ex om en helt ny komponent introducerats):
-```powershell
-npm version X.X.X --no-git-tag-version --workspace=@vastra-gotalandsregionen/components-core
-foreach ($p in 'react','angular','vue') {
-  npm version Y.Y.Y --no-git-tag-version --workspace=@vastra-gotalandsregionen/components-$p
-}
-```
-2. Om core fått ny version: uppdatera versionen i `dependencies` för packages/react, angular och vue så att den matchar den nya versionen.
-
-```
-"@vastra-gotalandsregionen/components-core": "X.X.X",
-```
-Och samma sak i apps/react-sandbox, vue-sandbox, angular-sandbox och storybook:
-```
-"@vastra-gotalandsregionen/components-core": "X.X.X",
-```
-och 
-```
-"@vastra-gotalandsregionen/components-[react/vue/angular]": "Y.Y.Y",
-```
-
-3. Bygg och publicera, core först:
-
-```powershell
-npm run build --workspace=@vastra-gotalandsregionen/components-core
-npm publish --dry-run --workspace=@vastra-gotalandsregionen/components-core
-```
-
-4. Kontrollera i utskriften att det står `Publishing to https://npm.pkg.github.com/` och att filistan bara innehåller det avsedda.
-5. Stämmer det, kör samma kommando utan `--dry-run`, alltså:
-
-```powershell
-npm publish --workspace=@vastra-gotalandsregionen/components-core
-```
-
-6. Upprepa steg 3 till 5 för react, angular och vue, med `npm run build --workspace=...` som byggsteg.
-
-Bygg och publicera sedan react, angular och vue på samma sätt. Kör alltså `build`, `publish --dry-run` och sedan `publish`. Här är en smidig loop för var och ett av stegen.
-```powershell
-foreach ($p in 'core','react','angular','vue') {
-  Write-Host "=== $p ===" -ForegroundColor Cyan
-  npm run build --workspace=@vastra-gotalandsregionen/components-$p
-  if ($LASTEXITCODE -ne 0) { Write-Host "Bygget för $p felade" -ForegroundColor Red; break }
-}
-```
-```powershell
-foreach ($p in 'react','angular','vue') {
-  Write-Host "=== $p ===" -ForegroundColor Cyan
-  npm publish --dry-run --workspace=@vastra-gotalandsregionen/components-$p 2>&1 |
-    Select-String 'Publishing to|total files|package size|test|stories'
-}
-```
-```powershell
-foreach ($p in 'react','angular','vue') {
-  Write-Host "=== $p ===" -ForegroundColor Cyan
-  npm publish --workspace=@vastra-gotalandsregionen/components-$p
-}
-```
-
-### Installera paketen i en app
-
-1. Logga in enligt ovan (varje utvecklare behöver en egen token med rätt behörigheter).
-2. Skapa en `.npmrc` i appens rot med den här raden. Filen kan med fördel checkas in med Git.
+3. Skapa en `.npmrc` i appens rot med följande rad. Den innehåller ingen token och kan checkas in:
 
 ```
 @vastra-gotalandsregionen:registry=https://npm.pkg.github.com
 ```
 
-3. Installera:
-
-Exempel för React:
+4. Installera, till exempel för React:
 
 ```powershell
 npm install @vastra-gotalandsregionen/components-react
