@@ -1,5 +1,5 @@
-import { VgrButton } from '@vgregion/components-react';
-import '@vgregion/components-core/dist/styles.css';
+import { VgrButton } from '@vastra-gotalandsregionen/components-react';
+import '@vastra-gotalandsregionen/components-core/dist/styles.css';
 
 function App() {
   return (

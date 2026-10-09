@@ -1,5 +1,5 @@
-import '@vgregion/components-core/dist/components/define-all.js';
-import '@vgregion/components-core/dist/styles.css';
+import '@vastra-gotalandsregionen/components-core/dist/components/define-all.js';
+import '@vastra-gotalandsregionen/components-core/dist/styles.css';
 
 const preview = {
   parameters: {

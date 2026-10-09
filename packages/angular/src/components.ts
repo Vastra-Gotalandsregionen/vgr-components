@@ -4,9 +4,9 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Even
 
 import { ProxyCmp } from './angular-component-lib/utils';
 
-import type { Components } from '@vgregion/components-core/components';
+import type { Components } from '@vastra-gotalandsregionen/components-core/components';
 
-import { defineCustomElement as defineVgrButton } from '@vgregion/components-core/components/vgr-button.js';
+import { defineCustomElement as defineVgrButton } from '@vastra-gotalandsregionen/components-core/components/vgr-button.js';
 @ProxyCmp({
   defineCustomElementFn: defineVgrButton,
   inputs: ['disabled', 'text', 'type', 'variant']
@@ -29,7 +29,7 @@ export class VgrButton {
 }
 
 
-import type { VgrButtonCustomEvent } from '@vgregion/components-core/components';
+import type { VgrButtonCustomEvent } from '@vastra-gotalandsregionen/components-core/components';
 
 export declare interface VgrButton extends Components.VgrButton {
 

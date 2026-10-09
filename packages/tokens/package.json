@@ -1,5 +1,5 @@
 {
-  "name": "@vgregion/design-tokens",
+  "name": "@vastra-gotalandsregionen/design-tokens",
   "version": "0.1.0",
   "description": "Design tokens synced from Figma via Zero Height, transformed to platform-specific formats via Style Dictionary.",
   "main": "dist/css/tokens.css",

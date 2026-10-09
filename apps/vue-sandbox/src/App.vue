@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { VgrButton } from '@vgregion/components-vue'
+import { VgrButton } from '@vastra-gotalandsregionen/components-vue'
 
 function onSave() {
   console.log('Klick!')

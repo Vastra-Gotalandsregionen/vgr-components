@@ -1,5 +1,5 @@
 {
-  "name": "@vgregion/components-core",
+  "name": "@vastra-gotalandsregionen/components-core",
   "version": "0.0.1",
   "description": "Stencil Component Starter",
   "main": "dist/index.cjs.js",
@@ -72,7 +72,7 @@
     "vitest": "^4.0.0"
   },
   "dependencies": {
-    "@vgregion/design-tokens": "0.1.0"
+    "@vastra-gotalandsregionen/design-tokens": "0.1.0"
   },
   "license": "MIT"
 }

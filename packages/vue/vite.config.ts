@@ -13,7 +13,7 @@ export default defineConfig({
     rollupOptions: {
       external: [
         'vue',
-        '@vgregion/components-core',
+        '@vastra-gotalandsregionen/components-core',
         '@stencil/vue-output-target/runtime',
       ],
     },

@@ -1,5 +1,5 @@
 {
-  "name": "@vgregion/components-angular",
+  "name": "@vastra-gotalandsregionen/components-angular",
   "version": "0.1.0",
   "main": "dist/fesm2022/vgregion-components-angular.mjs",
   "module": "dist/fesm2022/vgregion-components-angular.mjs",
@@ -16,7 +16,7 @@
     "start": "ng serve"
   },
   "dependencies": {
-    "@vgregion/components-core": "0.0.1",
+    "@vastra-gotalandsregionen/components-core": "0.0.1",
     "tslib": "^2.3.0"
   },
   "peerDependencies": {

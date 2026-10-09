@@ -11,9 +11,9 @@ import type { EventName, StencilReactComponent } from '@stencil/react-output-tar
 import { createComponent } from '@stencil/react-output-target/runtime';
 import React from 'react';
 
-import { type VgrButtonCustomEvent } from "@vgregion/components-core";
-import type { Components } from "@vgregion/components-core/dist/components";
-import { VgrButton as VgrButtonElement, defineCustomElement as defineVgrButton } from "@vgregion/components-core/dist/components/vgr-button.js";
+import { type VgrButtonCustomEvent } from "@vastra-gotalandsregionen/components-core";
+import type { Components } from "@vastra-gotalandsregionen/components-core/dist/components";
+import { VgrButton as VgrButtonElement, defineCustomElement as defineVgrButton } from "@vastra-gotalandsregionen/components-core/dist/components/vgr-button.js";
 
 export type VgrButtonEvents = { onVgrClick: EventName<VgrButtonCustomEvent<void>> };
 

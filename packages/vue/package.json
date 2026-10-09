@@ -1,5 +1,5 @@
 {
-  "name": "@vgregion/components-vue",
+  "name": "@vastra-gotalandsregionen/components-vue",
   "version": "0.1.0",
   "type": "module",
   "main": "dist/index.js",
@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@stencil/vue-output-target": "^0.14.2",
-    "@vgregion/components-core": "0.0.1"
+    "@vastra-gotalandsregionen/components-core": "0.0.1"
   },
   "peerDependencies": {
     "vue": ">=3.0.0"

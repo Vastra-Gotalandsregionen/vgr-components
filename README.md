@@ -25,9 +25,9 @@ npm install
 
 ```
 packages/
-  core/      @vgregion/components-core   — Stencil-komponenterna (källan till allt)
-  react/     @vgregion/components-react  — genererad React-wrapper
-  tokens/    @vgregion/design-tokens     — design tokens från Figma/Zero Height
+  core/      @vastra-gotalandsregionen/components-core   — Stencil-komponenterna (källan till allt)
+  react/     @vastra-gotalandsregionen/components-react  — genererad React-wrapper
+  tokens/    @vastra-gotalandsregionen/design-tokens     — design tokens från Figma/Zero Height
   angular/   (kommer snart)
   vue/       (kommer snart)
 ```
@@ -94,8 +94,8 @@ cd ../react && npm run build        # bygger React-paketet
 Användning i en React-app:
 
 ```tsx
-import { VgrButton } from '@vgregion/components-react';
-import '@vgregion/components-core/dist/styles.css';
+import { VgrButton } from '@vastra-gotalandsregionen/components-react';
+import '@vastra-gotalandsregionen/components-core/dist/styles.css';
 
 <VgrButton variant="primary" onVgrClick={() => console.log('klick!')}>
   Spara
@@ -115,7 +115,7 @@ Användning i en Angular-app (standalone-komponent):
 
 ```typescript
 import { Component } from '@angular/core';
-import { VgrButton } from '@vgregion/components-angular';
+import { VgrButton } from '@vastra-gotalandsregionen/components-angular';
 
 @Component({
   selector: 'app-root',
@@ -133,7 +133,7 @@ export class App {}
 **Viktigt — css laddas annorlunda än i React.** Angular CLI förstår inte en CSS-import skriven direkt i en `.ts`-fil. Lägg istället till en `@import`-rad i appens globala `src/styles.css`:
 
 ```css
-@import '@vgregion/components-core/dist/styles.css';
+@import '@vastra-gotalandsregionen/components-core/dist/styles.css';
 ```
 
 **Versionskrav:** Angular `>=22.0.0`. Håll `@angular/compiler`, `@angular/compiler-cli`, `ng-packagr` och `typescript` synkade mot varandra i `packages/angular/package.json` — se kommentar i filen om `peerDependencies` vid uppgradering.
@@ -211,7 +211,7 @@ npm install
 ### Bygg design tokens-filer
 
 ```bash
-npm run build --workspace=@vgregion/design-tokens
+npm run build --workspace=@vastra-gotalandsregionen/design-tokens
 ```
 
 ---
@@ -227,15 +227,15 @@ npm run build-core
 ### Bygg paketen för respektive ramverk
 
 ```bash
-npm run build --workspace=@vgregion/components-react
+npm run build --workspace=@vastra-gotalandsregionen/components-react
 ```
 
 ```bash
-npm run build --workspace=@vgregion/components-angular
+npm run build --workspace=@vastra-gotalandsregionen/components-angular
 ```
 
 ```bash
-npm run build --workspace=@vgregion/components-vue
+npm run build --workspace=@vastra-gotalandsregionen/components-vue
 ```
 
 ---
@@ -245,7 +245,7 @@ npm run build --workspace=@vgregion/components-vue
 #### Core
 
 ```bash
-npm run start --workspace=@vgregion/components-core
+npm run start --workspace=@vastra-gotalandsregionen/components-core
 ```
 
 #### Storybook

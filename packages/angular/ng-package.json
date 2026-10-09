@@ -4,5 +4,5 @@
   "lib": {
     "entryFile": "public-api.ts"
   },
-  "allowedNonPeerDependencies": ["@vgregion/components-core"]
+  "allowedNonPeerDependencies": ["@vastra-gotalandsregionen/components-core"]
 }
