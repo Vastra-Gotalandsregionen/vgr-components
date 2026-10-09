@@ -53,6 +53,9 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           FLAG=""
-          if [ "$GITHUB_EVENT_NAME" = "workflow_dispatch" ]; then FLAG="--dry-run --tag dry-run"; fi          for p in core react angular vue; do
+          if [ "$GITHUB_EVENT_NAME" = "workflow_dispatch" ]; then
+            FLAG="--dry-run --tag dry-run"
+          fi
+          for p in core react angular vue; do
             npm publish --workspace=@vastra-gotalandsregionen/components-$p $FLAG
           done
