@@ -7,16 +7,17 @@ import { ProxyCmp } from './angular-component-lib/utils';
 import type { Components } from '@vastra-gotalandsregionen/components-core/components';
 
 import { defineCustomElement as defineVgrButton } from '@vastra-gotalandsregionen/components-core/components/vgr-button.js';
+import { defineCustomElement as defineVgrIcon } from '@vastra-gotalandsregionen/components-core/components/vgr-icon.js';
 @ProxyCmp({
   defineCustomElementFn: defineVgrButton,
-  inputs: ['disabled', 'text', 'type', 'variant']
+  inputs: ['disabled', 'icon', 'text', 'type', 'variant']
 })
 @Component({
   selector: 'vgr-button',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['disabled', { name: 'text', required: true }, 'type', 'variant'],
+  inputs: ['disabled', 'icon', { name: 'text', required: true }, 'type', 'variant'],
   outputs: ['vgrClick'],
 })
 export class VgrButton {
@@ -35,5 +36,28 @@ export declare interface VgrButton extends Components.VgrButton {
 
   vgrClick: EventEmitter<VgrButtonCustomEvent<void>>;
 }
+
+
+@ProxyCmp({
+  defineCustomElementFn: defineVgrIcon,
+  inputs: ['icon']
+})
+@Component({
+  selector: 'vgr-icon',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: [{ name: 'icon', required: true }],
+})
+export class VgrIcon {
+  protected el: HTMLVgrIconElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface VgrIcon extends Components.VgrIcon {}
 
 

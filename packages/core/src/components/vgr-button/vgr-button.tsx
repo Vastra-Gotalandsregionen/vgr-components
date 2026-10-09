@@ -12,6 +12,7 @@ export class VgrButton {
   @Prop() disabled = false;
   @Prop() type: 'button' | 'submit' | 'reset' = 'button';
   @Prop() text!: string;
+  @Prop() icon?: string;
 
   @Event() vgrClick: EventEmitter<void>;
 
@@ -22,6 +23,7 @@ export class VgrButton {
 
   private getButtonClasses() {
     const baseClasses = `
+      inline-flex items-center justify-center gap-2
       rounded-xl
       py-3 px-4
       text-base leading-6
@@ -54,6 +56,7 @@ export class VgrButton {
     return (
       <Host>
         <button class={this.getButtonClasses()} type={this.type} disabled={this.disabled} onClick={this.handleClick}>
+          {this.icon && <vgr-icon icon={this.icon} />}
           {this.text}
         </button>
       </Host>
