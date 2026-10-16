@@ -5,14 +5,14 @@
 
 ## Properties
 
-| Property            | Attribute    | Description | Type                              | Default     |
-| ------------------- | ------------ | ----------- | --------------------------------- | ----------- |
-| `ariaLabel`         | `aria-label` |             | `string`                          | `undefined` |
-| `disabled`          | `disabled`   |             | `boolean`                         | `false`     |
-| `icon`              | `icon`       |             | `string`                          | `undefined` |
-| `text` _(required)_ | `text`       |             | `string`                          | `undefined` |
-| `type`              | `type`       |             | `"button" \| "reset" \| "submit"` | `'button'`  |
-| `variant`           | `variant`    |             | `"primary" \| "secondary"`        | `'primary'` |
+| Property            | Attribute        | Description | Type                              | Default     |
+| ------------------- | ---------------- | ----------- | --------------------------------- | ----------- |
+| `disabled`          | `disabled`       |             | `boolean`                         | `false`     |
+| `icon`              | `icon`           |             | `string`                          | `undefined` |
+| `text` _(required)_ | `text`           |             | `string`                          | `undefined` |
+| `type`              | `type`           |             | `"button" \| "reset" \| "submit"` | `'button'`  |
+| `variant`           | `variant`        |             | `"primary" \| "secondary"`        | `'primary'` |
+| `vgrAriaLabel`      | `vgr-aria-label` |             | `string`                          | `undefined` |
 
 
 ## Events

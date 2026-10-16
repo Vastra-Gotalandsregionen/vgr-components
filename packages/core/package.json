@@ -52,8 +52,10 @@
   "scripts": {
     "build:styles": "tailwindcss -i src/global/master.css -o .tailwind-build/styles.css --content \"./src/**/*.tsx\"",
     "build": "npm run build:styles && stencil build && node scripts/generate-define-all.mjs && npm run copy:styles-to-dist && node scripts/verify-build.mjs",
+    "dev": "node scripts/dev.mjs",
+    "dev:stencil": "stencil build --dev --watch --serve --config stencil.dev.config.ts",
+    "dev:styles": "tailwindcss -i src/global/master.css -o .tailwind-build/styles.css --content \"./src/**/*.tsx\" --watch",
     "copy:styles-to-dist": "node -e \"require('fs').copyFileSync('.tailwind-build/styles.css', 'dist/styles.css')\"",
-    "start": "stencil build --dev --watch --serve",
     "test": "stencil-test",
     "test:watch": "stencil-test --prod --watch",
     "generate": "stencil generate"

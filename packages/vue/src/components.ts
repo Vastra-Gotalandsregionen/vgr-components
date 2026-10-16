@@ -15,7 +15,7 @@ export const VgrButton: StencilVueComponent<JSX.VgrButton> = /*@__PURE__*/ defin
   'type',
   'text',
   'icon',
-  'ariaLabel',
+  'vgrAriaLabel',
   'vgrClick'
 ], [
   'vgrClick'
