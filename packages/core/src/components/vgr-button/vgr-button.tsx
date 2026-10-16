@@ -13,7 +13,7 @@ export class VgrButton {
   @Prop() type: 'button' | 'submit' | 'reset' = 'button';
   @Prop() text!: string;
   @Prop() icon?: string;
-  @Prop() ariaLabel?: string;
+  @Prop() vgrAriaLabel?: string;
 
   @Event() vgrClick: EventEmitter<void>;
 
@@ -63,7 +63,7 @@ export class VgrButton {
   render() {
     return (
       <Host>
-        <button class={this.getButtonClasses()} type={this.type} disabled={this.disabled} aria-label={this.ariaLabel} onClick={this.handleClick}>
+        <button class={this.getButtonClasses()} type={this.type} disabled={this.disabled} aria-label={this.vgrAriaLabel} onClick={this.handleClick}>
           {this.icon && <vgr-icon icon={this.icon} />}
           {this.text}
         </button>

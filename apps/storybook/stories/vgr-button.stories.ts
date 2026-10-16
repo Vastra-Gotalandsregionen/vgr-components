@@ -8,7 +8,7 @@ interface VgrButtonArgs {
   variant: 'primary' | 'secondary';
   disabled: boolean;
   text: string;
-  ariaLabel: string;
+  vgrAriaLabel: string;
   icon: keyof typeof icons;
 }
 
@@ -20,7 +20,7 @@ const meta: Meta<VgrButtonArgs> = {
       ?disabled=${args.disabled}
       @vgrClick=${() => console.log('vgrClick fired')}
       text=${args.text}
-      aria-label=${args.ariaLabel}
+      vgr-aria-label=${args.vgrAriaLabel}
       .icon=${icons[args.icon]}
     >
     </vgr-button>
@@ -32,7 +32,7 @@ const meta: Meta<VgrButtonArgs> = {
     },
     disabled: { control: { type: 'boolean' } },
     text: { control: { type: 'text' } },
-    ariaLabel: { control: { type: 'text' } },
+    vgrAriaLabel: { control: { type: 'text' } },
     icon: {
       control: { type: 'select' },
       options: ['none', 'arrowRight', 'check', 'plus'],
@@ -42,7 +42,7 @@ const meta: Meta<VgrButtonArgs> = {
     variant: 'primary',
     disabled: false,
     text: 'Klicka här',
-    ariaLabel: 'Klicka här för att gå vidare',
+    vgrAriaLabel: 'Klicka här för att gå vidare',
     icon: 'none',
   },
 };
