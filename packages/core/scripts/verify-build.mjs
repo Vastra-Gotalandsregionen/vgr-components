@@ -1,8 +1,15 @@
 import { existsSync, statSync, readdirSync } from 'node:fs';
 
 // Filer som alltid ska finnas efter ett lyckat bygge.
-// Lägg till nya komponenter här när de skapas, om behov finns av felsökning
-const required = ['dist/styles.css', 'dist/index.js', 'dist/components/index.js', 'dist/components/define-all.js', 'dist/components/vgr-button.js', 'dist/components/vgr-icon.js'];
+const fixed = ['dist/styles.css', 'dist/index.js', 'dist/components/index.js', 'dist/components/define-all.js'];
+
+// En fil per komponent, hittad automatiskt från mapparna i src/components/.
+// En ny komponent kontrolleras alltså utan att något behöver läggas till här.
+const components = readdirSync('src/components', { withFileTypes: true })
+  .filter(entry => entry.isDirectory())
+  .map(entry => `dist/components/${entry.name}.js`);
+
+const required = [...fixed, ...components];
 
 const problems = required.filter(file => {
   if (!existsSync(file)) return true;

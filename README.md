@@ -49,7 +49,7 @@ Resultatet hamnar i `packages/tokens/dist/css/tokens.css`.
 
 ### Krav
 
-- Node.js >=18
+- Node.js `^22.22.3`, `^24.15.0` eller `>=26.0.0` (det är Angulars krav, det snävaste av beroendena). Exakt version vi använder står i `.nvmrc`, och det är den som CI använder.
 - npm
 
 ---
@@ -75,21 +75,22 @@ npx playwright install
 
 ### 3: Installera korrekt node-version
 
-Inte ett måste för att köra projektet, men det underlättar samarbete. Aktuell node-version ligger i .nvmrc i rooten.
+Repot har `engine-strict` påslaget, så `npm install` stoppar med ett tydligt fel om din Node-version inte uppfyller kraven. Använd versionen i `.nvmrc` för att slippa det.
 
-Rekommendation är att använda nvm för att byta node-version. Installera versionen i .nvmrc och sedan:
-
-På mac räcker detta för att använda versionen från .nvmrc:
+Mac/Linux (nvm läser `.nvmrc` själv):
 
 ```bash
 nvm use
 ```
 
-På PC sätter man den manuellt:
+Windows (nvm-windows läser inte `.nvmrc`, så versionen anges manuellt):
 
-```bash
-nvm use v.X.X.X
+```powershell
+nvm install X.X.X
+nvm use X.X.X
 ```
+
+Byt `X.X.X` mot versionen som står i `.nvmrc`.
 
 ---
 
@@ -149,11 +150,26 @@ Det betyder också att ändringar du gör i dev-servern inte syns i Storybook el
 
 Det finns en begränsning dock: Tailwinds klasser genereras och läggs till i css-filen, men cachen gör att de inte syns direkt i webbläsaren. När du lägger till en Tailwind-klass som inte använts tidigare behöver du därför göra en hard refresh (eller bocka i "Disable cache" på Network-fliken i DevTools och köra vanlig refresh).
 
+### Bygga paketet
+
 ```bash
 npm run build:core
 ```
 
 Bygger paketet på riktigt (bland annat `dist/`-mappen som andra paket och konsumenter använder). Detta behöver köras innan man kör build-kommando för respektive ramverks package. Kör du `npm run build:all` sker ordningen rätt automatiskt, men det tar förstås längre tid.
+
+**OBS:** Att köra `npm run build:all` genererar filer i (kanske) andra paket än det du jobbat med (wrapper-koden i `packages/react`, `packages/angular` och `packages/vue`, och typfilen `packages/core/src/components.d.ts`). De ska checkas in tillsammans med din ändring, men redigeras aldrig för hand.
+
+### Konventioner
+
+Det här är besluten som gäller för alla komponenter. Följ dem om det inte finns en tydlig anledning att göra något annat, eller ta upp det för diskussion.
+
+- **Tailwind först.** Styla med Tailwind v4-klasser direkt i `.tsx`. Variantlogik görs med bas-klasser plus ett uppslag per variant (se `vgr-button.tsx`). Vanlig CSS i komponentens `.css`-fil är backup när Tailwind inte räcker.
+- **`scoped: true`, inte Shadow DOM.** Tailwind v4 använder CSS `@property`, som inte stöds i Shadow DOM. Lägg inte till `shadow: true`.
+- **Snäva komponenter.** Inga slots "för säkerhets skull". Text och ikon skickas som props (t.ex. `text`, `icon`). Det är enkelt att lägga till en prop senare, men att ta bort eller byta namn på en som redan används tvingar alla konsumenter att ändra sin kod. Börja därför smalt och bygg ut vid behov.
+- **Obligatoriska props markeras med `!`** (`@Prop() text!: string;`). Det ger TypeScript-fel i React, Angular och Vue om de saknas.
+- **Namn:** custom elements och events prefixas med `vgr-` (`vgr-button`, `vgrClick`). Props som krockar med ett inbyggt HTML-attribut prefixas också (`vgrAriaLabel`).
+- **Ikoner skickas som SVG-sträng**, aldrig som ikonnamn. Själva ikonerna ligger i ett separat, privat paket och får inte läggas i det här repot.
 
 ### Bygga ny komponent
 
@@ -171,15 +187,17 @@ npm run generate
 - Döp komponenten enligt konvention vgr-komponentnamn (t.ex. `vgr-button`)
 - Vi behöver i dagsläget inga av de extra alternativen, stylesheet eller tests, eftersom vi stylar med Tailwind och testen skrivs lite annorlunda
 
-4. Bygg din komponent. Kolla gärna på redan existerande komponenter för att följa samma konvention. Ett exempel är i de fall där en prop har en konflikt med ett native attribute, såsom `ariaLabel`, då döper vi vår prop till `vgrAriaLabel`. Samma sak med events, där kör vi t ex `vgrClick`.
+4. Bygg din komponent. Kolla gärna på redan existerande komponenter för att följa samma konvention.
 
 5. Glöm inte köra `npm run build:all` när du jobbat klart i komponentfilen.
 
-6. Kontrollera att komponenten fungerar för alla 3 ramverk. Använd gärna sandbox-apparna i det här repot till det, eftersom det gör det lättare att testa för den som ska granska din komponent.
+6. Skriv en story för komponenten i `apps/storybook`, en per tillstånd (t.ex. `Default`, `Disabled`). Titta på `vgr-button.stories.ts` som förlaga. Kör `npm run build:core` först, så att komponenten finns i `dist/`, och starta om Storybook om det redan kör. Props som inte är enkla strängar sätts med punkt (`.icon=${...}`). Använd placeholder-ikoner från `placeholder-icons.ts`, de riktiga ikonerna har vi inte tillgång till i det här repot.
 
-7. Kör ett test (se Testa nedan) och åtgärda eventuella problem.
+7. Kontrollera att komponenten fungerar för alla 3 ramverk. Använd gärna sandbox-apparna i det här repot till det, eftersom det gör det lättare att testa för den som ska granska din komponent.
 
-8. Öppna en pull request mot `main` för granskning. I denna PR beskriver du vad koden gör och vad man behöver veta för att kunna göra en noggrann PR review. Om du önskar att något testas särskilt väl, beskriv hur det bör göras.
+8. Kör ett test (se Testa nedan) och åtgärda eventuella problem.
+
+9. Öppna en pull request mot `main` för granskning. I denna PR beskriver du vad koden gör och vad man behöver veta för att kunna göra en noggrann PR review. Om du önskar att något testas särskilt väl, beskriv hur det bör göras.
 
 ### Testa
 
