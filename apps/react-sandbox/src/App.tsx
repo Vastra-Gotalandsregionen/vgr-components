@@ -1,5 +1,4 @@
 import { VgrButton } from '@vastra-gotalandsregionen/components-react';
-import '@vastra-gotalandsregionen/components-core/dist/styles.css';
 
 function App() {
   return (

@@ -208,7 +208,9 @@ npm run build:react  # bygger React-paketet
 
 #### Angular (packages/angular)
 
-Genereras automatiskt från `packages/core` via `@stencil/angular-output-target`, som standalone-komponenter (inget NgModule krävs). Byggs med `ng-packagr` (Angulars officiella biblioteksverktyg) — **inte** `tsc`, eftersom Angular kräver Ivy-kompilerad kod för att känna igen en komponent som importerbar.
+**Versionskrav:** Angular `>=22.0.0`. Håll `@angular/compiler`, `@angular/compiler-cli`, `ng-packagr` och `typescript` synkade mot varandra i `packages/angular/package.json`.
+
+Komponenter genereras automatiskt från `packages/core` via `@stencil/angular-output-target`, som standalone-komponenter (inget NgModule krävs). Byggs med `ng-packagr` (Angulars officiella biblioteksverktyg) — **inte** `tsc`, eftersom Angular kräver Ivy-kompilerad kod för att känna igen en komponent som importerbar.
 
 ```bash
 npm run build:core     # genererar wrapper-koden
@@ -302,16 +304,38 @@ npm install @vastra-gotalandsregionen/components-react
 
 #### React (packages/react)
 
-Användning i en React-app:
+Användning i en React-app, i `main.tsx`:
+
+```tsx
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import App from './App.tsx';
+import '@vastra-gotalandsregionen/components-core/dist/styles.css';
+
+createRoot(document.getElementById('root')!).render(
+  <StrictMode>
+    <App />
+  </StrictMode>
+);
+```
+
+Och i en komponent:
 
 ```tsx
 import { VgrButton } from '@vastra-gotalandsregionen/components-react';
-import '@vastra-gotalandsregionen/components-core/dist/styles.css';
 
-<VgrButton variant="primary" onVgrClick={() => console.log('klick!')}>
-  Spara
-</VgrButton>;
+export function SaveButton() {
+  return (
+    <VgrButton
+      variant="primary"
+      text="Spara"
+      onVgrClick={() => console.log('klick!')}
+    />
+  );
+}
 ```
+
+**CSS laddas en gång.** Importera `styles.css` en gång när appen startar, till exempel i `main.tsx`.
 
 #### Angular (packages/angular)
 
@@ -340,8 +364,6 @@ export class App {}
 @import '@vastra-gotalandsregionen/components-core/dist/styles.css';
 ```
 
-**Versionskrav:** Angular `>=22.0.0`. Håll `@angular/compiler`, `@angular/compiler-cli`, `ng-packagr` och `typescript` synkade mot varandra i `packages/angular/package.json`.
-
 ---
 
 #### Vue (packages/vue)
@@ -350,11 +372,9 @@ Användning i en Vue-app, i `main.ts`:
 
 ```typescript
 import { createApp } from 'vue';
-import { defineCustomElements } from '@vastra-gotalandsregionen/components-core/loader';
+import '@vastra-gotalandsregionen/components-core/dist/components/define-all.js';
 import '@vastra-gotalandsregionen/components-core/dist/styles.css';
 import App from './App.vue';
-
-defineCustomElements();
 
 createApp(App).mount('#app');
 ```
@@ -363,19 +383,21 @@ Och i en komponent:
 
 ```typescript
 <script setup lang="ts">
-import { VgrButton } from '@vastra-gotalandsregionen/components-vue';
+import { VgrButton } from '@vastra-gotalandsregionen/components-vue'
 
 function onSave() {
-  console.log('klick!');
+  console.log('Klick!')
 }
 </script>
 
 <template>
-  <VgrButton variant="primary" text="Spara" @vgrClick="onSave" />
+  <VgrButton variant="primary" @vgrClick="onSave" text="Spara!" />
 </template>
 ```
 
-**Viktigt: `defineCustomElements()` måste anropas en gång.** Vue-komponenterna är tunna omslag runt de riktiga webbkomponenterna, och de behöver registreras i webbläsaren innan de fungerar. Gör det en gång när appen startar, till exempel i `main.ts`. Glömmer du det renderas ingenting, och du får inget felmeddelande.
+**Viktigt: `define-all.js` måste importeras en gång.** Vue-komponenterna är tunna omslag runt de riktiga webbkomponenterna, och webbkomponenterna måste registreras i webbläsaren innan de fungerar. Det gör `define-all.js`: bara att importera filen räcker, du behöver inte anropa någon funktion. Gör det en gång när appen startar, till exempel i `main.ts` (se exemplet ovan). Glömmer du det blir knapparna inte riktiga komponenter, och du får troligen inget felmeddelande.
+
+`define-all.js` registrerar alla komponenter i paketet på en gång.
 
 **CSS laddas som i React:** importera `styles.css` en gång i `main.ts`. Vite hanterar CSS-importer direkt, så ingen extra konfiguration behövs.
 
