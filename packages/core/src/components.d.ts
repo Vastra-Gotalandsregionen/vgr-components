@@ -9,6 +9,7 @@ import { VgrButtonVariant } from "./components/vgr-button/vgr-button";
 export { VgrButtonVariant } from "./components/vgr-button/vgr-button";
 export namespace Components {
     interface VgrButton {
+        "ariaLabel"?: string;
         /**
           * @default false
          */
@@ -68,6 +69,7 @@ declare namespace LocalJSX {
     type OneOf<K extends string, PropT, AttrT = PropT> = { [P in K]: PropT } & { [P in `attr:${K}`]?: never } | { [P in `attr:${K}`]: AttrT } & { [P in K]?: never };
 
     interface VgrButton {
+        "ariaLabel"?: string;
         /**
           * @default false
          */
@@ -97,6 +99,7 @@ declare namespace LocalJSX {
         "type": 'button' | 'submit' | 'reset';
         "text": string;
         "icon": string;
+        "ariaLabel": string;
     }
     interface VgrIconAttributes {
         "icon": string;

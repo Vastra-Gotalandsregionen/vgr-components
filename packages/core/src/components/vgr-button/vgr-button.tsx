@@ -13,6 +13,7 @@ export class VgrButton {
   @Prop() type: 'button' | 'submit' | 'reset' = 'button';
   @Prop() text!: string;
   @Prop() icon?: string;
+  @Prop() ariaLabel?: string;
 
   @Event() vgrClick: EventEmitter<void>;
 
@@ -39,6 +40,9 @@ export class VgrButton {
     hover:bg-neutral-text
     disabled:bg-neutral-disabled
     disabled:text-neutral-text-variant
+    focus-visible:outline-3
+    focus-visible:outline-offset-3
+    focus-visible:outline-primary-base-surface-focus
   `,
       secondary: `
     bg-transparent
@@ -46,6 +50,10 @@ export class VgrButton {
     border-2 border-primary-action
     hover:text-neutral-text
     disabled:text-neutral-disabled
+    disabled:border-neutral-disabled
+    focus-visible:outline-4
+    focus-visible:outline-offset-0
+    focus-visible:outline-primary-base-surface-focus
   `,
     };
 
@@ -55,7 +63,7 @@ export class VgrButton {
   render() {
     return (
       <Host>
-        <button class={this.getButtonClasses()} type={this.type} disabled={this.disabled} onClick={this.handleClick}>
+        <button class={this.getButtonClasses()} type={this.type} disabled={this.disabled} aria-label={this.ariaLabel} onClick={this.handleClick}>
           {this.icon && <vgr-icon icon={this.icon} />}
           {this.text}
         </button>

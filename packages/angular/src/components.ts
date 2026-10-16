@@ -10,14 +10,14 @@ import { defineCustomElement as defineVgrButton } from '@vastra-gotalandsregione
 import { defineCustomElement as defineVgrIcon } from '@vastra-gotalandsregionen/components-core/components/vgr-icon.js';
 @ProxyCmp({
   defineCustomElementFn: defineVgrButton,
-  inputs: ['disabled', 'icon', 'text', 'type', 'variant']
+  inputs: ['ariaLabel', 'disabled', 'icon', 'text', 'type', 'variant']
 })
 @Component({
   selector: 'vgr-button',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['disabled', 'icon', { name: 'text', required: true }, 'type', 'variant'],
+  inputs: ['ariaLabel', 'disabled', 'icon', { name: 'text', required: true }, 'type', 'variant'],
   outputs: ['vgrClick'],
 })
 export class VgrButton {
