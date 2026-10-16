@@ -4,7 +4,16 @@
   "version": "0.0.0",
   "workspaces": ["packages/*", "apps/*"],
   "scripts": {
-    "build-core": "npm run build --workspace=@vastra-gotalandsregionen/components-core",
+    "build:tokens": "npm run build -w packages/tokens",
+    "build:core": "npm run build -w packages/core",
+    "build:react": "npm run build -w packages/react",
+    "build:angular": "npm run build -w packages/angular",
+    "build:vue": "npm run build -w packages/vue",
+    "build:all": "npm run build:tokens && npm run build:core && npm run build:react && npm run build:angular && npm run build:vue",
+    "dev:react": "npm run dev -w apps/react-sandbox",
+    "dev:angular": "npm run start -w apps/angular-sandbox",
+    "dev:vue": "npm run dev -w apps/vue-sandbox",
+    "storybook": "npm run storybook -w apps/storybook",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "format:diff": "prettier --write --list-different ."
