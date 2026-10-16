@@ -10,6 +10,7 @@
     "build:angular": "npm run build -w packages/angular",
     "build:vue": "npm run build -w packages/vue",
     "build:all": "npm run build:tokens && npm run build:core && npm run build:react && npm run build:angular && npm run build:vue",
+    "dev:core": "npm run dev -w packages/core",
     "dev:react": "npm run dev -w apps/react-sandbox",
     "dev:angular": "npm run start -w apps/angular-sandbox",
     "dev:vue": "npm run dev -w apps/vue-sandbox",
