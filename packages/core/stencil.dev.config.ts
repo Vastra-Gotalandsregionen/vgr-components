@@ -12,6 +12,10 @@ export const config: Config = {
           src: '../../../node_modules/@vastra-gotalandsregionen/design-tokens/dist/css',
           dest: 'tokens',
         },
+        {
+          src: '../.tailwind-build/styles.css',
+          dest: 'styles.css',
+        },
       ],
     },
   ],
