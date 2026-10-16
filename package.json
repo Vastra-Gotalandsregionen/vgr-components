@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "workspaces": ["packages/*", "apps/*"],
   "scripts": {
+    "test": "npm test -w packages/core",
     "build:tokens": "npm run build -w packages/tokens",
     "build:core": "npm run build -w packages/core",
     "build:react": "npm run build -w packages/react",
