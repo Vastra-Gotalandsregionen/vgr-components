@@ -131,8 +131,6 @@ storybook
 
 ## Arbeta med komponenterna (packages/core)
 
-**Viktigt!** Commita aldrig `node_modules/`, `dist/`, `www/` eller `loader/` — de är gitignorade och ska genereras lokalt via `npm install`/`npm run build`.
-
 ### Köra dev-servern
 
 Alla kommandon i exemplet körs från root.
@@ -237,7 +235,7 @@ Under utveckling kan man köra appen med hjälp av `npm run storybook` i mappen 
 Detta är det kommando som bygger den riktiga Storybook-appen till `apps/storybook/storybook-static/`:
 
 ```bash
-npm run build-storybook
+npm run build-storybook -w apps/storybook
 ```
 
 Detta körs i deploy-storybook.yml (som används i Github Actions-workflowet som deployar till Github Pages). Vi behöver alltså inte köra det här när vi utvecklar lokalt, men om man vill kontrollera ett äkta bygge innan man deployar kan man köra det kommandot.
@@ -355,7 +353,7 @@ export class App {}
 ```
 
 ```html
-<vgr-button variant="primary" (vgrClick)="onSave()">Spara</vgr-button>
+<vgr-button variant="primary" (vgrClick)="onSave()" text="Spara"></vgr-button>
 ```
 
 **Viktigt — css laddas annorlunda än i React.** Angular CLI förstår inte en CSS-import skriven direkt i en `.ts`-fil. Lägg istället till en `@import`-rad i appens globala `src/styles.css`:
@@ -407,8 +405,6 @@ function onSave() {
 
 ### VGR Icons
 
-Ett bibliotek av alla de ikoner som VGR Designsystem har tillgång till. Detta ligger på vår självhostade Gitlab: https://git.vgregion.se/ellbr9/vgr-icons.
-
-Detta bibliotek kommer eventuellt kunna användas för att t ex skicka med en ikon in i en VgrButton.
+Ett bibliotek av alla de ikoner som VGR Designsystem har tillgång till. Detta ligger på vår självhostade Gitlab, och kommer eventuellt kunna användas för att t ex skicka med en ikon in i en VgrButton.
 
 Detta är inte helt bestämt ännu. Mer info kommer.
