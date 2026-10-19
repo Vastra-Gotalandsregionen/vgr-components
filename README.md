@@ -11,7 +11,7 @@ Källan till design (färger, spacing, typografi m.m.) är Figma/Zero Height, oc
 ```
 packages/
   core/      @vastra-gotalandsregionen/components-core   — Stencil-komponenterna (källan till allt)
-  tokens/    @vastra-gotalandsregionen/design-tokens     — design tokens från Figma/Zero Height
+  tokens/    @vastra-gotalandsregionen/design-tokens     — design tokens från Figma/Zero Height, publiceras inte
   react/     @vastra-gotalandsregionen/components-react  — genererad React-wrapper
   angular/   @vastra-gotalandsregionen/components-angular  — genererad Angular-wrapper
   vue/       @vastra-gotalandsregionen/components-vue  — genererad Vue-wrapper
@@ -43,7 +43,7 @@ Källfilerna ligger i `packages/tokens/tokens/*.json`. Man behöver bygga om fr�
 npm run build:tokens
 ```
 
-Resultatet hamnar i `packages/tokens/dist/css/tokens.css`.
+Resultatet hamnar i `packages/tokens/dist/css/tokens.css`, som sedan importeras av konsumenter via core-paketet. `design-tokens` publiceras alltså aldrig som ett eget paket.
 
 ## Kom igång
 
@@ -316,6 +316,23 @@ Användarnamn är ditt GitHub-användarnamn och lösenord är den token du skapa
 npm install @vastra-gotalandsregionen/components-react
 ```
 
+### Installera i CI
+
+**OBS, detta är inte testat i verkligheten än.**
+
+En pipeline har inte möjlighet till `npm login`, så den behöver en egen token med behörigheten `read:packages`. Gör så här, oavsett CI-system:
+
+1. Lägg token som en hemlig variabel i ert CI-system (maskerad, om systemet har det). Döp den till vad ni vill, t ex `GITHUB_PACKAGES_TOKEN`.
+2. Kör den här raden i pipelinen precis före `npm ci`, så skrivs token in i en `.npmrc` som bara finns under körningen:
+
+```bash
+echo "//npm.pkg.github.com/:_authToken=${GITHUB_PACKAGES_TOKEN}" >> ~/.npmrc
+```
+
+3. `.npmrc` med registerraden (steg 3 ovan) ska redan ligga incheckad i appen. Den innehåller ingen token.
+
+Lägg aldrig token i repot. Använd helst en token från ett väl utvalt konto, inte en enskild utvecklares, så att pipelinen inte slutar fungera om personen byter jobb.
+
 ### Användning av komponenter i ramverken
 
 #### React (packages/react)
@@ -418,6 +435,29 @@ function onSave() {
 **CSS laddas som i React:** importera `styles.css` en gång i `main.ts`. Vite hanterar CSS-importer direkt, så ingen extra konfiguration behövs.
 
 ---
+
+#### Utan ramverk
+
+Komponenterna är vanliga webbkomponenter, så de går även att använda i ren HTML med en bundler (t.ex. Vite). Importera `define-all.js` och `styles.css` en gång när sidan startar, i din JavaScript- eller TypeScript-fil:
+
+```typescript
+import '@vastra-gotalandsregionen/components-core/dist/components/define-all.js';
+import '@vastra-gotalandsregionen/components-core/dist/styles.css';
+```
+
+Sedan används elementen direkt i HTML:
+
+```html
+<vgr-button variant="primary" text="Spara"></vgr-button>
+
+<script>
+  document.querySelector('vgr-button').addEventListener('vgrClick', () => {
+    console.log('klick!');
+  });
+</script>
+```
+
+Props skrivs som attribut i kebab-case, så `vgrAriaLabel` blir `vgr-aria-label`. Händelsenamnet är detsamma som i koden (`vgrClick`).
 
 ## Relaterade projekt
 
