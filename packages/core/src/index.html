@@ -10,7 +10,7 @@
     <script nomodule src="/build/vgregion-components.js"></script>
     <link rel="stylesheet" href="/styles.css" />
   </head>
-  <body style="background-color: var(--color-accent-orange)">
+  <body style="background-color: var(--color-accent-brown-surface-minimal)">
     <h2 class="text-2xl font-bold mb-2">Buttons</h2>
     <vgr-button variant="primary" text="Spara"></vgr-button>
     <vgr-button
@@ -22,8 +22,9 @@
     <hr />
     <h2 class="text-2xl font-bold mb-2">Inputs</h2>
     <form>
-      <vgr-text-field label="Namn"></vgr-text-field>
-      <vgr-text-field type="textarea" label="Adress"></vgr-text-field>
+      <vgr-text-field label="Namn" help-text="Skriv ditt namn hörru"></vgr-text-field>
+      <vgr-text-field label="Titel" help-text="Skriv din titel" error="Titel får inte vara tom"></vgr-text-field>
+      <vgr-text-field type="textarea" required="true" label="Adress"></vgr-text-field>
     </form>
   </body>
 

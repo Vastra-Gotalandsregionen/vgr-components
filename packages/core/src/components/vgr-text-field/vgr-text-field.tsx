@@ -31,12 +31,22 @@ export class VgrTextField {
      * Classes
      */
     // Shared by inputs and textareas
-    let sharedClasses = ['block bg-elevation-elevation-1 border-2 border-neutral-border rounded-text-field pl-3 pr-6'];
+    let sharedClasses = ['block bg-elevation-elevation-1 border-2 rounded-text-field pl-3 pr-6'];
+    if (!this.error) sharedClasses.push('border-neutral-border');
     // Hover
     sharedClasses.push('hover:shadow-text-field');
 
     // Focus
-    sharedClasses.push('focus-visible:outline-4 focus-visible:outline-primary-base');
+    sharedClasses.push('focus-visible:outline-4');
+
+    if (!!this.error) {
+      sharedClasses.push('outline-status-error-text');
+    } else {
+      sharedClasses.push('focus-visible:outline-primary-base');
+    }
+
+    // Error
+    if (!!this.error) sharedClasses.push('border-status-error-text');
 
     const _sharedClasses = sharedClasses.join(' ');
 
@@ -61,21 +71,24 @@ export class VgrTextField {
     return (
       <Host>
         <div class="block text-neutral-text">
-          {this.label && (
-            <label class="block text-base font-bold leading-text-field-label mb-2" htmlFor={this.inputId}>
-              {this.label}
-              {this.required && <span class="text-status-error-text">*</span>}
-            </label>
-          )}
+          <div class="mb-2">
+            {this.label && (
+              <label class="flex items-center text-base font-bold leading-text-field-label" htmlFor={this.inputId}>
+                {this.label}
+                {this.required && <span class="text-status-error-text block ml-1">*</span>}
+                {this.helpText && <span class="border-3 border-primary-action text-primary-action w-5 h-5 flex items-center justify-center rounded-full ml-2">?</span>}
+              </label>
+            )}
+            {this.helpText && !this.error && (
+              <p id={helperId} class="block">
+                {this.helpText}
+              </p>
+            )}
+          </div>
           {this.type === 'textarea' ? (
             <textarea rows={this.rows} value={this.value?.toString()} {...sharedProps} />
           ) : (
             <input type={this.type} value={this.value} {...sharedProps} />
-          )}
-          {this.helpText && !this.error && (
-            <p id={helperId} class="block">
-              {this.helpText}
-            </p>
           )}
           {this.error && (
             <p id={errorId} class="block">
