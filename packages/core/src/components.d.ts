@@ -35,11 +35,19 @@ export namespace Components {
         /**
           * @default false
          */
+        "autoComplete": boolean;
+        /**
+          * @default false
+         */
         "disabled": boolean;
         "error"?: string;
         "helperText"?: string;
-        "label": string;
+        "label"?: string;
         "placeholder"?: string;
+        /**
+          * `rows` is only applied for type: textarea
+         */
+        "rows"?: number;
         /**
           * @default 'text'
          */
@@ -118,11 +126,19 @@ declare namespace LocalJSX {
         /**
           * @default false
          */
+        "autoComplete"?: boolean;
+        /**
+          * @default false
+         */
         "disabled"?: boolean;
         "error"?: string;
         "helperText"?: string;
-        "label": string;
+        "label"?: string;
         "placeholder"?: string;
+        /**
+          * `rows` is only applied for type: textarea
+         */
+        "rows"?: number;
         /**
           * @default 'text'
          */
@@ -144,17 +160,19 @@ declare namespace LocalJSX {
     interface VgrTextFieldAttributes {
         "type": 'text' | 'textarea' | 'number' | 'email' | 'password' | 'tel' | 'url';
         "disabled": boolean;
+        "autoComplete": boolean;
         "value": string;
-        "label": string;
         "helperText": string;
         "placeholder": string;
+        "label": string;
         "error": string;
+        "rows": number;
     }
 
     interface IntrinsicElements {
         "vgr-button": Omit<VgrButton, keyof VgrButtonAttributes> & { [K in keyof VgrButton & keyof VgrButtonAttributes]?: VgrButton[K] } & { [K in keyof VgrButton & keyof VgrButtonAttributes as `attr:${K}`]?: VgrButtonAttributes[K] } & { [K in keyof VgrButton & keyof VgrButtonAttributes as `prop:${K}`]?: VgrButton[K] } & OneOf<"text", VgrButton["text"], VgrButtonAttributes["text"]>;
         "vgr-icon": Omit<VgrIcon, keyof VgrIconAttributes> & { [K in keyof VgrIcon & keyof VgrIconAttributes]?: VgrIcon[K] } & { [K in keyof VgrIcon & keyof VgrIconAttributes as `attr:${K}`]?: VgrIconAttributes[K] } & { [K in keyof VgrIcon & keyof VgrIconAttributes as `prop:${K}`]?: VgrIcon[K] } & OneOf<"icon", VgrIcon["icon"], VgrIconAttributes["icon"]>;
-        "vgr-text-field": Omit<VgrTextField, keyof VgrTextFieldAttributes> & { [K in keyof VgrTextField & keyof VgrTextFieldAttributes]?: VgrTextField[K] } & { [K in keyof VgrTextField & keyof VgrTextFieldAttributes as `attr:${K}`]?: VgrTextFieldAttributes[K] } & { [K in keyof VgrTextField & keyof VgrTextFieldAttributes as `prop:${K}`]?: VgrTextField[K] } & OneOf<"label", VgrTextField["label"], VgrTextFieldAttributes["label"]>;
+        "vgr-text-field": Omit<VgrTextField, keyof VgrTextFieldAttributes> & { [K in keyof VgrTextField & keyof VgrTextFieldAttributes]?: VgrTextField[K] } & { [K in keyof VgrTextField & keyof VgrTextFieldAttributes as `attr:${K}`]?: VgrTextFieldAttributes[K] } & { [K in keyof VgrTextField & keyof VgrTextFieldAttributes as `prop:${K}`]?: VgrTextField[K] };
     }
 }
 export { LocalJSX as JSX };
