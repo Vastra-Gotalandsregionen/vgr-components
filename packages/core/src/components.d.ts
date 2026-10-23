@@ -41,9 +41,13 @@ export namespace Components {
          */
         "disabled": boolean;
         "error"?: string;
-        "helperText"?: string;
+        "helpText"?: string;
         "label"?: string;
         "placeholder"?: string;
+        /**
+          * @default false
+         */
+        "required": boolean;
         /**
           * `rows` is only applied for type: textarea
          */
@@ -132,9 +136,13 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         "error"?: string;
-        "helperText"?: string;
+        "helpText"?: string;
         "label"?: string;
         "placeholder"?: string;
+        /**
+          * @default false
+         */
+        "required"?: boolean;
         /**
           * `rows` is only applied for type: textarea
          */
@@ -161,8 +169,9 @@ declare namespace LocalJSX {
         "type": 'text' | 'textarea' | 'number' | 'email' | 'password' | 'tel' | 'url';
         "disabled": boolean;
         "autoComplete": boolean;
+        "required": boolean;
         "value": string;
-        "helperText": string;
+        "helpText": string;
         "placeholder": string;
         "label": string;
         "error": string;
