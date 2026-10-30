@@ -6,7 +6,17 @@ const preview = {
     controls: { expanded: true },
     options: {
       storySort: {
-        order: ['Guides', ['Getting started', 'Contributing'], '*'],
+        order: [
+          'Använda biblioteket',
+          ['Installera', 'React', 'Angular', 'Vue', 'Utan ramverk'],
+          'Bidra till biblioteket',
+          [
+            'Design tokens',
+            'Arbeta med komponenterna',
+            'Storybook och publicering',
+          ],
+          '*',
+        ],
       },
     },
   },

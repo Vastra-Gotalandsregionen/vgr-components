@@ -1,0 +1,26 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Använda biblioteket/Utan ramverk" />
+
+# Utan ramverk
+
+Komponenterna är vanliga webbkomponenter, så de går även att använda i ren HTML med en bundler (t.ex. Vite). Importera `define-all.js` och `styles.css` en gång när sidan startar, i din JavaScript- eller TypeScript-fil:
+
+```typescript
+import '@vastra-gotalandsregionen/components-core/dist/components/define-all.js';
+import '@vastra-gotalandsregionen/components-core/dist/styles.css';
+```
+
+Sedan används elementen direkt i HTML:
+
+```html
+<vgr-button variant="primary" text="Spara"></vgr-button>
+
+<script>
+  document.querySelector('vgr-button').addEventListener('vgrClick', () => {
+    console.log('klick!');
+  });
+</script>
+```
+
+Props skrivs som attribut i kebab-case, så `vgrAriaLabel` blir `vgr-aria-label`. Händelsenamnet är detsamma som i koden (`vgrClick`).
