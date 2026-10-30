@@ -1,0 +1,38 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Använda biblioteket/Vue" />
+
+# Vue (packages/vue)
+
+Användning i en Vue-app, i `main.ts`:
+
+```typescript
+import { createApp } from 'vue';
+import '@vastra-gotalandsregionen/components-core/dist/components/define-all.js';
+import '@vastra-gotalandsregionen/components-core/dist/styles.css';
+import App from './App.vue';
+
+createApp(App).mount('#app');
+```
+
+Och i en komponent:
+
+```typescript
+<script setup lang="ts">
+import { VgrButton } from '@vastra-gotalandsregionen/components-vue'
+
+function onSave() {
+  console.log('Klick!')
+}
+</script>
+
+<template>
+  <VgrButton variant="primary" @vgrClick="onSave" text="Spara!" />
+</template>
+```
+
+**Viktigt: `define-all.js` måste importeras en gång.** Vue-komponenterna är wrappers runt de riktiga webbkomponenterna, och webbkomponenterna måste registreras i webbläsaren innan de fungerar. Det gör `define-all.js`: bara att importera filen räcker, du behöver inte anropa någon funktion. Gör det en gång när appen startar, till exempel i `main.ts` (se exemplet ovan). Glömmer du det blir det inga riktiga komponenter, och du får troligen inget felmeddelande.
+
+`define-all.js` registrerar alla komponenter i paketet på en gång.
+
+**CSS laddas som i React:** importera `styles.css` en gång i `main.ts`. Vite hanterar CSS-importer direkt, så ingen extra konfiguration behövs.

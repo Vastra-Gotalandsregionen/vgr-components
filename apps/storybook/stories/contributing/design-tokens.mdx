@@ -1,0 +1,17 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Bidra till biblioteket/Design tokens" />
+
+# Design tokens (packages/tokens)
+
+Tokens (färger, spacing osv.) kommer från Figma via zeroheights automatiska synk, som skapar en pull request mot det här repot när design ändras. Observera att det alltså är UX:arna som gör sina ändringar i Figma och sen behöver de medvetet synka ändringarna till zeroheight, vilket triggar skapandet av PR:en i Github.
+
+PR:en granskas sedan och mergas som vilken annan ändring som helst innan den slår igenom.
+
+Källfilerna ligger i `packages/tokens/tokens/*.json`. Man behöver bygga om från json till CSS efter en import av nya tokens:
+
+```bash
+npm run build:tokens
+```
+
+Resultatet hamnar i `packages/tokens/dist/css/tokens.css`, som sedan importeras av konsumenter via core-paketet. `design-tokens` publiceras alltså aldrig som ett eget paket.
