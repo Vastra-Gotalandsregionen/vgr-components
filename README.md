@@ -132,6 +132,4 @@ Nu bör du ha fått igång projektet och kan från och med nu utgå ifrån dokum
 
 ### VGR Icons
 
-Ett bibliotek av alla de ikoner som VGR Designsystem har tillgång till. Detta ligger på vår självhostade Gitlab, och kommer eventuellt kunna användas för att t ex skicka med en ikon in i en VgrButton.
-
-Detta är inte helt bestämt ännu. Mer info kommer.
+Ett bibliotek av alla de ikoner som VGR Designsystem har tillgång till. Detta ligger på vår självhostade Gitlab: https://git.vgregion.se/ellbr9/vgr-icons. För att använda ikon-biblioteket, följ instruktionerna under Installera i projektets README.
