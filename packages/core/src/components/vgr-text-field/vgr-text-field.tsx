@@ -15,6 +15,7 @@ export class VgrTextField {
   @Prop() required: boolean = false;
   @Prop() optional: boolean = false;
   @Prop() value: string | number;
+  @Prop() info?: string;
   @Prop() helpText?: string;
   @Prop() placeholder?: string;
   @Prop() label?: string;
@@ -81,13 +82,8 @@ export class VgrTextField {
                 {this.label}
                 {this.required && <span class="text-status-error-text block ml-1">*</span>}
                 {this.optional && <span class="text-neutral-text-variant block ml-2 font-normal">(frivillig)</span>}
-                {this.helpText && <span class="border-3 border-primary-action text-primary-action w-5 h-5 flex items-center justify-center rounded-full ml-2">?</span>}
+                {this.info && <span class="border-3 border-primary-action text-primary-action w-5 h-5 flex items-center justify-center rounded-full ml-2">?</span>}
               </label>
-            )}
-            {this.helpText && !this.error && (
-              <p id={helperId} class="block">
-                {this.helpText}
-              </p>
             )}
           </div>
           {this.type === 'textarea' ? (
@@ -95,8 +91,13 @@ export class VgrTextField {
           ) : (
             <input type={this.type} value={this.value} {...sharedProps} />
           )}
+          {this.helpText && !this.error && (
+            <p id={helperId} class="block text-neutral-text-variant mt-2 leading-text-field-help-text">
+              {this.helpText}
+            </p>
+          )}
           {this.error && (
-            <p id={errorId} class="block">
+            <p id={errorId} class="block text-status-error-text mt-2 leading-text-field-help-text">
               {this.error}
             </p>
           )}
