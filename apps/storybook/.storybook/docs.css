@@ -1,0 +1,7 @@
+#storybook-docs ol {
+  list-style: decimal;
+}
+
+#storybook-docs ul {
+  list-style: disc;
+}

@@ -1,0 +1,38 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Använda biblioteket/React" />
+
+# React (packages/react)
+
+Användning i en React-app, i `main.tsx`:
+
+```tsx
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import App from './App.tsx';
+import '@vastra-gotalandsregionen/components-core/dist/styles.css';
+
+createRoot(document.getElementById('root')!).render(
+  <StrictMode>
+    <App />
+  </StrictMode>
+);
+```
+
+Och i en komponent:
+
+```tsx
+import { VgrButton } from '@vastra-gotalandsregionen/components-react';
+
+export function SaveButton() {
+  return (
+    <VgrButton
+      variant="primary"
+      text="Spara"
+      onVgrClick={() => console.log('klick!')}
+    />
+  );
+}
+```
+
+**CSS laddas en gång.** Importera `styles.css` en gång när appen startar, till exempel i `main.tsx`.

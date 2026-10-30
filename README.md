@@ -1,8 +1,18 @@
 # VGR components
 
+**OBS!** Biblioteket är under uppbyggnad och det rekommenderas ännu inte att använda komponenterna i skarpa projekt.
+
+---
+
 Komponentbibliotek för VGR's designsystem — byggt en gång som webbkomponenter (Stencil), och tillgängligt i React, Angular och Vue via genererade wrapper-paket.
 
 Källan till design (färger, spacing, typografi m.m.) är Figma/Zero Height, och synkas automatiskt hit som design tokens (via pull request).
+
+## Dokumentation
+
+Dokumentationen finns i Storybook tillsammans med komponenterna: https://vastra-gotalandsregionen.github.io/vgr-components/
+
+Vill du använda biblioteket i ett projekt, titta under **Använda biblioteket** (installation, React, Angular, Vue). Vill du bidra, börja med Kom igång nedan och fortsätt sedan under **Bidra till biblioteket**.
 
 ## Projektstruktur
 
@@ -31,19 +41,7 @@ apps/
 
 Under `apps/` ligger sandbox-appar för varje ramverk biblioteket stödjer, för att vi ska kunna testa komponenterna för var och ett av dem.
 
-Här finns även en Storybook-app, som också deployas med hjälp av Github pages. Mer om detta under Publicering längre ned.
-
-## Design tokens (packages/tokens)
-
-Tokens (färger, spacing osv.) kommer från Figma via zeroheights automatiska synk, som skapar en pull request mot det här repot när design ändras. PR:en granskas och mergas som vilken annan ändring som helst innan den slår igenom.
-
-Källfilerna ligger i `packages/tokens/tokens/*.json`. Man behöver bygga om från json till CSS efter en import av nya tokens:
-
-```bash
-npm run build:tokens
-```
-
-Resultatet hamnar i `packages/tokens/dist/css/tokens.css`, som sedan importeras av konsumenter via core-paketet. `design-tokens` publiceras alltså aldrig som ett eget paket.
+Här finns även en Storybook-app, som också deployas med hjälp av Github pages. Mer om detta under Publicering i Storybook Docs / Storybook och publicering.
 
 ## Kom igång
 
@@ -128,341 +126,14 @@ dev:vue
 storybook
 ```
 
----
+### 7: Utgå ifrån Storybook-dokumentationen
 
-## Arbeta med komponenterna (packages/core)
-
-### Köra dev-servern
-
-Alla kommandon i exemplet körs från root.
-
-```bash
-npm run dev:core
-```
-
-Startar en lokal dev-server som utgår ifrån `src/index.html`.
-
-Bra att veta här är att kommandot kör två saker samtidigt: Stencils dev-server och en bevakning av Tailwind. Den ser till att `src/index.html` får en uppdaterad `styles.css` varje gång du sparar.
-
-Anledningen till att vi inte bara kör Stencils dev-server rakt av är att det skriver över `core/dist/`, som är mappen med det färdigbyggda paketet. Storybook, sandlådorna och React/Angular/Vue-paketen läser komponenterna därifrån, och den fylls av `npm run build:all`. Dev-servern bygger i stället sin egen kopia i mappen `www/`, som bara dev-sidan använder, och lämnar `dist/` ifred. Därför kan du ha den igång samtidigt som Storybook och sandlådorna utan att något försvinner.
-
-Det betyder också att ändringar du gör i dev-servern inte syns i Storybook eller sandlådorna förrän du kört `npm run build:all`.
-
-Det finns en begränsning dock: Tailwinds klasser genereras och läggs till i css-filen, men cachen gör att de inte syns direkt i webbläsaren. När du lägger till en Tailwind-klass som inte använts tidigare behöver du därför göra en hard refresh (eller bocka i "Disable cache" på Network-fliken i DevTools och köra vanlig refresh).
-
-### Bygga paketet
-
-```bash
-npm run build:core
-```
-
-Bygger paketet på riktigt (bland annat `dist/`-mappen som andra paket och konsumenter använder). Detta behöver köras innan man kör build-kommando för respektive ramverks package. Kör du `npm run build:all` sker ordningen rätt automatiskt, men det tar förstås längre tid.
-
-**OBS:** Att köra `npm run build:all` genererar filer i (kanske) andra paket än det du jobbat med (wrapper-koden i `packages/react`, `packages/angular` och `packages/vue`, och typfilen `packages/core/src/components.d.ts`). De ska checkas in tillsammans med din ändring, men redigeras aldrig för hand.
-
-### Konventioner
-
-Det här är besluten som gäller för alla komponenter. Följ dem om det inte finns en tydlig anledning att göra något annat, eller ta upp det för diskussion.
-
-- **Tailwind först.** Styla med Tailwind v4-klasser direkt i `.tsx`. Variantlogik görs med bas-klasser plus ett uppslag per variant (se `vgr-button.tsx`). Vanlig CSS i komponentens `.css`-fil är backup när Tailwind inte räcker.
-- **`scoped: true`, inte Shadow DOM.** Tailwind v4 använder CSS `@property`, som inte stöds i Shadow DOM. Lägg inte till `shadow: true`.
-- **Snäva komponenter.** Inga slots "för säkerhets skull". Text och ikon skickas som props (t.ex. `text`, `icon`). Det är enkelt att lägga till en prop senare, men att ta bort eller byta namn på en som redan används tvingar alla konsumenter att ändra sin kod. Börja därför smalt och bygg ut vid behov.
-- **Obligatoriska props markeras med `!`** (`@Prop() text!: string;`). Det ger TypeScript-fel i React, Angular och Vue om de saknas.
-- **Namn:** custom elements och events prefixas med `vgr-` (`vgr-button`, `vgrClick`). Props som krockar med ett inbyggt HTML-attribut prefixas också (`vgrAriaLabel`).
-- **Ikoner skickas som SVG-sträng**, aldrig som ikonnamn. Själva ikonerna ligger i ett separat, privat paket och får inte läggas i det här repot.
-
-### Bygga ny komponent
-
-1. Skapa en ny branch från `main`
-
-2. Kör igång Stencils komponentgenerator.
-
-```bash
-cd packages/core
-npm run generate
-```
-
-3. Inställningar
-
-- Döp komponenten enligt konvention vgr-komponentnamn (t.ex. `vgr-button`)
-- Vi behöver i dagsläget inga av de extra alternativen, stylesheet eller tests, eftersom vi stylar med Tailwind och testen skrivs lite annorlunda
-
-4. Bygg din komponent. Kolla gärna på redan existerande komponenter för att följa samma konvention.
-
-5. Glöm inte köra `npm run build:all` när du jobbat klart i komponentfilen.
-
-6. Skriv en story för komponenten i `apps/storybook`, en per tillstånd (t.ex. `Default`, `Disabled`). Titta på `vgr-button.stories.ts` som förlaga. Kör `npm run build:core` först, så att komponenten finns i `dist/`, och starta om Storybook om det redan kör. Props som inte är enkla strängar sätts med punkt (`.icon=${...}`). Använd placeholder-ikoner från `placeholder-icons.ts`, de riktiga ikonerna har vi inte tillgång till i det här repot.
-
-7. Kontrollera att komponenten fungerar för alla 3 ramverk. Använd gärna sandbox-apparna i det här repot till det, eftersom det gör det lättare att testa för den som ska granska din komponent.
-
-8. Kör ett test (se Testa nedan) och åtgärda eventuella problem.
-
-9. Öppna en pull request mot `main` för granskning. I denna PR beskriver du vad koden gör och vad man behöver veta för att kunna göra en noggrann PR review. Om du önskar att något testas särskilt väl, beskriv hur det bör göras.
-
-### Testa
-
-```bash
-npm run test
-```
-
-Detta kör Stencils spec-tester (renderar komponenterna i en simulerad DOM och kollar output). E2E-tester (riktig headless-browser via Playwright) är förberedda men pausade tills vidare — kommer aktiveras senare i projektet.
-
-### Angående generering av komponenter, per ramverk
-
-Oftast kör vi `npm run build:all`. Om man av någon anledning vill bygga till ett enstaka ramverk så fungerar det såhär.
-
-#### React (packages/react)
-
-Genereras automatiskt från `packages/core` — filerna under `src/components/stencil-generated/` ska aldrig redigeras för hand.
-
-```bash
-npm run build:core   # genererar wrapper-koden
-npm run build:react  # bygger React-paketet
-```
+Nu bör du ha fått igång projektet och kan från och med nu utgå ifrån dokumentationen i Storybook docs. Starta Storybook med `npm run storybook` och följ instruktionerna för att bidra till biblioteket.
 
 ---
-
-#### Angular (packages/angular)
-
-**Versionskrav:** Angular `>=22.0.0`. Håll `@angular/compiler`, `@angular/compiler-cli`, `ng-packagr` och `typescript` synkade mot varandra i `packages/angular/package.json`.
-
-Komponenter genereras automatiskt från `packages/core` via `@stencil/angular-output-target`, som standalone-komponenter (inget NgModule krävs). Byggs med `ng-packagr` (Angulars officiella biblioteksverktyg) — **inte** `tsc`, eftersom Angular kräver Ivy-kompilerad kod för att känna igen en komponent som importerbar.
-
-```bash
-npm run build:core     # genererar wrapper-koden
-npm run build:angular  # kompilerar med ng-packagr
-```
-
----
-
-#### Vue (packages/vue)
-
-Genereras automatiskt från `packages/core` via `@stencil/vue-output-target`, som vanliga Vue-komponenter. Byggs med Vite.
-
-```bash
-npm run build:core  # genererar wrapper-koden
-npm run build:vue   # kompilerar paketet
-```
-
----
-
-## Storybook
-
-Under utveckling kan man köra appen med hjälp av `npm run storybook` i mappen `apps/storybook.` Storybook-appen publiceras även via Github Pages, se rubriken Github Pages nedan.
-
-Detta är det kommando som bygger den riktiga Storybook-appen till `apps/storybook/storybook-static/`:
-
-```bash
-npm run build-storybook -w apps/storybook
-```
-
-Detta körs i deploy-storybook.yml (som används i Github Actions-workflowet som deployar till Github Pages). Vi behöver alltså inte köra det här när vi utvecklar lokalt, men om man vill kontrollera ett äkta bygge innan man deployar kan man köra det kommandot.
-
-## Publicering / versionshantering
-
-### Github Pages
-
-Projektet publiceras i nuläget via Github Pages vid push till `main`, och kan ses på https://vastra-gotalandsregionen.github.io/vgr-components/. Vi utgår ifrån projektets Storybook-app eftersom det i dagsläget är det som är intressant att publicera, både för direkt översikt över komponenterna och för inbäddning via zeroheight.
-
-### Github Packages
-
-Paketen publiceras till GitHub Packages (`npm.pkg.github.com`) under scopet `@vastra-gotalandsregionen`: https://github.com/orgs/Vastra-Gotalandsregionen/packages. Du behöver inte bygga eller publicera något själv: du pushar en git-tagg (se Göra en release nedan), och GitHub Actions gör resten.
-
-Alla fyra paket (core, react, angular, vue) har alltid samma version.
-
-### Göra en release
-
-1. Se till att allt som ska med ligger på `main`.
-2. Välj nästa versionsnummer. Kolla vad som är senast släppt med `git tag`. En version kan aldrig användas två gånger. I det här exemplet använder vi 0.2.2 som version.
-3. Tagga och pusha:
-
-```powershell
-git checkout main
-git pull
-git tag release-0.2.2
-git push origin release-0.2.2
-```
-
-4. Följ körningen under Actions, i workflowet "Publish packages". När den är klar ligger alla fyra paketen i registret med den nya versionen.
-
-Taggen `release-0.2.2` ger version `0.2.2` åt alla paket. Det är bygget som sätter numret, så du behöver aldrig höja versioner för hand, och versionerna i `package.json` i repot ändras inte. Vad som är släppt ser du på taggarna och i registret. Bara den som har rätt att skapa `release-*`-taggar kan göra en release.
-
-Om en körning fallerar efter att något paket hunnit publiceras går det versionsnumret inte att använda igen. Välj nästa nummer och tagga på nytt.
-
-## Installera paketen i en konsument-app
-
-Vill du använda komponentbiblioteket i ditt projekt? Kul! Såhär gör du.
-
-Paketen är privata, så varje utvecklare behöver en egen token för att kunna använda sig av dem. Man behöver naturligt nog också ha ett Github-konto inom organisationen.
-
-1. Skapa en personal access token (classic) på GitHub med behörigheten `read:packages`. Den visas bara en gång, så spara den.
-2. Logga in en gång per dator:
-
-```powershell
-npm login --scope=@vastra-gotalandsregionen --auth-type=legacy --registry=https://npm.pkg.github.com
-```
-
-Användarnamn är ditt GitHub-användarnamn och lösenord är den token du skapade förut. Den sparas i `.npmrc` i din hemkatalog (skedde automatiskt när du körde npm login), och den ska aldrig läggas i repot.
-
-3. Skapa en `.npmrc` i appens rot med följande rad. Den innehåller ingen token och kan checkas in:
-
-```
-@vastra-gotalandsregionen:registry=https://npm.pkg.github.com
-```
-
-4. Installera, till exempel för React:
-
-```powershell
-npm install @vastra-gotalandsregionen/components-react
-```
-
-### Installera i CI
-
-**OBS, detta är inte testat i verkligheten än.**
-
-En pipeline har inte möjlighet till `npm login`, så den behöver en egen token med behörigheten `read:packages`. Gör så här, oavsett CI-system:
-
-1. Lägg token som en hemlig variabel i ert CI-system (maskerad, om systemet har det). Döp den till vad ni vill, t ex `GITHUB_PACKAGES_TOKEN`.
-2. Kör den här raden i pipelinen precis före `npm ci`, så skrivs token in i en `.npmrc` som bara finns under körningen:
-
-```bash
-echo "//npm.pkg.github.com/:_authToken=${GITHUB_PACKAGES_TOKEN}" >> ~/.npmrc
-```
-
-3. `.npmrc` med registerraden (steg 3 ovan) ska redan ligga incheckad i appen. Den innehåller ingen token.
-
-Lägg aldrig token i repot. Använd helst en token från ett väl utvalt konto, inte en enskild utvecklares, så att pipelinen inte slutar fungera om personen byter jobb.
-
-### Användning av komponenter i ramverken
-
-#### React (packages/react)
-
-Användning i en React-app, i `main.tsx`:
-
-```tsx
-import { StrictMode } from 'react';
-import { createRoot } from 'react-dom/client';
-import App from './App.tsx';
-import '@vastra-gotalandsregionen/components-core/dist/styles.css';
-
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <App />
-  </StrictMode>
-);
-```
-
-Och i en komponent:
-
-```tsx
-import { VgrButton } from '@vastra-gotalandsregionen/components-react';
-
-export function SaveButton() {
-  return (
-    <VgrButton
-      variant="primary"
-      text="Spara"
-      onVgrClick={() => console.log('klick!')}
-    />
-  );
-}
-```
-
-**CSS laddas en gång.** Importera `styles.css` en gång när appen startar, till exempel i `main.tsx`.
-
-#### Angular (packages/angular)
-
-Användning i en Angular-app (standalone-komponent):
-
-```typescript
-import { Component } from '@angular/core';
-import { VgrButton } from '@vastra-gotalandsregionen/components-angular';
-
-@Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [VgrButton],
-  templateUrl: './app.html',
-})
-export class App {}
-```
-
-```html
-<vgr-button variant="primary" (vgrClick)="onSave()" text="Spara"></vgr-button>
-```
-
-**Viktigt — css laddas annorlunda än i React.** Angular CLI förstår inte en CSS-import skriven direkt i en `.ts`-fil. Lägg istället till en `@import`-rad i appens globala `src/styles.css`:
-
-```css
-@import '@vastra-gotalandsregionen/components-core/dist/styles.css';
-```
-
----
-
-#### Vue (packages/vue)
-
-Användning i en Vue-app, i `main.ts`:
-
-```typescript
-import { createApp } from 'vue';
-import '@vastra-gotalandsregionen/components-core/dist/components/define-all.js';
-import '@vastra-gotalandsregionen/components-core/dist/styles.css';
-import App from './App.vue';
-
-createApp(App).mount('#app');
-```
-
-Och i en komponent:
-
-```typescript
-<script setup lang="ts">
-import { VgrButton } from '@vastra-gotalandsregionen/components-vue'
-
-function onSave() {
-  console.log('Klick!')
-}
-</script>
-
-<template>
-  <VgrButton variant="primary" @vgrClick="onSave" text="Spara!" />
-</template>
-```
-
-**Viktigt: `define-all.js` måste importeras en gång.** Vue-komponenterna är tunna omslag runt de riktiga webbkomponenterna, och webbkomponenterna måste registreras i webbläsaren innan de fungerar. Det gör `define-all.js`: bara att importera filen räcker, du behöver inte anropa någon funktion. Gör det en gång när appen startar, till exempel i `main.ts` (se exemplet ovan). Glömmer du det blir knapparna inte riktiga komponenter, och du får troligen inget felmeddelande.
-
-`define-all.js` registrerar alla komponenter i paketet på en gång.
-
-**CSS laddas som i React:** importera `styles.css` en gång i `main.ts`. Vite hanterar CSS-importer direkt, så ingen extra konfiguration behövs.
-
----
-
-#### Utan ramverk
-
-Komponenterna är vanliga webbkomponenter, så de går även att använda i ren HTML med en bundler (t.ex. Vite). Importera `define-all.js` och `styles.css` en gång när sidan startar, i din JavaScript- eller TypeScript-fil:
-
-```typescript
-import '@vastra-gotalandsregionen/components-core/dist/components/define-all.js';
-import '@vastra-gotalandsregionen/components-core/dist/styles.css';
-```
-
-Sedan används elementen direkt i HTML:
-
-```html
-<vgr-button variant="primary" text="Spara"></vgr-button>
-
-<script>
-  document.querySelector('vgr-button').addEventListener('vgrClick', () => {
-    console.log('klick!');
-  });
-</script>
-```
-
-Props skrivs som attribut i kebab-case, så `vgrAriaLabel` blir `vgr-aria-label`. Händelsenamnet är detsamma som i koden (`vgrClick`).
 
 ## Relaterade projekt
 
 ### VGR Icons
 
-Ett bibliotek av alla de ikoner som VGR Designsystem har tillgång till. Detta ligger på vår självhostade Gitlab, och kommer eventuellt kunna användas för att t ex skicka med en ikon in i en VgrButton.
-
-Detta är inte helt bestämt ännu. Mer info kommer.
+Ett bibliotek av alla de ikoner som VGR Designsystem har tillgång till. Detta ligger på vår självhostade Gitlab: https://git.vgregion.se/ellbr9/vgr-icons. För att använda ikon-biblioteket, följ instruktionerna under Installera i projektets README.

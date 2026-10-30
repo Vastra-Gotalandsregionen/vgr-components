@@ -1,0 +1,46 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Bidra till biblioteket/Storybook och publicering" />
+
+# Storybook
+
+Under utveckling kan man köra appen med hjälp av `npm run storybook` i mappen `apps/storybook.` Storybook-appen publiceras även via Github Pages, se rubriken Github Pages nedan.
+
+Detta är det kommando som bygger den riktiga Storybook-appen till `apps/storybook/storybook-static/`:
+
+```bash
+npm run build-storybook -w apps/storybook
+```
+
+Detta körs i deploy-storybook.yml (som används i Github Actions-workflowet som deployar till Github Pages). Vi behöver alltså inte köra det här när vi utvecklar lokalt, men om man vill kontrollera ett äkta bygge innan man deployar kan man köra det kommandot.
+
+# Publicering / versionshantering
+
+## Github Pages
+
+Projektet publiceras i nuläget via Github Pages vid push till `main`, och kan ses på [https://vastra-gotalandsregionen.github.io/vgr-components/](https://vastra-gotalandsregionen.github.io/vgr-components/). Vi utgår ifrån projektets Storybook-app eftersom det i dagsläget är det som är intressant att publicera, både för direkt översikt över komponenterna och för inbäddning via zeroheight.
+
+## Github Packages
+
+Paketen publiceras till GitHub Packages (`npm.pkg.github.com`) under scopet `@vastra-gotalandsregionen`: [https://github.com/orgs/Vastra-Gotalandsregionen/packages](https://github.com/orgs/Vastra-Gotalandsregionen/packages). Du behöver inte bygga eller publicera något själv: du pushar en git-tagg (se Göra en release nedan), och GitHub Actions gör resten.
+
+Alla fyra paket (core, react, angular, vue) har alltid samma version.
+
+## Göra en release
+
+1. Se till att allt som ska med ligger på `main`.
+2. Välj nästa versionsnummer. Kolla vad som är senast släppt med `git tag`. En version kan aldrig användas två gånger. I det här exemplet använder vi 0.2.2 som version.
+3. Tagga och pusha:
+
+```powershell
+git checkout main
+git pull
+git tag release-0.2.2
+git push origin release-0.2.2
+```
+
+4. Följ körningen under Actions, i workflowet "Publish packages". När den är klar ligger alla fyra paketen i registret med den nya versionen.
+
+Taggen `release-0.2.2` ger version `0.2.2` åt alla paket. Det är bygget som sätter numret, så du behöver aldrig höja versioner för hand, och versionerna i `package.json` i repot ändras inte. Vad som är släppt ser du på taggarna och i registret. Bara den som har rätt att skapa `release-*`-taggar kan göra en release.
+
+Om en körning fallerar efter att något paket hunnit publiceras går det versionsnumret inte att använda igen. Välj nästa nummer och tagga på nytt.
