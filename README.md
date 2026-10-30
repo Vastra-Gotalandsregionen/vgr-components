@@ -1,5 +1,9 @@
 # VGR components
 
+**OBS!** Biblioteket är under uppbyggnad och det rekommenderas ännu inte att använda komponenterna i skarpa projekt.
+
+---
+
 Komponentbibliotek för VGR's designsystem — byggt en gång som webbkomponenter (Stencil), och tillgängligt i React, Angular och Vue via genererade wrapper-paket.
 
 Källan till design (färger, spacing, typografi m.m.) är Figma/Zero Height, och synkas automatiskt hit som design tokens (via pull request).
