@@ -67,7 +67,7 @@
     "@stencil/react-output-target": "^1.7.0",
     "@stencil/vitest": "^1.8.3",
     "@stencil/vue-output-target": "^0.14.7",
-    "@storybook/web-components-vite": "^10.6.0",
+    "@storybook/web-components-vite": "^10.6.5",
     "@tailwindcss/cli": "^4.3.3",
     "@types/node": "^26.6.6",
     "@vitest/browser-playwright": "^4.0.0",

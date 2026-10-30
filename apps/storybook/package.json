@@ -11,8 +11,8 @@
     "@vastra-gotalandsregionen/components-core": "*"
   },
   "devDependencies": {
-    "@storybook/addon-docs": "^10.6.1",
-    "@storybook/web-components-vite": "^10.6.0",
-    "storybook": "^10.6.0"
+    "@storybook/addon-docs": "^10.6.5",
+    "@storybook/web-components-vite": "^10.6.5",
+    "storybook": "^10.6.5"
   }
 }
