@@ -4,6 +4,11 @@ import '@vastra-gotalandsregionen/components-core/dist/styles.css';
 const preview = {
   parameters: {
     controls: { expanded: true },
+    docs: {
+      toc: {
+        headingSelector: 'h1, h2, h3',
+      },
+    },
     options: {
       storySort: {
         order: [
