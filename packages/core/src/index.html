@@ -10,14 +10,25 @@
     <script nomodule src="/build/vgregion-components.js"></script>
     <link rel="stylesheet" href="/styles.css" />
   </head>
-  <body style="background-color: var(--color-accent-orange)">
-    <vgr-button variant="primary" text="Spara"></vgr-button>
-    <vgr-button
-      variant="secondary"
-      text="Avbryt"
-      icon='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11 5h2v6h6v2h-6v6h-2v-6H5v-2h6z"/></svg>'
-    ></vgr-button>
-    <button id="theme-toggle">Växla tema</button>
+  <body style="background-color: var(--color-accent-brown-surface-minimal)">
+    <h2 class="text-2xl font-bold mb-2">Buttons</h2>
+    <div class="flex flex-col gap-4 mb-6">
+      <vgr-button variant="primary" text="Spara"></vgr-button>
+      <vgr-button
+        variant="secondary"
+        text="Avbryt"
+        icon='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11 5h2v6h6v2h-6v6h-2v-6H5v-2h6z"/></svg>'
+      ></vgr-button>
+      <vgr-button id="theme-toggle" text="Växla tema"></vgr-button>
+    </div>
+    <hr />
+    <h2 class="text-2xl font-bold mb-2">Inputs</h2>
+    <form class="flex flex-col gap-6">
+      <vgr-text-field label="Namn" help-text="Skriv ditt namn hörru"></vgr-text-field>
+      <vgr-text-field label="Titel" info="Skriv din titel" error="Titel får inte vara tom"></vgr-text-field>
+      <vgr-text-field label="Titel 2" optional="true"></vgr-text-field>
+      <vgr-text-field type="textarea" required="true" label="Adress"></vgr-text-field>
+    </form>
   </body>
 
   <script>

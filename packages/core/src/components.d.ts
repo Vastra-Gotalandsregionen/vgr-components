@@ -31,6 +31,38 @@ export namespace Components {
          */
         "icon": string;
     }
+    interface VgrTextField {
+        /**
+          * @default false
+         */
+        "autoComplete": boolean;
+        /**
+          * @default false
+         */
+        "disabled": boolean;
+        "error"?: string;
+        "helpText"?: string;
+        "info"?: string;
+        "label"?: string;
+        /**
+          * @default false
+         */
+        "optional": boolean;
+        "placeholder"?: string;
+        /**
+          * @default false
+         */
+        "required": boolean;
+        /**
+          * `rows` is only applied for type: textarea
+         */
+        "rows"?: number;
+        /**
+          * @default 'text'
+         */
+        "type": 'text' | 'textarea' | 'number' | 'email' | 'password' | 'tel' | 'url';
+        "value": string | number;
+    }
 }
 export interface VgrButtonCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -60,9 +92,16 @@ declare global {
         prototype: HTMLVgrIconElement;
         new (): HTMLVgrIconElement;
     };
+    interface HTMLVgrTextFieldElement extends Components.VgrTextField, HTMLStencilElement {
+    }
+    var HTMLVgrTextFieldElement: {
+        prototype: HTMLVgrTextFieldElement;
+        new (): HTMLVgrTextFieldElement;
+    };
     interface HTMLElementTagNameMap {
         "vgr-button": HTMLVgrButtonElement;
         "vgr-icon": HTMLVgrIconElement;
+        "vgr-text-field": HTMLVgrTextFieldElement;
     }
 }
 declare namespace LocalJSX {
@@ -92,6 +131,38 @@ declare namespace LocalJSX {
          */
         "icon": string;
     }
+    interface VgrTextField {
+        /**
+          * @default false
+         */
+        "autoComplete"?: boolean;
+        /**
+          * @default false
+         */
+        "disabled"?: boolean;
+        "error"?: string;
+        "helpText"?: string;
+        "info"?: string;
+        "label"?: string;
+        /**
+          * @default false
+         */
+        "optional"?: boolean;
+        "placeholder"?: string;
+        /**
+          * @default false
+         */
+        "required"?: boolean;
+        /**
+          * `rows` is only applied for type: textarea
+         */
+        "rows"?: number;
+        /**
+          * @default 'text'
+         */
+        "type"?: 'text' | 'textarea' | 'number' | 'email' | 'password' | 'tel' | 'url';
+        "value"?: string | number;
+    }
 
     interface VgrButtonAttributes {
         "variant": VgrButtonVariant;
@@ -104,10 +175,25 @@ declare namespace LocalJSX {
     interface VgrIconAttributes {
         "icon": string;
     }
+    interface VgrTextFieldAttributes {
+        "type": 'text' | 'textarea' | 'number' | 'email' | 'password' | 'tel' | 'url';
+        "disabled": boolean;
+        "autoComplete": boolean;
+        "required": boolean;
+        "optional": boolean;
+        "value": string;
+        "info": string;
+        "helpText": string;
+        "placeholder": string;
+        "label": string;
+        "error": string;
+        "rows": number;
+    }
 
     interface IntrinsicElements {
         "vgr-button": Omit<VgrButton, keyof VgrButtonAttributes> & { [K in keyof VgrButton & keyof VgrButtonAttributes]?: VgrButton[K] } & { [K in keyof VgrButton & keyof VgrButtonAttributes as `attr:${K}`]?: VgrButtonAttributes[K] } & { [K in keyof VgrButton & keyof VgrButtonAttributes as `prop:${K}`]?: VgrButton[K] } & OneOf<"text", VgrButton["text"], VgrButtonAttributes["text"]>;
         "vgr-icon": Omit<VgrIcon, keyof VgrIconAttributes> & { [K in keyof VgrIcon & keyof VgrIconAttributes]?: VgrIcon[K] } & { [K in keyof VgrIcon & keyof VgrIconAttributes as `attr:${K}`]?: VgrIconAttributes[K] } & { [K in keyof VgrIcon & keyof VgrIconAttributes as `prop:${K}`]?: VgrIcon[K] } & OneOf<"icon", VgrIcon["icon"], VgrIconAttributes["icon"]>;
+        "vgr-text-field": Omit<VgrTextField, keyof VgrTextFieldAttributes> & { [K in keyof VgrTextField & keyof VgrTextFieldAttributes]?: VgrTextField[K] } & { [K in keyof VgrTextField & keyof VgrTextFieldAttributes as `attr:${K}`]?: VgrTextFieldAttributes[K] } & { [K in keyof VgrTextField & keyof VgrTextFieldAttributes as `prop:${K}`]?: VgrTextField[K] };
     }
 }
 export { LocalJSX as JSX };
@@ -116,6 +202,7 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "vgr-button": LocalJSX.IntrinsicElements["vgr-button"] & JSXBase.HTMLAttributes<HTMLVgrButtonElement>;
             "vgr-icon": LocalJSX.IntrinsicElements["vgr-icon"] & JSXBase.HTMLAttributes<HTMLVgrIconElement>;
+            "vgr-text-field": LocalJSX.IntrinsicElements["vgr-text-field"] & JSXBase.HTMLAttributes<HTMLVgrTextFieldElement>;
         }
     }
 }
