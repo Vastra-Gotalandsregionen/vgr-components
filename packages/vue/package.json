@@ -4,14 +4,12 @@
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/src/index.d.ts",
-  "files": [
-    "dist/"
-  ],
+  "files": ["dist/"],
   "scripts": {
     "build": "vite build"
   },
   "dependencies": {
-    "@stencil/vue-output-target": "^0.14.2",
+    "@stencil/vue-output-target": "^0.14.7",
     "@vastra-gotalandsregionen/components-core": "0.0.2"
   },
   "peerDependencies": {
