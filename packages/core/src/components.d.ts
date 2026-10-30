@@ -43,6 +43,10 @@ export namespace Components {
         "error"?: string;
         "helpText"?: string;
         "label"?: string;
+        /**
+          * @default false
+         */
+        "optional": boolean;
         "placeholder"?: string;
         /**
           * @default false
@@ -138,6 +142,10 @@ declare namespace LocalJSX {
         "error"?: string;
         "helpText"?: string;
         "label"?: string;
+        /**
+          * @default false
+         */
+        "optional"?: boolean;
         "placeholder"?: string;
         /**
           * @default false
@@ -170,6 +178,7 @@ declare namespace LocalJSX {
         "disabled": boolean;
         "autoComplete": boolean;
         "required": boolean;
+        "optional": boolean;
         "value": string;
         "helpText": string;
         "placeholder": string;

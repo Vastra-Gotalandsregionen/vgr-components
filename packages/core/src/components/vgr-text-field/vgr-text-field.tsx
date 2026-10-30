@@ -13,6 +13,7 @@ export class VgrTextField {
   @Prop() disabled = false;
   @Prop() autoComplete: boolean = false;
   @Prop() required: boolean = false;
+  @Prop() optional: boolean = false;
   @Prop() value: string | number;
   @Prop() helpText?: string;
   @Prop() placeholder?: string;
@@ -48,6 +49,9 @@ export class VgrTextField {
     // Error
     if (!!this.error) sharedClasses.push('border-status-error-text');
 
+    // TODO: Disabled styling
+
+    // Finalize class list
     const _sharedClasses = sharedClasses.join(' ');
 
     // Input/textarea specific
@@ -76,6 +80,7 @@ export class VgrTextField {
               <label class="flex items-center text-base font-bold leading-text-field-label" htmlFor={this.inputId}>
                 {this.label}
                 {this.required && <span class="text-status-error-text block ml-1">*</span>}
+                {this.optional && <span class="text-neutral-text-variant block ml-2 font-normal">(frivillig)</span>}
                 {this.helpText && <span class="border-3 border-primary-action text-primary-action w-5 h-5 flex items-center justify-center rounded-full ml-2">?</span>}
               </label>
             )}
