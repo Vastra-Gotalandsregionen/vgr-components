@@ -10,9 +10,7 @@
       "default": "./dist/fesm2022/vastra-gotalandsregionen-components-angular.mjs"
     }
   },
-  "files": [
-    "dist/"
-  ],
+  "files": ["dist/"],
   "scripts": {
     "build": "ng-packagr -p ng-package.json",
     "start": "ng serve"
@@ -22,12 +20,12 @@
     "tslib": "^2.3.0"
   },
   "peerDependencies": {
-    "@angular/core": ">=22.0.0"
+    "@angular/core": ">=22.2.4"
   },
   "devDependencies": {
-    "@angular/compiler": "^22.1.0",
-    "@angular/compiler-cli": "^22.1.0",
-    "ng-packagr": "^22.1.0",
+    "@angular/compiler": "^22.2.4",
+    "@angular/compiler-cli": "^22.2.4",
+    "ng-packagr": "^22.2.5",
     "typescript": "^6.0.3"
   },
   "publishConfig": {
