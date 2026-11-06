@@ -182,8 +182,8 @@ declare namespace LocalJSX {
         "required": boolean;
         "optional": boolean;
         "value": string;
-        "helpText": string;
         "info": string;
+        "helpText": string;
         "placeholder": string;
         "label": string;
         "error": string;

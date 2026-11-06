@@ -15,8 +15,8 @@ export class VgrTextField {
   @Prop() required: boolean = false;
   @Prop() optional: boolean = false;
   @Prop() value: string | number;
-  @Prop() helpText?: string;
   @Prop() info?: string;
+  @Prop() helpText?: string;
   @Prop() placeholder?: string;
   @Prop() label?: string;
   @Prop() error?: string;
