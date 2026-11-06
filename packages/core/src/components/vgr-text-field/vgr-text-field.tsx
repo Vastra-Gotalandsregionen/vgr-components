@@ -83,16 +83,18 @@ export class VgrTextField {
         <div class="block text-neutral-text">
           <div class="mb-2">
             {this.label && (
-              <label class={`flex items-center text-base font-bold leading-text-field-label ${this.disabled ? 'text-neutral-text-variant' : 'text-base'}`} htmlFor={this.inputId}>
-                {this.label}
-                {this.required && <span class="text-status-error-text block ml-1">*</span>}
-                {this.optional && <span class="text-neutral-text-variant block ml-2 font-normal">(frivillig)</span>}
+              <div class="flex items-center">
+                <label class={`flex items-center text-base font-bold leading-text-field-label ${this.disabled ? 'text-neutral-text-variant' : 'text-base'}`} htmlFor={this.inputId}>
+                  {this.label}
+                  {this.required && <span class="text-status-error-text block ml-1">*</span>}
+                  {this.optional && <span class="text-neutral-text-variant block ml-2 font-normal">(frivillig)</span>}
+                </label>
                 {this.info && (
-                  <span class="border-3 border-primary-action text-primary-action w-5 h-5 flex items-center justify-center rounded-full ml-2">
-                    <vgr-help-icon-and-text />
-                  </span>
+                  <div class="text-primary-action w-5 h-5 ml-2">
+                    <vgr-help-icon-and-text infoText={this.info} />
+                  </div>
                 )}
-              </label>
+              </div>
             )}
           </div>
           {this.type === 'textarea' ? (
