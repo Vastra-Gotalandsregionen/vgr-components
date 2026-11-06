@@ -8,3 +8,4 @@ loader/
 *.min.js
 *.min.css
 package-lock.json
+packages/core/src/assets/svgs.generated.ts
