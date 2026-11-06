@@ -25,6 +25,8 @@ export namespace Components {
         "variant": VgrButtonVariant;
         "vgrAriaLabel"?: string;
     }
+    interface VgrHelpIconAndText {
+    }
     interface VgrIcon {
         /**
           * SVG markup for the icon. Must come from our own icon package, never from user input, since it is rendered with innerHTML.
@@ -86,6 +88,12 @@ declare global {
         prototype: HTMLVgrButtonElement;
         new (): HTMLVgrButtonElement;
     };
+    interface HTMLVgrHelpIconAndTextElement extends Components.VgrHelpIconAndText, HTMLStencilElement {
+    }
+    var HTMLVgrHelpIconAndTextElement: {
+        prototype: HTMLVgrHelpIconAndTextElement;
+        new (): HTMLVgrHelpIconAndTextElement;
+    };
     interface HTMLVgrIconElement extends Components.VgrIcon, HTMLStencilElement {
     }
     var HTMLVgrIconElement: {
@@ -100,6 +108,7 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "vgr-button": HTMLVgrButtonElement;
+        "vgr-help-icon-and-text": HTMLVgrHelpIconAndTextElement;
         "vgr-icon": HTMLVgrIconElement;
         "vgr-text-field": HTMLVgrTextFieldElement;
     }
@@ -124,6 +133,8 @@ declare namespace LocalJSX {
          */
         "variant"?: VgrButtonVariant;
         "vgrAriaLabel"?: string;
+    }
+    interface VgrHelpIconAndText {
     }
     interface VgrIcon {
         /**
@@ -192,6 +203,7 @@ declare namespace LocalJSX {
 
     interface IntrinsicElements {
         "vgr-button": Omit<VgrButton, keyof VgrButtonAttributes> & { [K in keyof VgrButton & keyof VgrButtonAttributes]?: VgrButton[K] } & { [K in keyof VgrButton & keyof VgrButtonAttributes as `attr:${K}`]?: VgrButtonAttributes[K] } & { [K in keyof VgrButton & keyof VgrButtonAttributes as `prop:${K}`]?: VgrButton[K] } & OneOf<"text", VgrButton["text"], VgrButtonAttributes["text"]>;
+        "vgr-help-icon-and-text": VgrHelpIconAndText;
         "vgr-icon": Omit<VgrIcon, keyof VgrIconAttributes> & { [K in keyof VgrIcon & keyof VgrIconAttributes]?: VgrIcon[K] } & { [K in keyof VgrIcon & keyof VgrIconAttributes as `attr:${K}`]?: VgrIconAttributes[K] } & { [K in keyof VgrIcon & keyof VgrIconAttributes as `prop:${K}`]?: VgrIcon[K] } & OneOf<"icon", VgrIcon["icon"], VgrIconAttributes["icon"]>;
         "vgr-text-field": Omit<VgrTextField, keyof VgrTextFieldAttributes> & { [K in keyof VgrTextField & keyof VgrTextFieldAttributes]?: VgrTextField[K] } & { [K in keyof VgrTextField & keyof VgrTextFieldAttributes as `attr:${K}`]?: VgrTextFieldAttributes[K] } & { [K in keyof VgrTextField & keyof VgrTextFieldAttributes as `prop:${K}`]?: VgrTextField[K] };
     }
@@ -201,6 +213,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "vgr-button": LocalJSX.IntrinsicElements["vgr-button"] & JSXBase.HTMLAttributes<HTMLVgrButtonElement>;
+            "vgr-help-icon-and-text": LocalJSX.IntrinsicElements["vgr-help-icon-and-text"] & JSXBase.HTMLAttributes<HTMLVgrHelpIconAndTextElement>;
             "vgr-icon": LocalJSX.IntrinsicElements["vgr-icon"] & JSXBase.HTMLAttributes<HTMLVgrIconElement>;
             "vgr-text-field": LocalJSX.IntrinsicElements["vgr-text-field"] & JSXBase.HTMLAttributes<HTMLVgrTextFieldElement>;
         }

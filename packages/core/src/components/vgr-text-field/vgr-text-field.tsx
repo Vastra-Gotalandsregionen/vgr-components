@@ -87,7 +87,11 @@ export class VgrTextField {
                 {this.label}
                 {this.required && <span class="text-status-error-text block ml-1">*</span>}
                 {this.optional && <span class="text-neutral-text-variant block ml-2 font-normal">(frivillig)</span>}
-                {this.info && <span class="border-3 border-primary-action text-primary-action w-5 h-5 flex items-center justify-center rounded-full ml-2">?</span>}
+                {this.info && (
+                  <span class="border-3 border-primary-action text-primary-action w-5 h-5 flex items-center justify-center rounded-full ml-2">
+                    <vgr-help-icon-and-text />
+                  </span>
+                )}
               </label>
             )}
           </div>

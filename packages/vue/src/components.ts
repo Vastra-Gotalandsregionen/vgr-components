@@ -22,8 +22,27 @@ export const VgrButton: StencilVueComponent<JSX.VgrButton> = /*@__PURE__*/ defin
 ]);
 
 
+export const VgrHelpIconAndText: StencilVueComponent<JSX.VgrHelpIconAndText> = /*@__PURE__*/ defineContainer<JSX.VgrHelpIconAndText>('vgr-help-icon-and-text', undefined);
+
+
 export const VgrIcon: StencilVueComponent<JSX.VgrIcon> = /*@__PURE__*/ defineContainer<JSX.VgrIcon>('vgr-icon', undefined, [
   'icon'
+]);
+
+
+export const VgrTextField: StencilVueComponent<JSX.VgrTextField> = /*@__PURE__*/ defineContainer<JSX.VgrTextField>('vgr-text-field', undefined, [
+  'type',
+  'disabled',
+  'autoComplete',
+  'required',
+  'optional',
+  'value',
+  'info',
+  'helpText',
+  'placeholder',
+  'label',
+  'error',
+  'rows'
 ]);
 
 

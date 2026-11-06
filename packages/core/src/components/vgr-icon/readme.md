@@ -17,11 +17,13 @@
 ### Used by
 
  - [vgr-button](../vgr-button)
+ - [vgr-help-icon-and-text](../vgr-help-icon-and-text)
 
 ### Graph
 ```mermaid
 graph TD;
   vgr-button --> vgr-icon
+  vgr-help-icon-and-text --> vgr-icon
   style vgr-icon fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
