@@ -59,7 +59,7 @@ export class VgrHelpIconAndText {
     const _buttonClasses = buttonClasses.join(' ');
 
     return (
-      <Host onKeyDown={this.onKeyDown} class="relative">
+      <Host onKeyDown={this.onKeyDown} class="inline-block relative">
         <button
           type="button"
           class={_buttonClasses}
@@ -73,29 +73,51 @@ export class VgrHelpIconAndText {
           <vgr-icon icon={helpCircle}></vgr-icon>
         </button>
         {this.isOpen && (
-          <div
-            id={this.infoId}
-            class="mt-2 flex items-start border border-accent-brown rounded-sm p-6 gap-3 bg-status-information-surface text-status-information-text w-fit"
-            style={
-              this.supportsAnchor
-                ? {
-                    'position-anchor': this.anchorName,
-                    'position': 'fixed',
-                    'position-area': 'block-end center',
-                    'position-try': 'block-end',
-                  }
-                : {
-                    position: 'absolute',
-                    top: '100%',
-                    left: '50%',
-                    transform: 'translateX(-50%)',
-                  }
-            }
-          >
-            <span class="max-w-[30ch]">{this.infoText}</span>
-            <button type="button" class={_buttonClasses} onClick={this.close} ariaLabel="Dölj information">
-              <vgr-icon icon={close}></vgr-icon>
-            </button>
+          <div>
+            <div
+              id={this.infoId}
+              class="mt-3.5 flex items-start border border-accent-brown rounded-sm p-6 gap-3 bg-status-information-surface text-status-information-text w-fit mx-1"
+              style={
+                this.supportsAnchor
+                  ? {
+                      'position-anchor': this.anchorName,
+                      'position': 'fixed',
+                      'position-area': 'block-end center',
+                      'position-try': 'block-end',
+                    }
+                  : {
+                      position: 'absolute',
+                      top: '100%',
+                      left: '50%',
+                      transform: 'translateX(-50%)',
+                    }
+              }
+            >
+              <span class="max-w-[30ch]">{this.infoText}</span>
+              <button type="button" class={_buttonClasses} onClick={this.close} ariaLabel="Dölj information">
+                <vgr-icon icon={close}></vgr-icon>
+              </button>
+            </div>
+            <div
+              aria-hidden="true"
+              class="rotate-45 w-4.5 h-4.5 z-1 border-l border-t border-accent-brown bg-status-information-surface m-2.5"
+              style={
+                this.supportsAnchor
+                  ? {
+                      'position-anchor': this.anchorName,
+                      'position': 'fixed',
+                      'position-area': 'block-end center',
+                      'margin-top': '5px',
+                    }
+                  : {
+                      position: 'absolute',
+                      top: '100%',
+                      left: '50%',
+                      translate: '-50% 0',
+                      marginTop: '5px',
+                    }
+              }
+            ></div>
           </div>
         )}
       </Host>
