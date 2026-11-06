@@ -7,7 +7,7 @@ let idCount = 0;
   scoped: true,
 })
 export class VgrTextField {
-  private inputId = `vgr-text-field-${idCount++}`;
+  private readonly inputId = `vgr-text-field-${idCount++}`;
 
   @Prop() type: 'text' | 'textarea' | 'number' | 'email' | 'password' | 'tel' | 'url' = 'text';
   @Prop() disabled = false;
@@ -16,6 +16,7 @@ export class VgrTextField {
   @Prop() optional: boolean = false;
   @Prop() value: string | number;
   @Prop() helpText?: string;
+  @Prop() info?: string;
   @Prop() placeholder?: string;
   @Prop() label?: string;
   @Prop() error?: string;
@@ -34,22 +35,27 @@ export class VgrTextField {
     // Shared by inputs and textareas
     let sharedClasses = ['block bg-elevation-elevation-1 border-2 rounded-text-field pl-3 pr-6'];
     if (!this.error) sharedClasses.push('border-neutral-border');
+
     // Hover
-    sharedClasses.push('hover:shadow-text-field');
+    if (!this.disabled) sharedClasses.push('hover:shadow-text-field');
 
     // Focus
     sharedClasses.push('focus-visible:outline-4');
 
-    if (!!this.error) {
+    if (this.error) {
       sharedClasses.push('outline-status-error-text');
     } else {
       sharedClasses.push('focus-visible:outline-primary-base');
     }
 
+    // Disabled
+    if (this.disabled) {
+      sharedClasses.push('border-neutral-disabled text-neutral-text-variant');
+    }
     // Error
-    if (!!this.error) sharedClasses.push('border-status-error-text');
-
-    // TODO: Disabled styling
+    else if (this.error) {
+      sharedClasses.push('border-status-error-text');
+    }
 
     // Finalize class list
     const _sharedClasses = sharedClasses.join(' ');
@@ -77,17 +83,12 @@ export class VgrTextField {
         <div class="block text-neutral-text">
           <div class="mb-2">
             {this.label && (
-              <label class="flex items-center text-base font-bold leading-text-field-label" htmlFor={this.inputId}>
+              <label class={`flex items-center text-base font-bold leading-text-field-label ${this.disabled ? 'text-neutral-text-variant' : 'text-base'}`} htmlFor={this.inputId}>
                 {this.label}
                 {this.required && <span class="text-status-error-text block ml-1">*</span>}
                 {this.optional && <span class="text-neutral-text-variant block ml-2 font-normal">(frivillig)</span>}
-                {this.helpText && <span class="border-3 border-primary-action text-primary-action w-5 h-5 flex items-center justify-center rounded-full ml-2">?</span>}
+                {this.info && <span class="border-3 border-primary-action text-primary-action w-5 h-5 flex items-center justify-center rounded-full ml-2">?</span>}
               </label>
-            )}
-            {this.helpText && !this.error && (
-              <p id={helperId} class="block">
-                {this.helpText}
-              </p>
             )}
           </div>
           {this.type === 'textarea' ? (
@@ -95,9 +96,14 @@ export class VgrTextField {
           ) : (
             <input type={this.type} value={this.value} {...sharedProps} />
           )}
-          {this.error && (
-            <p id={errorId} class="block">
-              {this.error}
+          {this.helpText && !this.error && (
+            <p id={helperId} class="block text-neutral-text-variant mt-2 leading-text-field-help-text">
+              {this.helpText}
+            </p>
+          )}
+          {this.error && !this.disabled && (
+            <p id={errorId} class="block text-status-error-text mt-2 leading-text-field-help-text">
+              *{this.error}
             </p>
           )}
         </div>

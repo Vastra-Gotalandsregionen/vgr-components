@@ -42,6 +42,7 @@ export namespace Components {
         "disabled": boolean;
         "error"?: string;
         "helpText"?: string;
+        "info"?: string;
         "label"?: string;
         /**
           * @default false
@@ -141,6 +142,7 @@ declare namespace LocalJSX {
         "disabled"?: boolean;
         "error"?: string;
         "helpText"?: string;
+        "info"?: string;
         "label"?: string;
         /**
           * @default false
@@ -181,6 +183,7 @@ declare namespace LocalJSX {
         "optional": boolean;
         "value": string;
         "helpText": string;
+        "info": string;
         "placeholder": string;
         "label": string;
         "error": string;
