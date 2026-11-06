@@ -25,11 +25,46 @@ export namespace Components {
         "variant": VgrButtonVariant;
         "vgrAriaLabel"?: string;
     }
+    interface VgrHelpIconAndText {
+        "infoText": string;
+    }
     interface VgrIcon {
         /**
           * SVG markup for the icon. Must come from our own icon package, never from user input, since it is rendered with innerHTML.
          */
         "icon": string;
+    }
+    interface VgrTextField {
+        /**
+          * @default false
+         */
+        "autoComplete": boolean;
+        /**
+          * @default false
+         */
+        "disabled": boolean;
+        "error"?: string;
+        "helpText"?: string;
+        "info"?: string;
+        "label"?: string;
+        /**
+          * @default false
+         */
+        "optional": boolean;
+        "placeholder"?: string;
+        /**
+          * @default false
+         */
+        "required": boolean;
+        /**
+          * `rows` is only applied for type: textarea
+         */
+        "rows"?: number;
+        /**
+          * @default 'text'
+         */
+        "type": 'text' | 'textarea' | 'number' | 'email' | 'password' | 'tel' | 'url';
+        "value": string | number;
     }
 }
 export interface VgrButtonCustomEvent<T> extends CustomEvent<T> {
@@ -54,15 +89,29 @@ declare global {
         prototype: HTMLVgrButtonElement;
         new (): HTMLVgrButtonElement;
     };
+    interface HTMLVgrHelpIconAndTextElement extends Components.VgrHelpIconAndText, HTMLStencilElement {
+    }
+    var HTMLVgrHelpIconAndTextElement: {
+        prototype: HTMLVgrHelpIconAndTextElement;
+        new (): HTMLVgrHelpIconAndTextElement;
+    };
     interface HTMLVgrIconElement extends Components.VgrIcon, HTMLStencilElement {
     }
     var HTMLVgrIconElement: {
         prototype: HTMLVgrIconElement;
         new (): HTMLVgrIconElement;
     };
+    interface HTMLVgrTextFieldElement extends Components.VgrTextField, HTMLStencilElement {
+    }
+    var HTMLVgrTextFieldElement: {
+        prototype: HTMLVgrTextFieldElement;
+        new (): HTMLVgrTextFieldElement;
+    };
     interface HTMLElementTagNameMap {
         "vgr-button": HTMLVgrButtonElement;
+        "vgr-help-icon-and-text": HTMLVgrHelpIconAndTextElement;
         "vgr-icon": HTMLVgrIconElement;
+        "vgr-text-field": HTMLVgrTextFieldElement;
     }
 }
 declare namespace LocalJSX {
@@ -86,11 +135,46 @@ declare namespace LocalJSX {
         "variant"?: VgrButtonVariant;
         "vgrAriaLabel"?: string;
     }
+    interface VgrHelpIconAndText {
+        "infoText"?: string;
+    }
     interface VgrIcon {
         /**
           * SVG markup for the icon. Must come from our own icon package, never from user input, since it is rendered with innerHTML.
          */
         "icon": string;
+    }
+    interface VgrTextField {
+        /**
+          * @default false
+         */
+        "autoComplete"?: boolean;
+        /**
+          * @default false
+         */
+        "disabled"?: boolean;
+        "error"?: string;
+        "helpText"?: string;
+        "info"?: string;
+        "label"?: string;
+        /**
+          * @default false
+         */
+        "optional"?: boolean;
+        "placeholder"?: string;
+        /**
+          * @default false
+         */
+        "required"?: boolean;
+        /**
+          * `rows` is only applied for type: textarea
+         */
+        "rows"?: number;
+        /**
+          * @default 'text'
+         */
+        "type"?: 'text' | 'textarea' | 'number' | 'email' | 'password' | 'tel' | 'url';
+        "value"?: string | number;
     }
 
     interface VgrButtonAttributes {
@@ -101,13 +185,32 @@ declare namespace LocalJSX {
         "icon": string;
         "vgrAriaLabel": string;
     }
+    interface VgrHelpIconAndTextAttributes {
+        "infoText": string;
+    }
     interface VgrIconAttributes {
         "icon": string;
+    }
+    interface VgrTextFieldAttributes {
+        "type": 'text' | 'textarea' | 'number' | 'email' | 'password' | 'tel' | 'url';
+        "disabled": boolean;
+        "autoComplete": boolean;
+        "required": boolean;
+        "optional": boolean;
+        "value": string;
+        "info": string;
+        "helpText": string;
+        "placeholder": string;
+        "label": string;
+        "error": string;
+        "rows": number;
     }
 
     interface IntrinsicElements {
         "vgr-button": Omit<VgrButton, keyof VgrButtonAttributes> & { [K in keyof VgrButton & keyof VgrButtonAttributes]?: VgrButton[K] } & { [K in keyof VgrButton & keyof VgrButtonAttributes as `attr:${K}`]?: VgrButtonAttributes[K] } & { [K in keyof VgrButton & keyof VgrButtonAttributes as `prop:${K}`]?: VgrButton[K] } & OneOf<"text", VgrButton["text"], VgrButtonAttributes["text"]>;
+        "vgr-help-icon-and-text": Omit<VgrHelpIconAndText, keyof VgrHelpIconAndTextAttributes> & { [K in keyof VgrHelpIconAndText & keyof VgrHelpIconAndTextAttributes]?: VgrHelpIconAndText[K] } & { [K in keyof VgrHelpIconAndText & keyof VgrHelpIconAndTextAttributes as `attr:${K}`]?: VgrHelpIconAndTextAttributes[K] } & { [K in keyof VgrHelpIconAndText & keyof VgrHelpIconAndTextAttributes as `prop:${K}`]?: VgrHelpIconAndText[K] };
         "vgr-icon": Omit<VgrIcon, keyof VgrIconAttributes> & { [K in keyof VgrIcon & keyof VgrIconAttributes]?: VgrIcon[K] } & { [K in keyof VgrIcon & keyof VgrIconAttributes as `attr:${K}`]?: VgrIconAttributes[K] } & { [K in keyof VgrIcon & keyof VgrIconAttributes as `prop:${K}`]?: VgrIcon[K] } & OneOf<"icon", VgrIcon["icon"], VgrIconAttributes["icon"]>;
+        "vgr-text-field": Omit<VgrTextField, keyof VgrTextFieldAttributes> & { [K in keyof VgrTextField & keyof VgrTextFieldAttributes]?: VgrTextField[K] } & { [K in keyof VgrTextField & keyof VgrTextFieldAttributes as `attr:${K}`]?: VgrTextFieldAttributes[K] } & { [K in keyof VgrTextField & keyof VgrTextFieldAttributes as `prop:${K}`]?: VgrTextField[K] };
     }
 }
 export { LocalJSX as JSX };
@@ -115,7 +218,9 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "vgr-button": LocalJSX.IntrinsicElements["vgr-button"] & JSXBase.HTMLAttributes<HTMLVgrButtonElement>;
+            "vgr-help-icon-and-text": LocalJSX.IntrinsicElements["vgr-help-icon-and-text"] & JSXBase.HTMLAttributes<HTMLVgrHelpIconAndTextElement>;
             "vgr-icon": LocalJSX.IntrinsicElements["vgr-icon"] & JSXBase.HTMLAttributes<HTMLVgrIconElement>;
+            "vgr-text-field": LocalJSX.IntrinsicElements["vgr-text-field"] & JSXBase.HTMLAttributes<HTMLVgrTextFieldElement>;
         }
     }
 }

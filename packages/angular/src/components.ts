@@ -7,7 +7,9 @@ import { ProxyCmp } from './angular-component-lib/utils';
 import type { Components } from '@vastra-gotalandsregionen/components-core/components';
 
 import { defineCustomElement as defineVgrButton } from '@vastra-gotalandsregionen/components-core/components/vgr-button.js';
+import { defineCustomElement as defineVgrHelpIconAndText } from '@vastra-gotalandsregionen/components-core/components/vgr-help-icon-and-text.js';
 import { defineCustomElement as defineVgrIcon } from '@vastra-gotalandsregionen/components-core/components/vgr-icon.js';
+import { defineCustomElement as defineVgrTextField } from '@vastra-gotalandsregionen/components-core/components/vgr-text-field.js';
 @ProxyCmp({
   defineCustomElementFn: defineVgrButton,
   inputs: ['disabled', 'icon', 'text', 'type', 'variant', 'vgrAriaLabel']
@@ -39,6 +41,29 @@ export declare interface VgrButton extends Components.VgrButton {
 
 
 @ProxyCmp({
+  defineCustomElementFn: defineVgrHelpIconAndText,
+  inputs: ['infoText']
+})
+@Component({
+  selector: 'vgr-help-icon-and-text',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['infoText'],
+})
+export class VgrHelpIconAndText {
+  protected el: HTMLVgrHelpIconAndTextElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface VgrHelpIconAndText extends Components.VgrHelpIconAndText {}
+
+
+@ProxyCmp({
   defineCustomElementFn: defineVgrIcon,
   inputs: ['icon']
 })
@@ -59,5 +84,28 @@ export class VgrIcon {
 
 
 export declare interface VgrIcon extends Components.VgrIcon {}
+
+
+@ProxyCmp({
+  defineCustomElementFn: defineVgrTextField,
+  inputs: ['autoComplete', 'disabled', 'error', 'helpText', 'info', 'label', 'optional', 'placeholder', 'required', 'rows', 'type', 'value']
+})
+@Component({
+  selector: 'vgr-text-field',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['autoComplete', 'disabled', 'error', 'helpText', 'info', 'label', 'optional', 'placeholder', 'required', 'rows', 'type', 'value'],
+})
+export class VgrTextField {
+  protected el: HTMLVgrTextFieldElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface VgrTextField extends Components.VgrTextField {}
 
 

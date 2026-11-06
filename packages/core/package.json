@@ -51,14 +51,15 @@
   ],
   "scripts": {
     "build:styles": "tailwindcss -i src/global/master.css -o .tailwind-build/styles.css --content \"./src/**/*.tsx\"",
-    "build": "npm run build:styles && stencil build && node scripts/generate-define-all.mjs && npm run copy:styles-to-dist && node scripts/verify-build.mjs",
-    "dev": "node scripts/dev.mjs",
+    "build": "npm run generate:svgs && npm run build:styles && stencil build && node scripts/generate-define-all.mjs && npm run copy:styles-to-dist && node scripts/verify-build.mjs",
+    "dev": "npm run generate:svgs && node scripts/dev.mjs",
     "dev:stencil": "stencil build --dev --watch --serve --config stencil.dev.config.ts",
     "dev:styles": "tailwindcss -i src/global/master.css -o .tailwind-build/styles.css --content \"./src/**/*.tsx\" --watch",
     "copy:styles-to-dist": "node -e \"require('fs').copyFileSync('.tailwind-build/styles.css', 'dist/styles.css')\"",
     "test": "stencil-test",
     "test:watch": "stencil-test --prod --watch",
-    "generate": "stencil generate"
+    "generate": "stencil generate",
+    "generate:svgs": "node scripts/generate-svgs.mjs"
   },
   "devDependencies": {
     "@vastra-gotalandsregionen/design-tokens": "0.1.0",
