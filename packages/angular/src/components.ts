@@ -41,14 +41,15 @@ export declare interface VgrButton extends Components.VgrButton {
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineVgrHelpIconAndText
+  defineCustomElementFn: defineVgrHelpIconAndText,
+  inputs: ['infoText']
 })
 @Component({
   selector: 'vgr-help-icon-and-text',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: [],
+  inputs: ['infoText'],
 })
 export class VgrHelpIconAndText {
   protected el: HTMLVgrHelpIconAndTextElement;

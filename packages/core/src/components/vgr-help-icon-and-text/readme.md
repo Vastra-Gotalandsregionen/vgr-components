@@ -5,11 +5,11 @@
 <!-- Auto Generated Below -->
 
 
-## Slots
+## Properties
 
-| Slot | Description      |
-| ---- | ---------------- |
-|      | The default slot |
+| Property   | Attribute   | Description | Type     | Default     |
+| ---------- | ----------- | ----------- | -------- | ----------- |
+| `infoText` | `info-text` |             | `string` | `undefined` |
 
 
 ## Dependencies
