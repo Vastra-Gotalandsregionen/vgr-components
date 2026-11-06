@@ -90,7 +90,7 @@ export class VgrTextField {
                   {this.optional && <span class="text-neutral-text-variant block ml-2 font-normal">(frivillig)</span>}
                 </label>
                 {this.info && (
-                  <div class="ml-2">
+                  <div>
                     <vgr-help-icon-and-text infoText={this.info} />
                   </div>
                 )}

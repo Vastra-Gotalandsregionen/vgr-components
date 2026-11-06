@@ -59,7 +59,7 @@ export class VgrHelpIconAndText {
     const _buttonClasses = buttonClasses.join(' ');
 
     return (
-      <Host onKeyDown={this.onKeyDown} class="inline-block relative">
+      <Host onKeyDown={this.onKeyDown} class="inline-block relative mx-2">
         <button
           type="button"
           class={_buttonClasses}
@@ -76,14 +76,15 @@ export class VgrHelpIconAndText {
           <div>
             <div
               id={this.infoId}
-              class="mt-3.5 flex items-start border border-accent-brown rounded-sm p-6 gap-3 bg-status-information-surface text-status-information-text w-fit mx-1"
+              class="mt-3.5 -ml-0.5 flex items-start border border-accent-brown rounded-sm p-6 gap-3 bg-status-information-surface text-status-information-text w-fit"
               style={
                 this.supportsAnchor
                   ? {
                       'position-anchor': this.anchorName,
                       'position': 'fixed',
-                      'position-area': 'block-end center',
-                      'position-try': 'block-end',
+                      'top': 'anchor(bottom)',
+                      'inset-inline': '0.5rem',
+                      'justify-self': 'anchor-center',
                     }
                   : {
                       position: 'absolute',
@@ -100,13 +101,15 @@ export class VgrHelpIconAndText {
             </div>
             <div
               aria-hidden="true"
-              class="rotate-45 w-4.5 h-4.5 z-1 border-l border-t border-accent-brown bg-status-information-surface m-2.5"
+              class="rotate-45 w-4.5 h-4.5 z-1 border-l border-t border-accent-brown bg-status-information-surface"
               style={
                 this.supportsAnchor
                   ? {
                       'position-anchor': this.anchorName,
                       'position': 'fixed',
-                      'position-area': 'block-end center',
+                      'top': 'anchor(bottom)',
+                      'left': 'anchor(center)',
+                      'translate': '-50% 0',
                       'margin-top': '5px',
                     }
                   : {
