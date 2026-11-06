@@ -48,7 +48,7 @@ export class VgrHelpIconAndText {
     /**
      * Classes
      */
-    let buttonClasses = ['p-1 rounded-sm min-w-6 min-h-6 max-h-6 max-w-6 flex items-center justify-center'];
+    let buttonClasses = ['p-1 rounded-sm min-w-6 min-h-6 max-h-6 max-w-6 flex items-center justify-center cursor-pointer'];
 
     // Hover
     buttonClasses.push('hover:outline-3 hover:outline-primary-base-surface-focus hover:text-black');
@@ -57,12 +57,6 @@ export class VgrHelpIconAndText {
     buttonClasses.push('focus:bg-primary-base-surface-focus focus:text-white focus:outline-none');
 
     const _buttonClasses = buttonClasses.join(' ');
-
-    const closeButtonClasses = [
-      'underline rounded-sm px-1',
-      'hover:outline-3 hover:outline-primary-base-surface-focus hover:text-black',
-      'focus:bg-primary-base-surface-focus focus:text-white focus:outline-none',
-    ].join(' ');
 
     return (
       <Host onKeyDown={this.onKeyDown} class="relative">
@@ -78,24 +72,28 @@ export class VgrHelpIconAndText {
         >
           <vgr-icon icon={helpCircle}></vgr-icon>
         </button>
-
         {this.isOpen && (
           <div
             id={this.infoId}
-            class="mt-2 flex items-start border border-accent-brown rounded-sm p-6 gap-3 bg-status-information-surface text-status-information-text w-fit max-w-full"
+            class="mt-2 flex items-start border border-accent-brown rounded-sm p-6 gap-3 bg-status-information-surface text-status-information-text w-fit"
             style={
               this.supportsAnchor
                 ? {
-                    'position': 'fixed',
                     'position-anchor': this.anchorName,
-                    'position-area': 'bottom span-right',
-                    'position-try-fallbacks': 'flip-block, flip-inline, flip-block flip-inline',
+                    'position': 'fixed',
+                    'position-area': 'block-end center',
+                    'position-try': 'block-end',
                   }
-                : { position: 'absolute', top: '100%', left: '0' }
+                : {
+                    position: 'absolute',
+                    top: '100%',
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                  }
             }
           >
             <span class="max-w-[30ch]">{this.infoText}</span>
-            <button type="button" class={closeButtonClasses} onClick={this.close} ariaLabel="Dölj information">
+            <button type="button" class={_buttonClasses} onClick={this.close} ariaLabel="Dölj information">
               <vgr-icon icon={close}></vgr-icon>
             </button>
           </div>

@@ -25,7 +25,12 @@
     <h2 class="text-2xl font-bold mb-2">Inputs</h2>
     <form class="flex flex-col gap-6">
       <vgr-text-field label="Namn" help-text="Skriv ditt namn hörru"></vgr-text-field>
-      <vgr-text-field label="Titel" info="Skriv din titel" error="Titel får inte vara tom"></vgr-text-field> <vgr-text-field label="Titel 2" optional="true"></vgr-text-field>
+      <vgr-text-field
+        label="Titel"
+        info="Regionövergripande dokument. Inkluderar övergripande dokument som gäller för alla verksamheter och förvaltningar i Västra Götalandsregionen. Det innefattar bland annat regionala medicinska riktlinjer och rutiner, men också andra styrande dokument som gäller övergripande för hela Västra Götalandsregionen."
+        error="Titel får inte vara tom"
+      ></vgr-text-field>
+      <vgr-text-field label="Titel 2" optional="true"></vgr-text-field>
       <vgr-text-field label="Titel 2" optional="true" disabled="true" required="true" help-text="Hjälp till dig"></vgr-text-field>
       <vgr-text-field type="textarea" required="true" label="Adress"></vgr-text-field>
     </form>
