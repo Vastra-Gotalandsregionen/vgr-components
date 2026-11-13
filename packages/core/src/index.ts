@@ -10,3 +10,8 @@
 
 export { format } from './utils/utils';
 export type * from './components.d.ts';
+
+/**
+ * Exported types
+ */
+export type { VgrInfoContent } from './types/vgr-info-content';

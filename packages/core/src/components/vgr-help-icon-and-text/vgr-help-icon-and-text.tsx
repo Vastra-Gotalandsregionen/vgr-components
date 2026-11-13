@@ -1,5 +1,6 @@
 import { Component, Element, Host, Listen, Prop, State, h } from '@stencil/core';
 import { helpCircle, close } from '../../assets/svgs.generated';
+import { VgrInfoContent } from '../../types/vgr-info-content';
 
 let nextId = 0;
 
@@ -8,7 +9,7 @@ let nextId = 0;
   scoped: true,
 })
 export class VgrHelpIconAndText {
-  @Prop() infoText: string;
+  @Prop() info?: VgrInfoContent;
 
   @Element() el: HTMLElement;
 
@@ -94,7 +95,10 @@ export class VgrHelpIconAndText {
                     }
               }
             >
-              <span class="max-w-[30ch]">{this.infoText}</span>
+              <p class="max-w-[30ch]">
+                <div class="font-bold">{this.info.title}</div>
+                {this.info.text}
+              </p>
               <button type="button" class={_buttonClasses} onClick={this.close} ariaLabel="Dölj information">
                 <vgr-icon icon={close}></vgr-icon>
               </button>

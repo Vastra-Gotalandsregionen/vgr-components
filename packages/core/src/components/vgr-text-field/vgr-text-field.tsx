@@ -1,4 +1,5 @@
 import { Component, Host, Prop, h } from '@stencil/core';
+import { VgrInfoContent } from '../../types/vgr-info-content';
 
 let idCount = 0;
 
@@ -15,7 +16,7 @@ export class VgrTextField {
   @Prop() required: boolean = false;
   @Prop() optional: boolean = false;
   @Prop() value: string | number;
-  @Prop() info?: string;
+  @Prop() info?: VgrInfoContent;
   @Prop() helpText?: string;
   @Prop() placeholder?: string;
   @Prop() label?: string;
@@ -89,11 +90,7 @@ export class VgrTextField {
                   {this.required && <span class="text-status-error-text block ml-1">*</span>}
                   {this.optional && <span class="text-neutral-text-variant block ml-2 font-normal">(frivillig)</span>}
                 </label>
-                {this.info && (
-                  <div>
-                    <vgr-help-icon-and-text infoText={this.info} />
-                  </div>
-                )}
+                {this.info && <vgr-help-icon-and-text info={this.info} />}
               </div>
             )}
           </div>

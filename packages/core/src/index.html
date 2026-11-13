@@ -13,8 +13,7 @@
   <body style="background-color: var(--color-accent-brown-surface-minimal)">
     <h2 class="text-2xl font-bold mb-2">Help icon and text</h2>
     <div class="flex flex-col gap-4 mb-6">
-      <vgr-help-icon-and-text info-text="Hejhej min text" />
-      <div class="flex justify-center"><vgr-help-icon-and-text info-text="Hejhej min text" /></div>
+      <div class="flex justify-center"><vgr-help-icon-and-text id="helpIcon" /></div>
     </div>
     <hr />
     <h2 class="text-2xl font-bold mb-2">Buttons</h2>
@@ -31,18 +30,15 @@
     <h2 class="text-2xl font-bold mb-2">Inputs</h2>
     <form class="flex flex-col gap-6">
       <vgr-text-field label="Namn" help-text="Skriv ditt namn hörru"></vgr-text-field>
-      <vgr-text-field
-        label="Titel"
-        info="Regionövergripande dokument. Inkluderar övergripande dokument som gäller för alla verksamheter och förvaltningar i Västra Götalandsregionen. Det innefattar bland annat regionala medicinska riktlinjer och rutiner, men också andra styrande dokument som gäller övergripande för hela Västra Götalandsregionen."
-        error="Titel får inte vara tom"
-      ></vgr-text-field>
-      <vgr-text-field label="Titel 2" optional="true"></vgr-text-field>
-      <vgr-text-field label="Titel 2" optional="true" disabled="true" required="true" help-text="Hjälp till dig"></vgr-text-field>
+      <vgr-text-field label="Titel" error="Titel får inte vara tom"></vgr-text-field>
+      <vgr-text-field label="Titel 2" optional="true" id="titel2"></vgr-text-field>
+      <vgr-text-field label="Titel 3" optional="true" disabled="true" required="true" help-text="Hjälp till dig"></vgr-text-field>
       <vgr-text-field type="textarea" required="true" label="Adress"></vgr-text-field>
     </form>
   </body>
 
   <script>
+    // Dark/light toggle
     document.getElementById('theme-toggle').addEventListener('click', () => {
       const html = document.documentElement;
       if (html.getAttribute('data-theme') === 'dark') {
@@ -51,5 +47,12 @@
         html.setAttribute('data-theme', 'dark');
       }
     });
+    // Text field info content
+    document.getElementById('titel2').info = {
+      title: 'Regionövergripande dokument',
+      text: 'Inkluderar övergripande dokument som gäller för alla verksamheter och förvaltningar i Västra Götalandsregionen. Det innefattar bland annat regionala medicinska riktlinjer och rutiner, men också andra styrande dokument som gäller övergripande för hela Västra Götalandsregionen.',
+    };
+
+    document.getElementById('helpIcon').info = { text: 'Hejhej min text' };
   </script>
 </html>
