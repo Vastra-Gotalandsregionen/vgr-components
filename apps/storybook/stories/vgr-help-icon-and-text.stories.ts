@@ -2,15 +2,22 @@ import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 
 interface VgrHelpIconAndTextArgs {
+  infoTitle: string;
   infoText: string;
   vgrAriaLabel: string;
 }
+
+const toInfo = ({ infoTitle, infoText }: VgrHelpIconAndTextArgs) => ({
+  title: infoTitle || undefined,
+  text: infoText,
+});
 
 const meta: Meta<VgrHelpIconAndTextArgs> = {
   title: 'Components/VgrHelpIconAndText',
   component: 'vgr-help-icon-and-text',
   tags: ['autodocs'],
   argTypes: {
+    infoTitle: { control: 'text', description: 'Rubrik i rutan (valfri)' },
     infoText: { control: 'text' },
     vgrAriaLabel: {
       control: 'text',
@@ -18,13 +25,14 @@ const meta: Meta<VgrHelpIconAndTextArgs> = {
     },
   },
   args: {
+    infoTitle: '',
     infoText:
       'Här står en kort förklaring som hjälper användaren att förstå vad som ska fyllas i.',
     vgrAriaLabel: '',
   },
-  render: ({ infoText }) => html`
+  render: (args) => html`
     <div style="padding: 6rem 2rem;">
-      <vgr-help-icon-and-text .infoText=${infoText}></vgr-help-icon-and-text>
+      <vgr-help-icon-and-text .info=${toInfo(args)}></vgr-help-icon-and-text>
     </div>
   `,
 };
@@ -33,6 +41,10 @@ export default meta;
 type Story = StoryObj<VgrHelpIconAndTextArgs>;
 
 export const Default: Story = {};
+
+export const WithTitle: Story = {
+  args: { infoTitle: 'Regionövergripande dokument' },
+};
 
 export const LongText: Story = {
   args: {
@@ -47,7 +59,7 @@ export const NearRightEdge: Story = {
   render: (args) => html`
     <div style="padding: 6rem 0; display: flex; justify-content: flex-end;">
       <vgr-help-icon-and-text
-        .infoText=${args.infoText}
+        .info=${toInfo(args)}
         .vgrAriaLabel=${args.vgrAriaLabel || undefined}
       ></vgr-help-icon-and-text>
     </div>
@@ -59,7 +71,7 @@ export const NearLeftEdge: Story = {
   render: (args) => html`
     <div style="padding: 6rem 0;">
       <vgr-help-icon-and-text
-        .infoText=${args.infoText}
+        .info=${toInfo(args)}
         .vgrAriaLabel=${args.vgrAriaLabel || undefined}
       ></vgr-help-icon-and-text>
     </div>
@@ -71,7 +83,7 @@ export const InsideScrollablePage: Story = {
   render: (args) => html`
     <div style="height: 150vh; padding-top: 80vh; padding-left: 2rem;">
       <vgr-help-icon-and-text
-        .infoText=${args.infoText}
+        .info=${toInfo(args)}
         .vgrAriaLabel=${args.vgrAriaLabel || undefined}
       ></vgr-help-icon-and-text>
     </div>
