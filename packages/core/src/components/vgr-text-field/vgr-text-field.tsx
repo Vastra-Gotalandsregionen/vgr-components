@@ -104,7 +104,7 @@ export class VgrTextField {
                   {this.required && <span class="text-status-error-text block ml-1">*</span>}
                   {this.optional && <span class="text-neutral-text-variant block ml-2 font-normal">(frivillig)</span>}
                 </label>
-                {this.info && <vgr-help-icon-and-text info={this.info} />}
+                {this.info && <vgr-help-icon-and-text info={this.info} vgrAriaLabel={`Instruktioner för textfält ${this.label}`} />}
               </div>
             )}
           </div>

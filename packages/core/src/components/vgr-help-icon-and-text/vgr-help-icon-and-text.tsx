@@ -10,6 +10,7 @@ let nextId = 0;
 })
 export class VgrHelpIconAndText {
   @Prop() info?: VgrInfoContent;
+  @Prop() vgrAriaLabel?: string;
 
   @Element() el: HTMLElement;
 
@@ -64,7 +65,7 @@ export class VgrHelpIconAndText {
         <button
           type="button"
           class={_buttonClasses}
-          aria-label="Visa information"
+          aria-label={this.vgrAriaLabel ?? 'Visa information'}
           aria-expanded={this.isOpen ? 'true' : 'false'}
           aria-controls={this.infoId}
           onClick={this.toggle}

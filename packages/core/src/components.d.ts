@@ -30,6 +30,7 @@ export namespace Components {
     }
     interface VgrHelpIconAndText {
         "info"?: VgrInfoContent;
+        "vgrAriaLabel"?: string;
     }
     interface VgrIcon {
         /**
@@ -142,6 +143,7 @@ declare namespace LocalJSX {
     }
     interface VgrHelpIconAndText {
         "info"?: VgrInfoContent;
+        "vgrAriaLabel"?: string;
     }
     interface VgrIcon {
         /**
@@ -192,6 +194,9 @@ declare namespace LocalJSX {
         "icon": string;
         "vgrAriaLabel": string;
     }
+    interface VgrHelpIconAndTextAttributes {
+        "vgrAriaLabel": string;
+    }
     interface VgrIconAttributes {
         "icon": string;
     }
@@ -212,7 +217,7 @@ declare namespace LocalJSX {
 
     interface IntrinsicElements {
         "vgr-button": Omit<VgrButton, keyof VgrButtonAttributes> & { [K in keyof VgrButton & keyof VgrButtonAttributes]?: VgrButton[K] } & { [K in keyof VgrButton & keyof VgrButtonAttributes as `attr:${K}`]?: VgrButtonAttributes[K] } & { [K in keyof VgrButton & keyof VgrButtonAttributes as `prop:${K}`]?: VgrButton[K] } & OneOf<"text", VgrButton["text"], VgrButtonAttributes["text"]>;
-        "vgr-help-icon-and-text": VgrHelpIconAndText;
+        "vgr-help-icon-and-text": Omit<VgrHelpIconAndText, keyof VgrHelpIconAndTextAttributes> & { [K in keyof VgrHelpIconAndText & keyof VgrHelpIconAndTextAttributes]?: VgrHelpIconAndText[K] } & { [K in keyof VgrHelpIconAndText & keyof VgrHelpIconAndTextAttributes as `attr:${K}`]?: VgrHelpIconAndTextAttributes[K] } & { [K in keyof VgrHelpIconAndText & keyof VgrHelpIconAndTextAttributes as `prop:${K}`]?: VgrHelpIconAndText[K] };
         "vgr-icon": Omit<VgrIcon, keyof VgrIconAttributes> & { [K in keyof VgrIcon & keyof VgrIconAttributes]?: VgrIcon[K] } & { [K in keyof VgrIcon & keyof VgrIconAttributes as `attr:${K}`]?: VgrIconAttributes[K] } & { [K in keyof VgrIcon & keyof VgrIconAttributes as `prop:${K}`]?: VgrIcon[K] } & OneOf<"icon", VgrIcon["icon"], VgrIconAttributes["icon"]>;
         "vgr-text-field": Omit<VgrTextField, keyof VgrTextFieldAttributes> & { [K in keyof VgrTextField & keyof VgrTextFieldAttributes]?: VgrTextField[K] } & { [K in keyof VgrTextField & keyof VgrTextFieldAttributes as `attr:${K}`]?: VgrTextFieldAttributes[K] } & { [K in keyof VgrTextField & keyof VgrTextFieldAttributes as `prop:${K}`]?: VgrTextField[K] };
     }
