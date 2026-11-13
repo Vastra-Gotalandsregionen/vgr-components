@@ -45,7 +45,7 @@ export class VgrRadioButton {
 
     return (
       <Host>
-        <label htmlFor={this.radioId} class="flex items-center gap-2 cursor-pointer py-1.5 text-base">
+        <label htmlFor={this.radioId} class="flex items-center gap-2 cursor-pointer py-1.5 text-base text-neutral-text">
           <input
             type="radio"
             class="peer sr-only"
