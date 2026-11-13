@@ -16,6 +16,7 @@ export namespace Components {
          */
         "disabled": boolean;
         "icon"?: string;
+        "srOnlyDisabledReason"?: string;
         "text": string;
         /**
           * @default 'button'
@@ -126,6 +127,7 @@ declare namespace LocalJSX {
         "disabled"?: boolean;
         "icon"?: string;
         "onVgrClick"?: (event: VgrButtonCustomEvent<void>) => void;
+        "srOnlyDisabledReason"?: string;
         "text": string;
         /**
           * @default 'button'
@@ -182,6 +184,7 @@ declare namespace LocalJSX {
     interface VgrButtonAttributes {
         "variant": VgrButtonVariant;
         "disabled": boolean;
+        "srOnlyDisabledReason": string;
         "type": 'button' | 'submit' | 'reset';
         "text": string;
         "icon": string;
