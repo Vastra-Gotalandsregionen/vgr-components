@@ -16,6 +16,7 @@ export namespace Components {
          */
         "disabled": boolean;
         "icon"?: string;
+        "srOnlyDisabledReason"?: string;
         "text": string;
         /**
           * @default 'button'
@@ -29,6 +30,7 @@ export namespace Components {
     }
     interface VgrHelpIconAndText {
         "info"?: VgrInfoContent;
+        "vgrAriaLabel"?: string;
     }
     interface VgrIcon {
         /**
@@ -62,6 +64,7 @@ export namespace Components {
           * `rows` is only applied for type: textarea
          */
         "rows"?: number;
+        "srOnlyDisabledReason"?: string;
         /**
           * @default 'text'
          */
@@ -126,6 +129,7 @@ declare namespace LocalJSX {
         "disabled"?: boolean;
         "icon"?: string;
         "onVgrClick"?: (event: VgrButtonCustomEvent<void>) => void;
+        "srOnlyDisabledReason"?: string;
         "text": string;
         /**
           * @default 'button'
@@ -139,6 +143,7 @@ declare namespace LocalJSX {
     }
     interface VgrHelpIconAndText {
         "info"?: VgrInfoContent;
+        "vgrAriaLabel"?: string;
     }
     interface VgrIcon {
         /**
@@ -172,6 +177,7 @@ declare namespace LocalJSX {
           * `rows` is only applied for type: textarea
          */
         "rows"?: number;
+        "srOnlyDisabledReason"?: string;
         /**
           * @default 'text'
          */
@@ -182,9 +188,13 @@ declare namespace LocalJSX {
     interface VgrButtonAttributes {
         "variant": VgrButtonVariant;
         "disabled": boolean;
+        "srOnlyDisabledReason": string;
         "type": 'button' | 'submit' | 'reset';
         "text": string;
         "icon": string;
+        "vgrAriaLabel": string;
+    }
+    interface VgrHelpIconAndTextAttributes {
         "vgrAriaLabel": string;
     }
     interface VgrIconAttributes {
@@ -193,6 +203,7 @@ declare namespace LocalJSX {
     interface VgrTextFieldAttributes {
         "type": 'text' | 'textarea' | 'number' | 'email' | 'password' | 'tel' | 'url';
         "disabled": boolean;
+        "srOnlyDisabledReason": string;
         "autoComplete": boolean;
         "required": boolean;
         "optional": boolean;
@@ -206,7 +217,7 @@ declare namespace LocalJSX {
 
     interface IntrinsicElements {
         "vgr-button": Omit<VgrButton, keyof VgrButtonAttributes> & { [K in keyof VgrButton & keyof VgrButtonAttributes]?: VgrButton[K] } & { [K in keyof VgrButton & keyof VgrButtonAttributes as `attr:${K}`]?: VgrButtonAttributes[K] } & { [K in keyof VgrButton & keyof VgrButtonAttributes as `prop:${K}`]?: VgrButton[K] } & OneOf<"text", VgrButton["text"], VgrButtonAttributes["text"]>;
-        "vgr-help-icon-and-text": VgrHelpIconAndText;
+        "vgr-help-icon-and-text": Omit<VgrHelpIconAndText, keyof VgrHelpIconAndTextAttributes> & { [K in keyof VgrHelpIconAndText & keyof VgrHelpIconAndTextAttributes]?: VgrHelpIconAndText[K] } & { [K in keyof VgrHelpIconAndText & keyof VgrHelpIconAndTextAttributes as `attr:${K}`]?: VgrHelpIconAndTextAttributes[K] } & { [K in keyof VgrHelpIconAndText & keyof VgrHelpIconAndTextAttributes as `prop:${K}`]?: VgrHelpIconAndText[K] };
         "vgr-icon": Omit<VgrIcon, keyof VgrIconAttributes> & { [K in keyof VgrIcon & keyof VgrIconAttributes]?: VgrIcon[K] } & { [K in keyof VgrIcon & keyof VgrIconAttributes as `attr:${K}`]?: VgrIconAttributes[K] } & { [K in keyof VgrIcon & keyof VgrIconAttributes as `prop:${K}`]?: VgrIcon[K] } & OneOf<"icon", VgrIcon["icon"], VgrIconAttributes["icon"]>;
         "vgr-text-field": Omit<VgrTextField, keyof VgrTextFieldAttributes> & { [K in keyof VgrTextField & keyof VgrTextFieldAttributes]?: VgrTextField[K] } & { [K in keyof VgrTextField & keyof VgrTextFieldAttributes as `attr:${K}`]?: VgrTextFieldAttributes[K] } & { [K in keyof VgrTextField & keyof VgrTextFieldAttributes as `prop:${K}`]?: VgrTextField[K] };
     }

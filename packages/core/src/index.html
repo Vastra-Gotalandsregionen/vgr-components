@@ -19,6 +19,7 @@
     <h2 class="text-2xl font-bold mb-2">Buttons</h2>
     <div class="flex flex-col gap-4 mb-6">
       <vgr-button variant="primary" text="Spara"></vgr-button>
+      <vgr-button variant="primary" text="Spara" disabled="true" sr-only-disabled-reason="Du har inte klickat på de andra knapparna"></vgr-button>
       <vgr-button
         variant="secondary"
         text="Avbryt"
@@ -32,7 +33,14 @@
       <vgr-text-field label="Namn" help-text="Skriv ditt namn hörru"></vgr-text-field>
       <vgr-text-field label="Titel" error="Titel får inte vara tom"></vgr-text-field>
       <vgr-text-field label="Titel 2" optional="true" id="titel2"></vgr-text-field>
-      <vgr-text-field label="Titel 3" optional="true" disabled="true" required="true" help-text="Hjälp till dig"></vgr-text-field>
+      <vgr-text-field
+        label="Titel 3"
+        optional="true"
+        disabled="true"
+        required="true"
+        help-text="Hjälp till dig"
+        sr-only-disabled-reason="Du har inte fyllt i namn"
+      ></vgr-text-field>
       <vgr-text-field type="textarea" required="true" label="Adress"></vgr-text-field>
     </form>
   </body>

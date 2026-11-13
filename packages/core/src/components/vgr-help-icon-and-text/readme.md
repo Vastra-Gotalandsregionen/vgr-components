@@ -7,9 +7,10 @@
 
 ## Properties
 
-| Property | Attribute | Description | Type             | Default     |
-| -------- | --------- | ----------- | ---------------- | ----------- |
-| `info`   | --        |             | `VgrInfoContent` | `undefined` |
+| Property       | Attribute        | Description | Type             | Default     |
+| -------------- | ---------------- | ----------- | ---------------- | ----------- |
+| `info`         | --               |             | `VgrInfoContent` | `undefined` |
+| `vgrAriaLabel` | `vgr-aria-label` |             | `string`         | `undefined` |
 
 
 ## Dependencies

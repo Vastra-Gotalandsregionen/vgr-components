@@ -4,6 +4,7 @@ import { html } from 'lit';
 interface VgrHelpIconAndTextArgs {
   infoTitle: string;
   infoText: string;
+  vgrAriaLabel: string;
 }
 
 const toInfo = ({ infoTitle, infoText }: VgrHelpIconAndTextArgs) => ({
@@ -18,11 +19,16 @@ const meta: Meta<VgrHelpIconAndTextArgs> = {
   argTypes: {
     infoTitle: { control: 'text', description: 'Rubrik i rutan (valfri)' },
     infoText: { control: 'text' },
+    vgrAriaLabel: {
+      control: 'text',
+      description: 'Etikett på knappen. Tom ger standardtexten.',
+    },
   },
   args: {
     infoTitle: '',
     infoText:
       'Här står en kort förklaring som hjälper användaren att förstå vad som ska fyllas i.',
+    vgrAriaLabel: '',
   },
   render: (args) => html`
     <div style="padding: 6rem 2rem;">
@@ -52,7 +58,10 @@ export const LongText: Story = {
 export const NearRightEdge: Story = {
   render: (args) => html`
     <div style="padding: 6rem 0; display: flex; justify-content: flex-end;">
-      <vgr-help-icon-and-text .info=${toInfo(args)}></vgr-help-icon-and-text>
+      <vgr-help-icon-and-text
+        .info=${toInfo(args)}
+        .vgrAriaLabel=${args.vgrAriaLabel || undefined}
+      ></vgr-help-icon-and-text>
     </div>
   `,
 };
@@ -61,7 +70,10 @@ export const NearRightEdge: Story = {
 export const NearLeftEdge: Story = {
   render: (args) => html`
     <div style="padding: 6rem 0;">
-      <vgr-help-icon-and-text .info=${toInfo(args)}></vgr-help-icon-and-text>
+      <vgr-help-icon-and-text
+        .info=${toInfo(args)}
+        .vgrAriaLabel=${args.vgrAriaLabel || undefined}
+      ></vgr-help-icon-and-text>
     </div>
   `,
 };
@@ -70,7 +82,10 @@ export const NearLeftEdge: Story = {
 export const InsideScrollablePage: Story = {
   render: (args) => html`
     <div style="height: 150vh; padding-top: 80vh; padding-left: 2rem;">
-      <vgr-help-icon-and-text .info=${toInfo(args)}></vgr-help-icon-and-text>
+      <vgr-help-icon-and-text
+        .info=${toInfo(args)}
+        .vgrAriaLabel=${args.vgrAriaLabel || undefined}
+      ></vgr-help-icon-and-text>
     </div>
   `,
 };

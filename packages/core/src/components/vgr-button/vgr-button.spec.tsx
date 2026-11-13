@@ -30,7 +30,7 @@ describe('vgr-button', () => {
 
     const button = root.querySelector('button');
 
-    expect(button?.hasAttribute('disabled')).toBe(true);
+    expect(button?.hasAttribute('aria-disabled')).toBe(true);
     expect(button?.className).toContain('cursor-not-allowed');
   });
   ``;

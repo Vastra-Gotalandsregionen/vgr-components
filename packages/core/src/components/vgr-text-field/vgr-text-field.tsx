@@ -12,6 +12,7 @@ export class VgrTextField {
 
   @Prop() type: 'text' | 'textarea' | 'number' | 'email' | 'password' | 'tel' | 'url' = 'text';
   @Prop() disabled = false;
+  @Prop() srOnlyDisabledReason?: string;
   @Prop() autoComplete: boolean = false;
   @Prop() required: boolean = false;
   @Prop() optional: boolean = false;
@@ -27,8 +28,20 @@ export class VgrTextField {
   render() {
     const helperId = `${this.inputId}-helper`;
     const errorId = `${this.inputId}-error`;
-    const describedBy = this.error ? errorId : this.helpText ? helperId : undefined;
+    const disabledReasonId = `${this.inputId}-reason`;
+
     const autocomplete = this.autoComplete ? 'on' : 'off';
+
+    /**
+     * Help texts (disabled and misc)
+     */
+    const showHelp = !!this.helpText && !this.error;
+    const showError = !!this.error && !this.disabled;
+    const reasonDuplicatesHelp = showHelp && this.srOnlyDisabledReason === this.helpText;
+    const showDisabledReason = this.disabled && !!this.srOnlyDisabledReason && !reasonDuplicatesHelp;
+
+    const describedByIds = [showHelp && helperId, showError && errorId, showDisabledReason && disabledReasonId].filter(Boolean);
+    const describedBy = describedByIds.length ? describedByIds.join(' ') : undefined;
 
     /**
      * Classes
@@ -51,7 +64,7 @@ export class VgrTextField {
 
     // Disabled
     if (this.disabled) {
-      sharedClasses.push('border-neutral-disabled text-neutral-text-variant');
+      sharedClasses.push('border-neutral-disabled text-neutral-text-variant cursor-not-allowed');
     }
     // Error
     else if (this.error) {
@@ -69,14 +82,15 @@ export class VgrTextField {
      * Props
      */
     const sharedProps = {
-      autoComplete: autocomplete,
-      ariaDescribedby: describedBy,
-      ariaInvalid: this.error ? 'true' : undefined,
-      disabled: this.disabled,
-      placeholder: this.placeholder,
-      id: this.inputId,
-      required: this.required,
-      class: `${_sharedClasses} ${this.type === 'textarea' ? textareaClasses : inputClasses}`,
+      'autoComplete': autocomplete,
+      'aria-describedby': describedBy,
+      'aria-invalid': this.error ? 'true' : undefined,
+      'aria-disabled': this.disabled ? 'true' : undefined,
+      'readOnly': this.disabled,
+      'placeholder': this.placeholder,
+      'id': this.inputId,
+      'required': this.required,
+      'class': `${_sharedClasses} ${this.type === 'textarea' ? textareaClasses : inputClasses}`,
     };
 
     return (
@@ -90,7 +104,7 @@ export class VgrTextField {
                   {this.required && <span class="text-status-error-text block ml-1">*</span>}
                   {this.optional && <span class="text-neutral-text-variant block ml-2 font-normal">(frivillig)</span>}
                 </label>
-                {this.info && <vgr-help-icon-and-text info={this.info} />}
+                {this.info && <vgr-help-icon-and-text info={this.info} vgrAriaLabel={`Instruktioner för textfält ${this.label}`} />}
               </div>
             )}
           </div>
@@ -99,15 +113,20 @@ export class VgrTextField {
           ) : (
             <input type={this.type} value={this.value} {...sharedProps} />
           )}
-          {this.helpText && !this.error && (
+          {showHelp && (
             <p id={helperId} class="block text-neutral-text-variant mt-2 leading-text-field-help-text">
               {this.helpText}
             </p>
           )}
-          {this.error && !this.disabled && (
+          {showError && (
             <p id={errorId} class="block text-status-error-text mt-2 leading-text-field-help-text">
               *{this.error}
             </p>
+          )}
+          {showDisabledReason && (
+            <span id={disabledReasonId} class="sr-only">
+              {this.srOnlyDisabledReason}
+            </span>
           )}
         </div>
       </Host>

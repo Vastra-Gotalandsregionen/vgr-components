@@ -7,6 +7,7 @@ const icons = { none: undefined, arrowRight, check, plus };
 interface VgrButtonArgs {
   variant: 'primary' | 'secondary';
   disabled: boolean;
+  srOnlyDisabledReason: string;
   text: string;
   vgrAriaLabel: string;
   icon: keyof typeof icons;
@@ -31,6 +32,11 @@ const meta: Meta<VgrButtonArgs> = {
       options: ['primary', 'secondary'],
     },
     disabled: { control: { type: 'boolean' } },
+    srOnlyDisabledReason: {
+      control: 'text',
+      description:
+        'Förklaring som bara läses upp av skärmläsare. Visas bara när knappen är inaktiv.',
+    },
     text: { control: { type: 'text' } },
     vgrAriaLabel: { control: { type: 'text' } },
     icon: {
@@ -41,6 +47,7 @@ const meta: Meta<VgrButtonArgs> = {
   args: {
     variant: 'primary',
     disabled: false,
+    srOnlyDisabledReason: '',
     text: 'Klicka här',
     vgrAriaLabel: 'Klicka här för att gå vidare',
     icon: 'none',
@@ -51,5 +58,10 @@ export default meta;
 type Story = StoryObj<VgrButtonArgs>;
 
 export const Default: Story = {};
-export const Disabled: Story = { args: { disabled: true } };
+export const Disabled: Story = {
+  args: {
+    disabled: true,
+    srOnlyDisabledReason: 'Fyll i alla obligatoriska fält först.',
+  },
+};
 export const WithIcon: Story = { args: { icon: 'arrowRight' } };

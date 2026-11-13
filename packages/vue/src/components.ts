@@ -12,6 +12,7 @@ import type { JSX } from '@vastra-gotalandsregionen/components-core';
 export const VgrButton: StencilVueComponent<JSX.VgrButton> = /*@__PURE__*/ defineContainer<JSX.VgrButton>('vgr-button', undefined, [
   'variant',
   'disabled',
+  'srOnlyDisabledReason',
   'type',
   'text',
   'icon',
@@ -23,7 +24,8 @@ export const VgrButton: StencilVueComponent<JSX.VgrButton> = /*@__PURE__*/ defin
 
 
 export const VgrHelpIconAndText: StencilVueComponent<JSX.VgrHelpIconAndText> = /*@__PURE__*/ defineContainer<JSX.VgrHelpIconAndText>('vgr-help-icon-and-text', undefined, [
-  'info'
+  'info',
+  'vgrAriaLabel'
 ]);
 
 
@@ -35,6 +37,7 @@ export const VgrIcon: StencilVueComponent<JSX.VgrIcon> = /*@__PURE__*/ defineCon
 export const VgrTextField: StencilVueComponent<JSX.VgrTextField> = /*@__PURE__*/ defineContainer<JSX.VgrTextField>('vgr-text-field', undefined, [
   'type',
   'disabled',
+  'srOnlyDisabledReason',
   'autoComplete',
   'required',
   'optional',
