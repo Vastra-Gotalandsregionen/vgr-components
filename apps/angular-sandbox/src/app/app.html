@@ -1,5 +1,34 @@
 <main class="main">
-  <div class="content">
-    <vgr-button variant="primary" (vgrClick)="onSave()" text="Spara"></vgr-button>
+  <div class="content" style="display: flex; flex-direction: column; gap: 24px; padding: 16px">
+    <h2>Button</h2>
+    <div style="display: flex; gap: 12px">
+      <vgr-button
+        variant="primary"
+        text="Spara"
+        (vgrClick)="showAlert('Angular: Spara')"
+      ></vgr-button>
+      <vgr-button
+        variant="secondary"
+        text="Avbryt"
+        [icon]="plusIcon"
+        (vgrClick)="showAlert('Angular: Avbryt')"
+      ></vgr-button>
+    </div>
+
+    <h2>Icon</h2>
+    <vgr-icon [icon]="plusIcon"></vgr-icon>
+
+    <h2>Help icon and text</h2>
+    <vgr-help-icon-and-text [info]="{ text: 'Hejhej min text' }"></vgr-help-icon-and-text>
+
+    <h2>Text field</h2>
+    <vgr-text-field label="Namn" helpText="Skriv ditt namn"></vgr-text-field>
+    <vgr-text-field
+      label="Titel"
+      error="Titel får inte vara tom"
+      [required]="true"
+    ></vgr-text-field>
+    <vgr-text-field label="Dokumenttyp" [optional]="true" [info]="longInfo"></vgr-text-field>
+    <vgr-text-field type="textarea" label="Adress" [disabled]="true"></vgr-text-field>
   </div>
 </main>

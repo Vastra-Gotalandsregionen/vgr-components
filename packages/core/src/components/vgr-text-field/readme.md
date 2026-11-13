@@ -13,7 +13,7 @@
 | `disabled`     | `disabled`      |                                           | `boolean`                                                                     | `false`     |
 | `error`        | `error`         |                                           | `string`                                                                      | `undefined` |
 | `helpText`     | `help-text`     |                                           | `string`                                                                      | `undefined` |
-| `info`         | `info`          |                                           | `string`                                                                      | `undefined` |
+| `info`         | --              |                                           | `VgrInfoContent`                                                              | `undefined` |
 | `label`        | `label`         |                                           | `string`                                                                      | `undefined` |
 | `optional`     | `optional`      |                                           | `boolean`                                                                     | `false`     |
 | `placeholder`  | `placeholder`   |                                           | `string`                                                                      | `undefined` |

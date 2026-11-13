@@ -23,7 +23,7 @@ export const VgrButton: StencilVueComponent<JSX.VgrButton> = /*@__PURE__*/ defin
 
 
 export const VgrHelpIconAndText: StencilVueComponent<JSX.VgrHelpIconAndText> = /*@__PURE__*/ defineContainer<JSX.VgrHelpIconAndText>('vgr-help-icon-and-text', undefined, [
-  'infoText'
+  'info'
 ]);
 
 

@@ -7,9 +7,9 @@
 
 ## Properties
 
-| Property   | Attribute   | Description | Type     | Default     |
-| ---------- | ----------- | ----------- | -------- | ----------- |
-| `infoText` | `info-text` |             | `string` | `undefined` |
+| Property | Attribute | Description | Type             | Default     |
+| -------- | --------- | ----------- | ---------------- | ----------- |
+| `info`   | --        |             | `VgrInfoContent` | `undefined` |
 
 
 ## Dependencies

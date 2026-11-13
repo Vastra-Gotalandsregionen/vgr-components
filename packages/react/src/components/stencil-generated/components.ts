@@ -7,26 +7,29 @@
 
 /* eslint-disable */
 
-import type { EventName, StencilReactComponent } from '@stencil/react-output-target/runtime';
-import { createComponent } from '@stencil/react-output-target/runtime';
 import React from 'react';
+import { createComponent } from '@stencil/react-output-target/runtime';
+import type { Components } from '@vastra-gotalandsregionen/components-core/dist/components';
+import { VgrButton as VgrButtonElement, defineCustomElement as defineVgrButton } from '@vastra-gotalandsregionen/components-core/dist/components/vgr-button.js';
+import { VgrHelpIconAndText as VgrHelpIconAndTextElement, defineCustomElement as defineVgrHelpIconAndText } from '@vastra-gotalandsregionen/components-core/dist/components/vgr-help-icon-and-text.js';
+import { VgrIcon as VgrIconElement, defineCustomElement as defineVgrIcon } from '@vastra-gotalandsregionen/components-core/dist/components/vgr-icon.js';
+import { VgrTextField as VgrTextFieldElement, defineCustomElement as defineVgrTextField } from '@vastra-gotalandsregionen/components-core/dist/components/vgr-text-field.js';
+import type { VgrButtonCustomEvent } from '@vastra-gotalandsregionen/components-core';
+import type { StencilReactComponent, EventName } from '@stencil/react-output-target/runtime';
 
-import { type VgrButtonCustomEvent } from "@vastra-gotalandsregionen/components-core";
-import type { Components } from "@vastra-gotalandsregionen/components-core/dist/components";
-import { VgrButton as VgrButtonElement, defineCustomElement as defineVgrButton } from "@vastra-gotalandsregionen/components-core/dist/components/vgr-button.js";
-import { VgrHelpIconAndText as VgrHelpIconAndTextElement, defineCustomElement as defineVgrHelpIconAndText } from "@vastra-gotalandsregionen/components-core/dist/components/vgr-help-icon-and-text.js";
-import { VgrIcon as VgrIconElement, defineCustomElement as defineVgrIcon } from "@vastra-gotalandsregionen/components-core/dist/components/vgr-icon.js";
-import { VgrTextField as VgrTextFieldElement, defineCustomElement as defineVgrTextField } from "@vastra-gotalandsregionen/components-core/dist/components/vgr-text-field.js";
-
-export type VgrButtonEvents = { onVgrClick: EventName<VgrButtonCustomEvent<void>> };
+export type VgrButtonEvents = {
+  onVgrClick: EventName<VgrButtonCustomEvent<void>>
+};
 
 export const VgrButton: StencilReactComponent<VgrButtonElement, VgrButtonEvents, Components.VgrButton, 'text'> = /*@__PURE__*/ createComponent<VgrButtonElement, VgrButtonEvents, Components.VgrButton, 'text'>({
     tagName: 'vgr-button',
     elementClass: VgrButtonElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
-    events: { onVgrClick: 'vgrClick' } as VgrButtonEvents,
-    defineCustomElement: defineVgrButton
+    events: {
+      onVgrClick: 'vgrClick'
+    } as VgrButtonEvents,
+    defineCustomElement: defineVgrButton,
 });
 
 export type VgrHelpIconAndTextEvents = NonNullable<unknown>;
@@ -37,7 +40,7 @@ export const VgrHelpIconAndText: StencilReactComponent<VgrHelpIconAndTextElement
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as VgrHelpIconAndTextEvents,
-    defineCustomElement: defineVgrHelpIconAndText
+    defineCustomElement: defineVgrHelpIconAndText,
 });
 
 export type VgrIconEvents = NonNullable<unknown>;
@@ -48,7 +51,7 @@ export const VgrIcon: StencilReactComponent<VgrIconElement, VgrIconEvents, Compo
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as VgrIconEvents,
-    defineCustomElement: defineVgrIcon
+    defineCustomElement: defineVgrIcon,
 });
 
 export type VgrTextFieldEvents = NonNullable<unknown>;
@@ -59,5 +62,5 @@ export const VgrTextField: StencilReactComponent<VgrTextFieldElement, VgrTextFie
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {} as VgrTextFieldEvents,
-    defineCustomElement: defineVgrTextField
+    defineCustomElement: defineVgrTextField,
 });
