@@ -32,6 +32,8 @@ export class VgrRadioButton {
   };
 
   render() {
+    const labelClasses = ['flex items-center gap-2 cursor-pointer py-1.5 text-base', this.disabled ? 'text-neutral-disabled' : 'text-neutral-text'].join(' ');
+
     const markerClasses = [
       "after:content-[''] after:hidden peer-checked:after:block after:absolute after:top-1/2 after:left-1/2 after:-translate-1/2 after:w-3.5 after:h-3.5 after:rounded-full",
       this.disabled ? 'after:bg-neutral-disabled' : 'after:bg-primary-action',
@@ -45,7 +47,7 @@ export class VgrRadioButton {
 
     return (
       <Host>
-        <label htmlFor={this.radioId} class="flex items-center gap-2 cursor-pointer py-1.5 text-base text-neutral-text">
+        <label htmlFor={this.radioId} class={labelClasses}>
           <input
             type="radio"
             class="peer sr-only"
