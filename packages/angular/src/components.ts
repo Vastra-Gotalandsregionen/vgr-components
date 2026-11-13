@@ -9,6 +9,7 @@ import type { Components } from '@vastra-gotalandsregionen/components-core/compo
 import { defineCustomElement as defineVgrButton } from '@vastra-gotalandsregionen/components-core/components/vgr-button.js';
 import { defineCustomElement as defineVgrHelpIconAndText } from '@vastra-gotalandsregionen/components-core/components/vgr-help-icon-and-text.js';
 import { defineCustomElement as defineVgrIcon } from '@vastra-gotalandsregionen/components-core/components/vgr-icon.js';
+import { defineCustomElement as defineVgrRadioButton } from '@vastra-gotalandsregionen/components-core/components/vgr-radio-button.js';
 import { defineCustomElement as defineVgrTextField } from '@vastra-gotalandsregionen/components-core/components/vgr-text-field.js';
 @ProxyCmp({
   defineCustomElementFn: defineVgrButton,
@@ -84,6 +85,36 @@ export class VgrIcon {
 
 
 export declare interface VgrIcon extends Components.VgrIcon {}
+
+
+@ProxyCmp({
+  defineCustomElementFn: defineVgrRadioButton,
+  inputs: ['checked', 'disabled', 'label', 'name', 'value']
+})
+@Component({
+  selector: 'vgr-radio-button',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['checked', 'disabled', 'label', 'name', 'value'],
+  outputs: ['vgrChange'],
+})
+export class VgrRadioButton {
+  protected el: HTMLVgrRadioButtonElement;
+  @Output() vgrChange = new EventEmitter<VgrRadioButtonCustomEvent<{ value?: string; checked: boolean }>>();
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+import type { VgrRadioButtonCustomEvent } from '@vastra-gotalandsregionen/components-core/components';
+
+export declare interface VgrRadioButton extends Components.VgrRadioButton {
+
+  vgrChange: EventEmitter<VgrRadioButtonCustomEvent<{ value?: string; checked: boolean }>>;
+}
 
 
 @ProxyCmp({

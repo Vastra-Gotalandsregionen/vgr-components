@@ -13,8 +13,9 @@ import type { Components } from '@vastra-gotalandsregionen/components-core/dist/
 import { VgrButton as VgrButtonElement, defineCustomElement as defineVgrButton } from '@vastra-gotalandsregionen/components-core/dist/components/vgr-button.js';
 import { VgrHelpIconAndText as VgrHelpIconAndTextElement, defineCustomElement as defineVgrHelpIconAndText } from '@vastra-gotalandsregionen/components-core/dist/components/vgr-help-icon-and-text.js';
 import { VgrIcon as VgrIconElement, defineCustomElement as defineVgrIcon } from '@vastra-gotalandsregionen/components-core/dist/components/vgr-icon.js';
+import { VgrRadioButton as VgrRadioButtonElement, defineCustomElement as defineVgrRadioButton } from '@vastra-gotalandsregionen/components-core/dist/components/vgr-radio-button.js';
 import { VgrTextField as VgrTextFieldElement, defineCustomElement as defineVgrTextField } from '@vastra-gotalandsregionen/components-core/dist/components/vgr-text-field.js';
-import type { VgrButtonCustomEvent } from '@vastra-gotalandsregionen/components-core';
+import type { VgrButtonCustomEvent, VgrRadioButtonCustomEvent } from '@vastra-gotalandsregionen/components-core';
 import type { StencilReactComponent, EventName } from '@stencil/react-output-target/runtime';
 
 export type VgrButtonEvents = {
@@ -52,6 +53,21 @@ export const VgrIcon: StencilReactComponent<VgrIconElement, VgrIconEvents, Compo
     react: React,
     events: {} as VgrIconEvents,
     defineCustomElement: defineVgrIcon,
+});
+
+export type VgrRadioButtonEvents = {
+  onVgrChange: EventName<VgrRadioButtonCustomEvent<{ value?: string; checked: boolean }>>
+};
+
+export const VgrRadioButton: StencilReactComponent<VgrRadioButtonElement, VgrRadioButtonEvents, Components.VgrRadioButton> = /*@__PURE__*/ createComponent<VgrRadioButtonElement, VgrRadioButtonEvents, Components.VgrRadioButton>({
+    tagName: 'vgr-radio-button',
+    elementClass: VgrRadioButtonElement,
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    react: React,
+    events: {
+      onVgrChange: 'vgrChange'
+    } as VgrRadioButtonEvents,
+    defineCustomElement: defineVgrRadioButton,
 });
 
 export type VgrTextFieldEvents = NonNullable<unknown>;
