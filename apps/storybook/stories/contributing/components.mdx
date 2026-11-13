@@ -41,7 +41,42 @@ Det här är besluten som gäller för alla komponenter. Följ dem om det inte f
 - **Snäva komponenter.** Inga slots "för säkerhets skull". Text och ikon skickas som props (t.ex. `text`, `icon`). Det är enkelt att lägga till en prop senare, men att ta bort eller byta namn på en som redan används tvingar alla konsumenter att ändra sin kod. Börja därför smalt och bygg ut vid behov.
 - **Obligatoriska props markeras med `!`** (`@Prop() text!: string;`). Det ger TypeScript-fel i React, Angular och Vue om de saknas.
 - **Namn:** custom elements och events prefixas med `vgr-` (`vgr-button`, `vgrClick`). Props som krockar med ett inbyggt HTML-attribut prefixas också (t ex `vgrAriaLabel`).
-- **Ikoner skickas som SVG-sträng**, aldrig som ikonnamn. Själva ikonerna ligger i ett separat, privat paket och får inte läggas i det här repot.
+
+## Ikoner
+
+Det finns tre sorters ikoner i projektet, och det är viktigt att inte blanda ihop dem.
+
+### Ikoner från vgr-icons
+
+Designsystemets ikonbibliotek ligger i ett separat, privat paket. Ikonerna är licensbelagda och får inte läggas i det här repot, och core får inte ha vgr-icons som beroende. Det är konsumentappen som importerar en ikon och skickar in den till komponenten, till exempel `icon={arrowRight}` på en knapp.
+
+### Ikoner som en komponent själv behöver
+
+Vissa ikoner är del av komponenten, till exempel frågetecknet i hjälpikoner eller krysset som används till Stäng-knappar. Dessa är relativt få och följer med paketet till konsumenterna. Vid behov, lägg till en ny ikon såhär:
+
+1. Skaffa ikonfilen genom att exportera från Figma, du hittar den i prototypen för den komponent du bygger. Om du är osäker på vilken som gäller, kolla med UX-teamet.
+2. Lägg SVG-filen i `packages/core/src/assets/`. Filnamnet bestämmer namnet i koden, så `help_circle.svg` blir `helpCircle`. Döp filen till något konventionellt, och i snake_case.
+3. Färgen på ikonen behöver kunna följa aktuell textfärg. Byt därför ut de relevanta färgkoderna i filen mot currentColor (om du blir osäker, kolla filen för t ex close.svg där detta redan är gjort).
+4. Kör `npm run generate:svgs -w packages/core`. Skriptet körs också automatiskt vid build och när du startar `dev:core`.
+5. Importera ikonen i komponenten och använd den med `vgr-icon`:
+
+```tsx
+import { helpCircle } from '../../assets/svgs.generated';
+
+<vgr-icon icon={helpCircle}></vgr-icon>;
+```
+
+Skriptet skriver `svgs.generated.ts`, som checkas in. SVG-filerna är källan till den, så ta aldrig bort dem. Skriptet stoppar bygget om en SVG saknar `viewBox` eller innehåller vissa reserverade ord.
+
+### Ikoner från placeholder-icons
+
+Just för Storybook och sandlådorna används egenritade placeholder-ikoner, se `placeholder-icons.ts`, de är inte avsedda för riktiga projekt överhuvudtaget.
+
+### Hur du vet vilken du ska använda
+
+- Är ikonen en fast del av komponenten, alltså något som komponenten inte fungerar utan? Då ligger den i `assets`.
+- Är det konsumenten som ska välja ikonen? Då kommer den från vgr-icons, via en `icon`-prop. Kopiera aldrig en ikon från vgr-icons till `assets`.
+- Behövs det en ikon i en komponent-story i Storybook? Importera då en av placeholder-icons-exporterna.
 
 ## Bygga ny komponent
 
