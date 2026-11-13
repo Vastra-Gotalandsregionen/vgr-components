@@ -63,6 +63,7 @@ export namespace Components {
           * `rows` is only applied for type: textarea
          */
         "rows"?: number;
+        "srOnlyDisabledReason"?: string;
         /**
           * @default 'text'
          */
@@ -174,6 +175,7 @@ declare namespace LocalJSX {
           * `rows` is only applied for type: textarea
          */
         "rows"?: number;
+        "srOnlyDisabledReason"?: string;
         /**
           * @default 'text'
          */
@@ -196,6 +198,7 @@ declare namespace LocalJSX {
     interface VgrTextFieldAttributes {
         "type": 'text' | 'textarea' | 'number' | 'email' | 'password' | 'tel' | 'url';
         "disabled": boolean;
+        "srOnlyDisabledReason": string;
         "autoComplete": boolean;
         "required": boolean;
         "optional": boolean;
