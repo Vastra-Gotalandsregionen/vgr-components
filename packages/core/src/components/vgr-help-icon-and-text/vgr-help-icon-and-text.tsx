@@ -97,7 +97,7 @@ export class VgrHelpIconAndText {
               }
             >
               <p class="max-w-[30ch]">
-                <div class="font-bold">{this.info.title}</div>
+                <span class="font-bold block">{this.info.title}</span>
                 {this.info.text}
               </p>
               <button type="button" class={_buttonClasses} onClick={this.close} ariaLabel="Dölj information">
@@ -128,6 +128,9 @@ export class VgrHelpIconAndText {
             ></div>
           </div>
         )}
+        <div role="status" class="sr-only">
+          {this.isOpen ? [this.info?.title, this.info?.text].filter(Boolean).join('. ') : ''}
+        </div>
       </Host>
     );
   }
