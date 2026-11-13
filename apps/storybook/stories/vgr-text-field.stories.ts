@@ -7,7 +7,8 @@ interface VgrTextFieldArgs {
   value: string;
   placeholder: string;
   helpText: string;
-  info: string;
+  infoTitle: string;
+  infoText: string;
   error: string;
   rows: number;
   disabled: boolean;
@@ -15,6 +16,12 @@ interface VgrTextFieldArgs {
   optional: boolean;
   autoComplete: boolean;
 }
+
+const toInfo = ({
+  infoTitle,
+  infoText,
+}: Pick<VgrTextFieldArgs, 'infoTitle' | 'infoText'>) =>
+  infoText ? { title: infoTitle || undefined, text: infoText } : undefined;
 
 const meta: Meta<VgrTextFieldArgs> = {
   title: 'Components/VgrTextField',
@@ -37,7 +44,11 @@ const meta: Meta<VgrTextFieldArgs> = {
     value: { control: 'text' },
     placeholder: { control: 'text' },
     helpText: { control: 'text' },
-    info: { control: 'text' },
+    infoTitle: { control: 'text', description: 'Rubrik i inforutan (valfri)' },
+    infoText: {
+      control: 'text',
+      description: 'Text i inforutan. Tom text ger ingen inforuta.',
+    },
     error: { control: 'text' },
     rows: {
       control: 'number',
@@ -54,7 +65,8 @@ const meta: Meta<VgrTextFieldArgs> = {
     value: '',
     placeholder: '',
     helpText: '',
-    info: '',
+    infoTitle: '',
+    infoText: '',
     error: '',
     rows: 4,
     disabled: false,
@@ -70,7 +82,7 @@ const meta: Meta<VgrTextFieldArgs> = {
         .value=${args.value}
         .placeholder=${args.placeholder}
         .helpText=${args.helpText}
-        .info=${args.info}
+        .info=${toInfo(args)}
         .error=${args.error}
         .rows=${args.rows}
         .disabled=${args.disabled}
@@ -110,7 +122,17 @@ export const WithHelpText: Story = {
 export const WithInfo: Story = {
   args: {
     label: 'Personnummer',
-    info: 'Personnumret används för att identifiera dig i våra system. Ange tolv siffror.',
+    infoText:
+      'Personnumret används för att identifiera dig i våra system. Ange tolv siffror.',
+  },
+};
+
+export const WithInfoAndTitle: Story = {
+  args: {
+    label: 'Dokumenttyp',
+    infoTitle: 'Regionövergripande dokument',
+    infoText:
+      'Inkluderar övergripande dokument som gäller för alla verksamheter och förvaltningar i Västra Götalandsregionen.',
   },
 };
 
