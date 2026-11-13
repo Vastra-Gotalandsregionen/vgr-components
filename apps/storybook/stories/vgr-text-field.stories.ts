@@ -11,6 +11,7 @@ interface VgrTextFieldArgs {
   error: string;
   rows: number;
   disabled: boolean;
+  srOnlyDisabledReason: string;
   required: boolean;
   optional: boolean;
   autoComplete: boolean;
@@ -44,6 +45,11 @@ const meta: Meta<VgrTextFieldArgs> = {
       description: 'Används bara när type är textarea',
     },
     disabled: { control: 'boolean' },
+    srOnlyDisabledReason: {
+      control: 'text',
+      description:
+        'Förklaring som bara läses upp av skärmläsare. Visas bara när fältet är inaktivt.',
+    },
     required: { control: 'boolean' },
     optional: { control: 'boolean' },
     autoComplete: { control: 'boolean' },
@@ -58,6 +64,7 @@ const meta: Meta<VgrTextFieldArgs> = {
     error: '',
     rows: 4,
     disabled: false,
+    srOnlyDisabledReason: '',
     required: false,
     optional: false,
     autoComplete: false,
@@ -74,6 +81,7 @@ const meta: Meta<VgrTextFieldArgs> = {
         .error=${args.error}
         .rows=${args.rows}
         .disabled=${args.disabled}
+        .srOnlyDisabledReason=${args.srOnlyDisabledReason}
         .required=${args.required}
         .optional=${args.optional}
         .autoComplete=${args.autoComplete}
@@ -124,7 +132,12 @@ export const WithError: Story = {
 };
 
 export const Disabled: Story = {
-  args: { value: 'Går inte att ändra', disabled: true },
+  args: {
+    value: 'Går inte att ändra',
+    disabled: true,
+    srOnlyDisabledReason:
+      'Värdet hämtas från ditt konto och kan inte ändras här.',
+  },
 };
 
 export const Textarea: Story = {

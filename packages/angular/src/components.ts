@@ -12,14 +12,14 @@ import { defineCustomElement as defineVgrIcon } from '@vastra-gotalandsregionen/
 import { defineCustomElement as defineVgrTextField } from '@vastra-gotalandsregionen/components-core/components/vgr-text-field.js';
 @ProxyCmp({
   defineCustomElementFn: defineVgrButton,
-  inputs: ['disabled', 'icon', 'text', 'type', 'variant', 'vgrAriaLabel']
+  inputs: ['disabled', 'icon', 'srOnlyDisabledReason', 'text', 'type', 'variant', 'vgrAriaLabel']
 })
 @Component({
   selector: 'vgr-button',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['disabled', 'icon', { name: 'text', required: true }, 'type', 'variant', 'vgrAriaLabel'],
+  inputs: ['disabled', 'icon', 'srOnlyDisabledReason', { name: 'text', required: true }, 'type', 'variant', 'vgrAriaLabel'],
   outputs: ['vgrClick'],
 })
 export class VgrButton {
@@ -42,14 +42,14 @@ export declare interface VgrButton extends Components.VgrButton {
 
 @ProxyCmp({
   defineCustomElementFn: defineVgrHelpIconAndText,
-  inputs: ['info']
+  inputs: ['info', 'vgrAriaLabel']
 })
 @Component({
   selector: 'vgr-help-icon-and-text',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['info'],
+  inputs: ['info', 'vgrAriaLabel'],
 })
 export class VgrHelpIconAndText {
   protected el: HTMLVgrHelpIconAndTextElement;
@@ -88,14 +88,14 @@ export declare interface VgrIcon extends Components.VgrIcon {}
 
 @ProxyCmp({
   defineCustomElementFn: defineVgrTextField,
-  inputs: ['autoComplete', 'disabled', 'error', 'helpText', 'info', 'label', 'optional', 'placeholder', 'required', 'rows', 'type', 'value']
+  inputs: ['autoComplete', 'disabled', 'error', 'helpText', 'info', 'label', 'optional', 'placeholder', 'required', 'rows', 'srOnlyDisabledReason', 'type', 'value']
 })
 @Component({
   selector: 'vgr-text-field',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['autoComplete', 'disabled', 'error', 'helpText', 'info', 'label', 'optional', 'placeholder', 'required', 'rows', 'type', 'value'],
+  inputs: ['autoComplete', 'disabled', 'error', 'helpText', 'info', 'label', 'optional', 'placeholder', 'required', 'rows', 'srOnlyDisabledReason', 'type', 'value'],
 })
 export class VgrTextField {
   protected el: HTMLVgrTextFieldElement;
