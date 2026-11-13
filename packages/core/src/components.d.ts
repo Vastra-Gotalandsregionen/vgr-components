@@ -48,6 +48,8 @@ export namespace Components {
          */
         "disabled": boolean;
         "label": string;
+        "name"?: string;
+        "value"?: string;
     }
     interface VgrTextField {
         /**
@@ -87,6 +89,10 @@ export interface VgrButtonCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLVgrButtonElement;
 }
+export interface VgrRadioButtonCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLVgrRadioButtonElement;
+}
 declare global {
     interface HTMLVgrButtonElementEventMap {
         "vgrClick": void;
@@ -117,7 +123,18 @@ declare global {
         prototype: HTMLVgrIconElement;
         new (): HTMLVgrIconElement;
     };
+    interface HTMLVgrRadioButtonElementEventMap {
+        "vgrChange": { value?: string; checked: boolean };
+    }
     interface HTMLVgrRadioButtonElement extends Components.VgrRadioButton, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLVgrRadioButtonElementEventMap>(type: K, listener: (this: HTMLVgrRadioButtonElement, ev: VgrRadioButtonCustomEvent<HTMLVgrRadioButtonElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLVgrRadioButtonElementEventMap>(type: K, listener: (this: HTMLVgrRadioButtonElement, ev: VgrRadioButtonCustomEvent<HTMLVgrRadioButtonElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLVgrRadioButtonElement: {
         prototype: HTMLVgrRadioButtonElement;
@@ -179,6 +196,9 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         "label"?: string;
+        "name"?: string;
+        "onVgrChange"?: (event: VgrRadioButtonCustomEvent<{ value?: string; checked: boolean }>) => void;
+        "value"?: string;
     }
     interface VgrTextField {
         /**
@@ -232,6 +252,8 @@ declare namespace LocalJSX {
     interface VgrRadioButtonAttributes {
         "disabled": boolean;
         "checked": boolean;
+        "name": string;
+        "value": string;
         "label": string;
     }
     interface VgrTextFieldAttributes {
