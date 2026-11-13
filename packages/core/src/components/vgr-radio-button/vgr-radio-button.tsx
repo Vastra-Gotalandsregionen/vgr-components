@@ -32,12 +32,15 @@ export class VgrRadioButton {
   };
 
   render() {
+    const markerClasses = [
+      "after:content-[''] after:hidden peer-checked:after:block after:absolute after:top-1/2 after:left-1/2 after:-translate-1/2 after:w-2 after:h-2 after:rounded-full",
+      this.disabled ? 'after:bg-neutral-disabled' : 'after:bg-primary-action',
+    ];
     const circleClasses = [
       'relative w-6 h-6 rounded-full border-2',
       this.disabled ? 'border-neutral-disabled' : 'border-neutral-text peer-hover:border-3 peer-hover:border-primary-action',
       'peer-focus:outline-3 peer-focus:outline-primary-action',
-      "after:content-[''] after:hidden peer-checked:after:block after:absolute after:top-1/2 after:left-1/2 after:-translate-1/2 after:w-2 after:h-2 after:rounded-full",
-      this.disabled ? 'after:bg-neutral-disabled' : 'after:bg-primary-action',
+      markerClasses.join(' '),
     ].join(' ');
 
     return (
