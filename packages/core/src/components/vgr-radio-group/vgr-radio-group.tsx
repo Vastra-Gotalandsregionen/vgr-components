@@ -34,23 +34,23 @@ export class VgrRadioGroup {
           aria-invalid={this.error ? 'true' : undefined}
           aria-describedby={describedBy || undefined}
         >
-          <legend class="flex mb-2 text-base font-bold leading-text-field-label text-neutral-text">
+          <legend class="flex mb-3 text-base font-bold leading-text-field-label text-neutral-text">
             {this.label}
 
             {this.required && <span class="text-status-error-text block ml-1">*</span>}
             {this.optional && <span class="text-neutral-text-variant block ml-2 font-normal">(frivillig)</span>}
           </legend>
 
-          <div class="flex flex-col">
+          <div class="flex flex-col gap-y-3 mb-2">
             <slot></slot>
           </div>
           {showHelp && (
-            <p id={helperId} class="block text-neutral-text-variant mt-2 leading-text-field-help-text">
+            <p id={helperId} class="block text-neutral-text-variant leading-text-field-help-text">
               {this.helpText}
             </p>
           )}
           {showError && (
-            <p id={errorId} class="block text-status-error-text mt-2 leading-text-field-help-text">
+            <p id={errorId} class="block text-status-error-text leading-text-field-help-text">
               *{this.error}
             </p>
           )}

@@ -40,10 +40,7 @@ export class VgrRadioButton {
   render() {
     const hasReason = this.disabled && !!this.srOnlyDisabledReason;
 
-    const labelClasses = [
-      'flex items-center gap-2 py-1.5 text-base leading-6',
-      this.disabled ? 'text-neutral-disabled cursor-not-allowed' : 'text-neutral-text cursor-pointer',
-    ].join(' ');
+    const labelClasses = ['flex items-center gap-2 text-base leading-6', this.disabled ? 'text-neutral-disabled cursor-not-allowed' : 'text-neutral-text cursor-pointer'].join(' ');
 
     const ringClasses = this.disabled ? 'stroke-neutral-disabled' : this.checked ? 'stroke-primary-action' : 'stroke-neutral-text';
 

@@ -28,6 +28,8 @@ export namespace Components {
         "variant": VgrButtonVariant;
         "vgrAriaLabel"?: string;
     }
+    interface VgrCheckbox {
+    }
     interface VgrHelpIconAndText {
         "info"?: VgrInfoContent;
         "vgrAriaLabel"?: string;
@@ -125,6 +127,12 @@ declare global {
         prototype: HTMLVgrButtonElement;
         new (): HTMLVgrButtonElement;
     };
+    interface HTMLVgrCheckboxElement extends Components.VgrCheckbox, HTMLStencilElement {
+    }
+    var HTMLVgrCheckboxElement: {
+        prototype: HTMLVgrCheckboxElement;
+        new (): HTMLVgrCheckboxElement;
+    };
     interface HTMLVgrHelpIconAndTextElement extends Components.VgrHelpIconAndText, HTMLStencilElement {
     }
     var HTMLVgrHelpIconAndTextElement: {
@@ -168,6 +176,7 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "vgr-button": HTMLVgrButtonElement;
+        "vgr-checkbox": HTMLVgrCheckboxElement;
         "vgr-help-icon-and-text": HTMLVgrHelpIconAndTextElement;
         "vgr-icon": HTMLVgrIconElement;
         "vgr-radio-button": HTMLVgrRadioButtonElement;
@@ -196,6 +205,8 @@ declare namespace LocalJSX {
          */
         "variant"?: VgrButtonVariant;
         "vgrAriaLabel"?: string;
+    }
+    interface VgrCheckbox {
     }
     interface VgrHelpIconAndText {
         "info"?: VgrInfoContent;
@@ -316,6 +327,7 @@ declare namespace LocalJSX {
 
     interface IntrinsicElements {
         "vgr-button": Omit<VgrButton, keyof VgrButtonAttributes> & { [K in keyof VgrButton & keyof VgrButtonAttributes]?: VgrButton[K] } & { [K in keyof VgrButton & keyof VgrButtonAttributes as `attr:${K}`]?: VgrButtonAttributes[K] } & { [K in keyof VgrButton & keyof VgrButtonAttributes as `prop:${K}`]?: VgrButton[K] } & OneOf<"text", VgrButton["text"], VgrButtonAttributes["text"]>;
+        "vgr-checkbox": VgrCheckbox;
         "vgr-help-icon-and-text": Omit<VgrHelpIconAndText, keyof VgrHelpIconAndTextAttributes> & { [K in keyof VgrHelpIconAndText & keyof VgrHelpIconAndTextAttributes]?: VgrHelpIconAndText[K] } & { [K in keyof VgrHelpIconAndText & keyof VgrHelpIconAndTextAttributes as `attr:${K}`]?: VgrHelpIconAndTextAttributes[K] } & { [K in keyof VgrHelpIconAndText & keyof VgrHelpIconAndTextAttributes as `prop:${K}`]?: VgrHelpIconAndText[K] };
         "vgr-icon": Omit<VgrIcon, keyof VgrIconAttributes> & { [K in keyof VgrIcon & keyof VgrIconAttributes]?: VgrIcon[K] } & { [K in keyof VgrIcon & keyof VgrIconAttributes as `attr:${K}`]?: VgrIconAttributes[K] } & { [K in keyof VgrIcon & keyof VgrIconAttributes as `prop:${K}`]?: VgrIcon[K] } & OneOf<"icon", VgrIcon["icon"], VgrIconAttributes["icon"]>;
         "vgr-radio-button": Omit<VgrRadioButton, keyof VgrRadioButtonAttributes> & { [K in keyof VgrRadioButton & keyof VgrRadioButtonAttributes]?: VgrRadioButton[K] } & { [K in keyof VgrRadioButton & keyof VgrRadioButtonAttributes as `attr:${K}`]?: VgrRadioButtonAttributes[K] } & { [K in keyof VgrRadioButton & keyof VgrRadioButtonAttributes as `prop:${K}`]?: VgrRadioButton[K] };
@@ -328,6 +340,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "vgr-button": LocalJSX.IntrinsicElements["vgr-button"] & JSXBase.HTMLAttributes<HTMLVgrButtonElement>;
+            "vgr-checkbox": LocalJSX.IntrinsicElements["vgr-checkbox"] & JSXBase.HTMLAttributes<HTMLVgrCheckboxElement>;
             "vgr-help-icon-and-text": LocalJSX.IntrinsicElements["vgr-help-icon-and-text"] & JSXBase.HTMLAttributes<HTMLVgrHelpIconAndTextElement>;
             "vgr-icon": LocalJSX.IntrinsicElements["vgr-icon"] & JSXBase.HTMLAttributes<HTMLVgrIconElement>;
             "vgr-radio-button": LocalJSX.IntrinsicElements["vgr-radio-button"] & JSXBase.HTMLAttributes<HTMLVgrRadioButtonElement>;
