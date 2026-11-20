@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 
-interface VgrRadioGroupArgs {
+interface VgrChoiceGroupArgs {
   label: string;
   helpText?: string;
   error?: string;
@@ -11,11 +11,11 @@ interface VgrRadioGroupArgs {
 }
 
 const renderGroup = (
-  args: VgrRadioGroupArgs,
+  args: VgrChoiceGroupArgs,
   name: string,
   options: { disabledOption?: boolean; checkedValue?: string } = {}
 ) => html`
-  <vgr-radio-group
+  <vgr-choice-group
     label=${args.label}
     help-text=${ifDefined(args.helpText || undefined)}
     error=${ifDefined(args.error || undefined)}
@@ -47,12 +47,12 @@ const renderGroup = (
       label="Gul"
       ?checked=${options.checkedValue === 'yellow'}
     ></vgr-radio-button>
-  </vgr-radio-group>
+  </vgr-choice-group>
 `;
 
-const meta: Meta<VgrRadioGroupArgs> = {
-  title: 'Components/VgrRadioGroup',
-  component: 'vgr-radio-group',
+const meta: Meta<VgrChoiceGroupArgs> = {
+  title: 'Components/VgrChoiceGroup',
+  component: 'vgr-choice-group',
   tags: ['autodocs'],
   argTypes: {
     label: { control: { type: 'text' } },
@@ -72,7 +72,7 @@ const meta: Meta<VgrRadioGroupArgs> = {
 };
 
 export default meta;
-type Story = StoryObj<VgrRadioGroupArgs>;
+type Story = StoryObj<VgrChoiceGroupArgs>;
 
 export const Default: Story = {};
 
