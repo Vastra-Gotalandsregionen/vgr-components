@@ -95,9 +95,9 @@ export class VgrCheckbox {
       this.disabled ? 'text-neutral-disabled cursor-not-allowed' : 'text-neutral-text cursor-pointer',
     ].join(' ');
 
-    const boxColor = this.disabled ? 'neutral-disabled' : 'primary-action';
-    const strokeClass = filled ? `stroke-${boxColor}` : this.disabled ? 'stroke-neutral-disabled' : 'stroke-neutral-text';
-    const fillClass = filled ? `fill-${boxColor}` : 'fill-transparent';
+    const isFull = this.checked && !this.indeterminate;
+    const strokeClass = this.disabled ? 'stroke-neutral-disabled' : this.checked || this.indeterminate ? 'stroke-primary-action' : 'stroke-neutral-text';
+    const fillClass = this.disabled ? 'fill-neutral-disabled' : 'fill-primary-action';
 
     const boxClasses = [
       'grid shrink-0 place-items-center w-6 h-6 rounded-sm',
@@ -107,18 +107,6 @@ export class VgrCheckbox {
     return (
       <Host>
         <div class="flex items-center gap-1">
-          {this.hasChildren && (
-            <button
-              type="button"
-              class="flex size-8 shrink-0 items-center justify-center text-neutral-text"
-              aria-expanded={this.expanded ? 'true' : 'false'}
-              aria-controls={this.childrenId}
-              aria-label={`Undernivåer för ${this.label}`}
-              onClick={this.toggleExpanded}
-            >
-              <vgr-icon icon={chevronDown} class={this.expanded ? 'rotate-180' : ''}></vgr-icon>
-            </button>
-          )}
           <label htmlFor={this.checkboxId} class={labelClasses}>
             <input
               type="checkbox"
@@ -135,12 +123,29 @@ export class VgrCheckbox {
             />
             <span class={boxClasses} aria-hidden="true">
               <svg class="col-start-1 row-start-1 w-6 h-6" viewBox="0 0 24 24">
-                <rect x="1" y="1" width="22" height="22" rx="3" stroke-width="2" class={`${strokeClass} ${fillClass}`} />
+                {isFull ? (
+                  <rect x="0" y="0" width="24" height="24" rx="4" class={fillClass} />
+                ) : (
+                  <rect x="1" y="1" width="22" height="22" rx="3" fill="none" stroke-width="2" class={strokeClass} />
+                )}
+                {this.indeterminate && <rect x="5" y="5" width="14" height="14" rx="1" class={fillClass} />}
               </svg>
               {this.checked && !this.indeterminate && <vgr-icon icon={check} class="col-start-1 row-start-1 text-white"></vgr-icon>}
             </span>
             {this.label}
           </label>
+          {this.hasChildren && (
+            <button
+              type="button"
+              class="flex size-8 shrink-0 items-center justify-center text-neutral-text cursor-pointer"
+              aria-expanded={this.expanded ? 'true' : 'false'}
+              aria-controls={this.childrenId}
+              aria-label={`Undernivåer för ${this.label}`}
+              onClick={this.toggleExpanded}
+            >
+              <vgr-icon icon={chevronDown} class={this.expanded ? 'rotate-180' : ''} size={3}></vgr-icon>
+            </button>
+          )}
         </div>
         {hasReason && (
           <span id={this.reasonId} class="sr-only">

@@ -66,9 +66,13 @@ export namespace Components {
     }
     interface VgrIcon {
         /**
-          * SVG markup for the icon. Must come from our own icon package, never from user input, since it is rendered with innerHTML.
+          * SVG markup for the icon. Must come from one of our own icon sources, never from user input, since it is rendered with innerHTML.
          */
         "icon": string;
+        /**
+          * Height in Tailwind's spacing scale (4 = 16px, 6 = 24px). The width follows the icon's own proportions. Defaults to 1em, so the icon follows the surrounding font-size.
+         */
+        "size"?: IconSize;
     }
     interface VgrRadioButton {
         /**
@@ -277,9 +281,13 @@ declare namespace LocalJSX {
     }
     interface VgrIcon {
         /**
-          * SVG markup for the icon. Must come from our own icon package, never from user input, since it is rendered with innerHTML.
+          * SVG markup for the icon. Must come from one of our own icon sources, never from user input, since it is rendered with innerHTML.
          */
         "icon": string;
+        /**
+          * Height in Tailwind's spacing scale (4 = 16px, 6 = 24px). The width follows the icon's own proportions. Defaults to 1em, so the icon follows the surrounding font-size.
+         */
+        "size"?: IconSize;
     }
     interface VgrRadioButton {
         /**
@@ -361,6 +369,7 @@ declare namespace LocalJSX {
     }
     interface VgrIconAttributes {
         "icon": string;
+        "size": IconSize;
     }
     interface VgrRadioButtonAttributes {
         "disabled": boolean;
