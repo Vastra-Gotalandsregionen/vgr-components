@@ -12,6 +12,7 @@ export class VgrCheckbox {
   private readonly reasonId = `${this.checkboxId}-reason`;
   private readonly childrenId = `${this.checkboxId}-children`;
   private inputEl?: HTMLInputElement;
+  private isChild = false;
 
   @Element() el!: HTMLElement;
 
@@ -30,6 +31,7 @@ export class VgrCheckbox {
   @Event() vgrChange: EventEmitter<{ value?: string; checked: boolean }>;
 
   componentWillLoad() {
+    this.isChild = !!this.el.parentElement?.closest('vgr-checkbox');
     this.hasChildren = this.getDirectChildren().length > 0;
   }
 
@@ -93,9 +95,9 @@ export class VgrCheckbox {
     const childrenHidden = this.collapsibleChildren && !this.expanded;
 
     const labelClasses = [
-      'flex items-center gap-2 p-3 text-base leading-6',
+      'flex items-center gap-2 py-3 pr-3 text-base leading-6',
+      this.isChild && this.collapsibleChildren ? 'pl-6' : 'pl-3',
       this.disabled ? 'text-neutral-disabled cursor-not-allowed' : 'text-neutral-text cursor-pointer',
-      this.checked ? 'font-bold' : '',
     ].join(' ');
 
     const isFull = this.checked && !this.indeterminate;
@@ -140,7 +142,7 @@ export class VgrCheckbox {
           {showToggle && (
             <button
               type="button"
-              class="flex size-8 shrink-0 items-center justify-center text-neutral-text cursor-pointer"
+              class="flex size-8 shrink-0 items-center justify-center text-neutral-text cursor-pointer pr-3"
               aria-expanded={this.expanded ? 'true' : 'false'}
               aria-controls={this.childrenId}
               aria-label={`Undernivåer för ${this.label}`}
@@ -155,7 +157,7 @@ export class VgrCheckbox {
             {this.srOnlyDisabledReason}
           </span>
         )}
-        <div id={this.childrenId} class={childrenHidden ? 'hidden' : 'ml-8'}>
+        <div id={this.childrenId} class={childrenHidden ? 'hidden' : this.collapsibleChildren ? 'ml-3' : 'ml-6'}>
           <slot></slot>
         </div>
       </Host>
