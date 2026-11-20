@@ -48,7 +48,8 @@ export namespace Components {
          */
         "disabled": boolean;
         "label": string;
-        "name"?: string;
+        "name": string;
+        "srOnlyDisabledReason"?: string;
         "value"?: string;
     }
     interface VgrTextField {
@@ -198,6 +199,7 @@ declare namespace LocalJSX {
         "label"?: string;
         "name"?: string;
         "onVgrChange"?: (event: VgrRadioButtonCustomEvent<{ value?: string; checked: boolean }>) => void;
+        "srOnlyDisabledReason"?: string;
         "value"?: string;
     }
     interface VgrTextField {
@@ -255,6 +257,7 @@ declare namespace LocalJSX {
         "name": string;
         "value": string;
         "label": string;
+        "srOnlyDisabledReason": string;
     }
     interface VgrTextFieldAttributes {
         "type": 'text' | 'textarea' | 'number' | 'email' | 'password' | 'tel' | 'url';

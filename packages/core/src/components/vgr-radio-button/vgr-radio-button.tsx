@@ -8,13 +8,15 @@ let idCount = 0;
 })
 export class VgrRadioButton {
   private readonly radioId = `vgr-radio-button-${idCount++}`;
+  private readonly reasonId = `${this.radioId}-reason`;
   private inputEl?: HTMLInputElement;
 
   @Prop() disabled = false;
   @Prop({ mutable: true }) checked: boolean = false;
-  @Prop() name?: string;
+  @Prop() name: string;
   @Prop() value?: string;
   @Prop() label: string;
+  @Prop() srOnlyDisabledReason?: string;
 
   @Event() vgrChange: EventEmitter<{ value?: string; checked: boolean }>;
 
@@ -36,12 +38,14 @@ export class VgrRadioButton {
   };
 
   render() {
+    const hasReason = this.disabled && !!this.srOnlyDisabledReason;
+
     const labelClasses = [
       'flex items-center gap-2 py-1.5 text-base leading-6',
       this.disabled ? 'text-neutral-disabled cursor-not-allowed' : 'text-neutral-text cursor-pointer',
     ].join(' ');
 
-    const ringClasses = this.checked ? 'stroke-primary-action' : this.disabled ? 'stroke-neutral-disabled' : 'stroke-neutral-text';
+    const ringClasses = this.disabled ? 'stroke-neutral-disabled' : this.checked ? 'stroke-primary-action' : 'stroke-neutral-text';
 
     const dotClasses = ['dot opacity-0', this.disabled ? 'fill-neutral-disabled' : 'fill-primary-action'].join(' ');
 
@@ -66,6 +70,7 @@ export class VgrRadioButton {
             onClick={this.handleClick}
             ref={el => (this.inputEl = el)}
             aria-disabled={this.disabled ? 'true' : undefined}
+            aria-describedby={hasReason ? this.reasonId : undefined}
           />
           <svg class={svgClasses} viewBox="0 0 24 24" aria-hidden="true">
             <circle cx="12" cy="12" r="11" fill="none" stroke-width="2" class={ringClasses} />
@@ -74,6 +79,11 @@ export class VgrRadioButton {
           </svg>
           {this.label}
         </label>
+        {hasReason && (
+          <span id={this.reasonId} class="sr-only">
+            {this.srOnlyDisabledReason}
+          </span>
+        )}
       </Host>
     );
   }
