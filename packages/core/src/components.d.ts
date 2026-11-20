@@ -30,6 +30,20 @@ export namespace Components {
     }
     interface VgrCheckbox {
     }
+    interface VgrChoiceGroup {
+        "error"?: string;
+        "helpText"?: string;
+        "label": string;
+        /**
+          * @default false
+         */
+        "optional": boolean;
+        /**
+          * @default false
+         */
+        "required": boolean;
+        "type": 'radio' | 'checkbox';
+    }
     interface VgrHelpIconAndText {
         "info"?: VgrInfoContent;
         "vgrAriaLabel"?: string;
@@ -53,19 +67,6 @@ export namespace Components {
         "name": string;
         "srOnlyDisabledReason"?: string;
         "value"?: string;
-    }
-    interface VgrRadioGroup {
-        "error"?: string;
-        "helpText"?: string;
-        "label": string;
-        /**
-          * @default false
-         */
-        "optional": boolean;
-        /**
-          * @default false
-         */
-        "required": boolean;
     }
     interface VgrTextField {
         /**
@@ -133,6 +134,12 @@ declare global {
         prototype: HTMLVgrCheckboxElement;
         new (): HTMLVgrCheckboxElement;
     };
+    interface HTMLVgrChoiceGroupElement extends Components.VgrChoiceGroup, HTMLStencilElement {
+    }
+    var HTMLVgrChoiceGroupElement: {
+        prototype: HTMLVgrChoiceGroupElement;
+        new (): HTMLVgrChoiceGroupElement;
+    };
     interface HTMLVgrHelpIconAndTextElement extends Components.VgrHelpIconAndText, HTMLStencilElement {
     }
     var HTMLVgrHelpIconAndTextElement: {
@@ -162,12 +169,6 @@ declare global {
         prototype: HTMLVgrRadioButtonElement;
         new (): HTMLVgrRadioButtonElement;
     };
-    interface HTMLVgrRadioGroupElement extends Components.VgrRadioGroup, HTMLStencilElement {
-    }
-    var HTMLVgrRadioGroupElement: {
-        prototype: HTMLVgrRadioGroupElement;
-        new (): HTMLVgrRadioGroupElement;
-    };
     interface HTMLVgrTextFieldElement extends Components.VgrTextField, HTMLStencilElement {
     }
     var HTMLVgrTextFieldElement: {
@@ -177,10 +178,10 @@ declare global {
     interface HTMLElementTagNameMap {
         "vgr-button": HTMLVgrButtonElement;
         "vgr-checkbox": HTMLVgrCheckboxElement;
+        "vgr-choice-group": HTMLVgrChoiceGroupElement;
         "vgr-help-icon-and-text": HTMLVgrHelpIconAndTextElement;
         "vgr-icon": HTMLVgrIconElement;
         "vgr-radio-button": HTMLVgrRadioButtonElement;
-        "vgr-radio-group": HTMLVgrRadioGroupElement;
         "vgr-text-field": HTMLVgrTextFieldElement;
     }
 }
@@ -208,6 +209,20 @@ declare namespace LocalJSX {
     }
     interface VgrCheckbox {
     }
+    interface VgrChoiceGroup {
+        "error"?: string;
+        "helpText"?: string;
+        "label": string;
+        /**
+          * @default false
+         */
+        "optional"?: boolean;
+        /**
+          * @default false
+         */
+        "required"?: boolean;
+        "type": 'radio' | 'checkbox';
+    }
     interface VgrHelpIconAndText {
         "info"?: VgrInfoContent;
         "vgrAriaLabel"?: string;
@@ -232,19 +247,6 @@ declare namespace LocalJSX {
         "onVgrChange"?: (event: VgrRadioButtonCustomEvent<{ value?: string; checked: boolean }>) => void;
         "srOnlyDisabledReason"?: string;
         "value"?: string;
-    }
-    interface VgrRadioGroup {
-        "error"?: string;
-        "helpText"?: string;
-        "label": string;
-        /**
-          * @default false
-         */
-        "optional"?: boolean;
-        /**
-          * @default false
-         */
-        "required"?: boolean;
     }
     interface VgrTextField {
         /**
@@ -289,6 +291,14 @@ declare namespace LocalJSX {
         "icon": string;
         "vgrAriaLabel": string;
     }
+    interface VgrChoiceGroupAttributes {
+        "type": 'radio' | 'checkbox';
+        "label": string;
+        "helpText": string;
+        "error": string;
+        "required": boolean;
+        "optional": boolean;
+    }
     interface VgrHelpIconAndTextAttributes {
         "vgrAriaLabel": string;
     }
@@ -302,13 +312,6 @@ declare namespace LocalJSX {
         "value": string;
         "label": string;
         "srOnlyDisabledReason": string;
-    }
-    interface VgrRadioGroupAttributes {
-        "label": string;
-        "helpText": string;
-        "error": string;
-        "required": boolean;
-        "optional": boolean;
     }
     interface VgrTextFieldAttributes {
         "type": 'text' | 'textarea' | 'number' | 'email' | 'password' | 'tel' | 'url';
@@ -328,10 +331,10 @@ declare namespace LocalJSX {
     interface IntrinsicElements {
         "vgr-button": Omit<VgrButton, keyof VgrButtonAttributes> & { [K in keyof VgrButton & keyof VgrButtonAttributes]?: VgrButton[K] } & { [K in keyof VgrButton & keyof VgrButtonAttributes as `attr:${K}`]?: VgrButtonAttributes[K] } & { [K in keyof VgrButton & keyof VgrButtonAttributes as `prop:${K}`]?: VgrButton[K] } & OneOf<"text", VgrButton["text"], VgrButtonAttributes["text"]>;
         "vgr-checkbox": VgrCheckbox;
+        "vgr-choice-group": Omit<VgrChoiceGroup, keyof VgrChoiceGroupAttributes> & { [K in keyof VgrChoiceGroup & keyof VgrChoiceGroupAttributes]?: VgrChoiceGroup[K] } & { [K in keyof VgrChoiceGroup & keyof VgrChoiceGroupAttributes as `attr:${K}`]?: VgrChoiceGroupAttributes[K] } & { [K in keyof VgrChoiceGroup & keyof VgrChoiceGroupAttributes as `prop:${K}`]?: VgrChoiceGroup[K] } & OneOf<"type", VgrChoiceGroup["type"], VgrChoiceGroupAttributes["type"]> & OneOf<"label", VgrChoiceGroup["label"], VgrChoiceGroupAttributes["label"]>;
         "vgr-help-icon-and-text": Omit<VgrHelpIconAndText, keyof VgrHelpIconAndTextAttributes> & { [K in keyof VgrHelpIconAndText & keyof VgrHelpIconAndTextAttributes]?: VgrHelpIconAndText[K] } & { [K in keyof VgrHelpIconAndText & keyof VgrHelpIconAndTextAttributes as `attr:${K}`]?: VgrHelpIconAndTextAttributes[K] } & { [K in keyof VgrHelpIconAndText & keyof VgrHelpIconAndTextAttributes as `prop:${K}`]?: VgrHelpIconAndText[K] };
         "vgr-icon": Omit<VgrIcon, keyof VgrIconAttributes> & { [K in keyof VgrIcon & keyof VgrIconAttributes]?: VgrIcon[K] } & { [K in keyof VgrIcon & keyof VgrIconAttributes as `attr:${K}`]?: VgrIconAttributes[K] } & { [K in keyof VgrIcon & keyof VgrIconAttributes as `prop:${K}`]?: VgrIcon[K] } & OneOf<"icon", VgrIcon["icon"], VgrIconAttributes["icon"]>;
         "vgr-radio-button": Omit<VgrRadioButton, keyof VgrRadioButtonAttributes> & { [K in keyof VgrRadioButton & keyof VgrRadioButtonAttributes]?: VgrRadioButton[K] } & { [K in keyof VgrRadioButton & keyof VgrRadioButtonAttributes as `attr:${K}`]?: VgrRadioButtonAttributes[K] } & { [K in keyof VgrRadioButton & keyof VgrRadioButtonAttributes as `prop:${K}`]?: VgrRadioButton[K] };
-        "vgr-radio-group": Omit<VgrRadioGroup, keyof VgrRadioGroupAttributes> & { [K in keyof VgrRadioGroup & keyof VgrRadioGroupAttributes]?: VgrRadioGroup[K] } & { [K in keyof VgrRadioGroup & keyof VgrRadioGroupAttributes as `attr:${K}`]?: VgrRadioGroupAttributes[K] } & { [K in keyof VgrRadioGroup & keyof VgrRadioGroupAttributes as `prop:${K}`]?: VgrRadioGroup[K] } & OneOf<"label", VgrRadioGroup["label"], VgrRadioGroupAttributes["label"]>;
         "vgr-text-field": Omit<VgrTextField, keyof VgrTextFieldAttributes> & { [K in keyof VgrTextField & keyof VgrTextFieldAttributes]?: VgrTextField[K] } & { [K in keyof VgrTextField & keyof VgrTextFieldAttributes as `attr:${K}`]?: VgrTextFieldAttributes[K] } & { [K in keyof VgrTextField & keyof VgrTextFieldAttributes as `prop:${K}`]?: VgrTextField[K] };
     }
 }
@@ -341,10 +344,10 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "vgr-button": LocalJSX.IntrinsicElements["vgr-button"] & JSXBase.HTMLAttributes<HTMLVgrButtonElement>;
             "vgr-checkbox": LocalJSX.IntrinsicElements["vgr-checkbox"] & JSXBase.HTMLAttributes<HTMLVgrCheckboxElement>;
+            "vgr-choice-group": LocalJSX.IntrinsicElements["vgr-choice-group"] & JSXBase.HTMLAttributes<HTMLVgrChoiceGroupElement>;
             "vgr-help-icon-and-text": LocalJSX.IntrinsicElements["vgr-help-icon-and-text"] & JSXBase.HTMLAttributes<HTMLVgrHelpIconAndTextElement>;
             "vgr-icon": LocalJSX.IntrinsicElements["vgr-icon"] & JSXBase.HTMLAttributes<HTMLVgrIconElement>;
             "vgr-radio-button": LocalJSX.IntrinsicElements["vgr-radio-button"] & JSXBase.HTMLAttributes<HTMLVgrRadioButtonElement>;
-            "vgr-radio-group": LocalJSX.IntrinsicElements["vgr-radio-group"] & JSXBase.HTMLAttributes<HTMLVgrRadioGroupElement>;
             "vgr-text-field": LocalJSX.IntrinsicElements["vgr-text-field"] & JSXBase.HTMLAttributes<HTMLVgrTextFieldElement>;
         }
     }

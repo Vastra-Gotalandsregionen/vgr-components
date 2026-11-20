@@ -3,12 +3,13 @@ import { Component, Host, Prop, h } from '@stencil/core';
 let idCount = 0;
 
 @Component({
-  tag: 'vgr-radio-group',
+  tag: 'vgr-choice-group',
   scoped: true,
 })
-export class VgrRadioGroup {
-  private readonly groupId = `vgr-radio-group-${idCount++}`;
+export class VgrChoiceGroup {
+  private readonly groupId = `vgr-choice-group-${idCount++}`;
 
+  @Prop() type!: 'radio' | 'checkbox';
   @Prop() label!: string;
   @Prop() helpText?: string;
   @Prop() error?: string;
@@ -25,22 +26,22 @@ export class VgrRadioGroup {
     const describedByIds = [showHelp && helperId, showError && errorId].filter(Boolean);
     const describedBy = describedByIds.length ? describedByIds.join(' ') : undefined;
 
+    const isRadio = this.type === 'radio';
+
     return (
       <Host>
         <fieldset
-          role="radiogroup"
-          class="m-0 min-w-0 border-0 p-0"
-          aria-required={this.required ? 'true' : undefined}
+          role={isRadio ? 'radiogroup' : 'group'}
+          class="block m-0 min-w-0 border-0 p-0 text-neutral-text"
+          aria-required={isRadio && this.required ? 'true' : undefined}
           aria-invalid={this.error ? 'true' : undefined}
-          aria-describedby={describedBy || undefined}
+          aria-describedby={describedBy}
         >
-          <legend class="flex mb-3 text-base font-bold leading-text-field-label text-neutral-text">
+          <legend class="flex items-center p-0 mb-3 text-base font-bold leading-text-field-label">
             {this.label}
-
             {this.required && <span class="text-status-error-text block ml-1">*</span>}
             {this.optional && <span class="text-neutral-text-variant block ml-2 font-normal">(frivillig)</span>}
           </legend>
-
           <div class="flex flex-col gap-y-3 mb-2">
             <slot></slot>
           </div>

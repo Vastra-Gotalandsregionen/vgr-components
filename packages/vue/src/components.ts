@@ -23,6 +23,19 @@ export const VgrButton: StencilVueComponent<JSX.VgrButton> = /*@__PURE__*/ defin
 ]);
 
 
+export const VgrCheckbox: StencilVueComponent<JSX.VgrCheckbox> = /*@__PURE__*/ defineContainer<JSX.VgrCheckbox>('vgr-checkbox', undefined);
+
+
+export const VgrChoiceGroup: StencilVueComponent<JSX.VgrChoiceGroup> = /*@__PURE__*/ defineContainer<JSX.VgrChoiceGroup>('vgr-choice-group', undefined, [
+  'type',
+  'label',
+  'helpText',
+  'error',
+  'required',
+  'optional'
+]);
+
+
 export const VgrHelpIconAndText: StencilVueComponent<JSX.VgrHelpIconAndText> = /*@__PURE__*/ defineContainer<JSX.VgrHelpIconAndText>('vgr-help-icon-and-text', undefined, [
   'info',
   'vgrAriaLabel'
@@ -44,15 +57,6 @@ export const VgrRadioButton: StencilVueComponent<JSX.VgrRadioButton> = /*@__PURE
   'vgrChange'
 ], [
   'vgrChange'
-]);
-
-
-export const VgrRadioGroup: StencilVueComponent<JSX.VgrRadioGroup> = /*@__PURE__*/ defineContainer<JSX.VgrRadioGroup>('vgr-radio-group', undefined, [
-  'label',
-  'helpText',
-  'error',
-  'required',
-  'optional'
 ]);
 
 
