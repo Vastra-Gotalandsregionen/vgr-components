@@ -34,6 +34,19 @@ export const VgrIcon: StencilVueComponent<JSX.VgrIcon> = /*@__PURE__*/ defineCon
 ]);
 
 
+export const VgrRadioButton: StencilVueComponent<JSX.VgrRadioButton> = /*@__PURE__*/ defineContainer<JSX.VgrRadioButton>('vgr-radio-button', undefined, [
+  'disabled',
+  'checked',
+  'name',
+  'value',
+  'label',
+  'srOnlyDisabledReason',
+  'vgrChange'
+], [
+  'vgrChange'
+]);
+
+
 export const VgrTextField: StencilVueComponent<JSX.VgrTextField> = /*@__PURE__*/ defineContainer<JSX.VgrTextField>('vgr-text-field', undefined, [
   'type',
   'disabled',

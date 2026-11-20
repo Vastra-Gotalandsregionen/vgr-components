@@ -47,7 +47,7 @@ export class VgrTextField {
      * Classes
      */
     // Shared by inputs and textareas
-    let sharedClasses = ['block bg-elevation-elevation-1 border-2 rounded-text-field pl-3 pr-6'];
+    let sharedClasses = ['text-base block bg-elevation-elevation-1 border-2 rounded-text-field pl-3 pr-6'];
     if (!this.error) sharedClasses.push('border-neutral-border');
 
     // Hover

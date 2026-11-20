@@ -38,6 +38,20 @@ export namespace Components {
          */
         "icon": string;
     }
+    interface VgrRadioButton {
+        /**
+          * @default false
+         */
+        "checked": boolean;
+        /**
+          * @default false
+         */
+        "disabled": boolean;
+        "label": string;
+        "name": string;
+        "srOnlyDisabledReason"?: string;
+        "value"?: string;
+    }
     interface VgrTextField {
         /**
           * @default false
@@ -76,6 +90,10 @@ export interface VgrButtonCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLVgrButtonElement;
 }
+export interface VgrRadioButtonCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLVgrRadioButtonElement;
+}
 declare global {
     interface HTMLVgrButtonElementEventMap {
         "vgrClick": void;
@@ -106,6 +124,23 @@ declare global {
         prototype: HTMLVgrIconElement;
         new (): HTMLVgrIconElement;
     };
+    interface HTMLVgrRadioButtonElementEventMap {
+        "vgrChange": { value?: string; checked: boolean };
+    }
+    interface HTMLVgrRadioButtonElement extends Components.VgrRadioButton, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLVgrRadioButtonElementEventMap>(type: K, listener: (this: HTMLVgrRadioButtonElement, ev: VgrRadioButtonCustomEvent<HTMLVgrRadioButtonElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLVgrRadioButtonElementEventMap>(type: K, listener: (this: HTMLVgrRadioButtonElement, ev: VgrRadioButtonCustomEvent<HTMLVgrRadioButtonElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLVgrRadioButtonElement: {
+        prototype: HTMLVgrRadioButtonElement;
+        new (): HTMLVgrRadioButtonElement;
+    };
     interface HTMLVgrTextFieldElement extends Components.VgrTextField, HTMLStencilElement {
     }
     var HTMLVgrTextFieldElement: {
@@ -116,6 +151,7 @@ declare global {
         "vgr-button": HTMLVgrButtonElement;
         "vgr-help-icon-and-text": HTMLVgrHelpIconAndTextElement;
         "vgr-icon": HTMLVgrIconElement;
+        "vgr-radio-button": HTMLVgrRadioButtonElement;
         "vgr-text-field": HTMLVgrTextFieldElement;
     }
 }
@@ -150,6 +186,21 @@ declare namespace LocalJSX {
           * SVG markup for the icon. Must come from our own icon package, never from user input, since it is rendered with innerHTML.
          */
         "icon": string;
+    }
+    interface VgrRadioButton {
+        /**
+          * @default false
+         */
+        "checked"?: boolean;
+        /**
+          * @default false
+         */
+        "disabled"?: boolean;
+        "label"?: string;
+        "name"?: string;
+        "onVgrChange"?: (event: VgrRadioButtonCustomEvent<{ value?: string; checked: boolean }>) => void;
+        "srOnlyDisabledReason"?: string;
+        "value"?: string;
     }
     interface VgrTextField {
         /**
@@ -200,6 +251,14 @@ declare namespace LocalJSX {
     interface VgrIconAttributes {
         "icon": string;
     }
+    interface VgrRadioButtonAttributes {
+        "disabled": boolean;
+        "checked": boolean;
+        "name": string;
+        "value": string;
+        "label": string;
+        "srOnlyDisabledReason": string;
+    }
     interface VgrTextFieldAttributes {
         "type": 'text' | 'textarea' | 'number' | 'email' | 'password' | 'tel' | 'url';
         "disabled": boolean;
@@ -219,6 +278,7 @@ declare namespace LocalJSX {
         "vgr-button": Omit<VgrButton, keyof VgrButtonAttributes> & { [K in keyof VgrButton & keyof VgrButtonAttributes]?: VgrButton[K] } & { [K in keyof VgrButton & keyof VgrButtonAttributes as `attr:${K}`]?: VgrButtonAttributes[K] } & { [K in keyof VgrButton & keyof VgrButtonAttributes as `prop:${K}`]?: VgrButton[K] } & OneOf<"text", VgrButton["text"], VgrButtonAttributes["text"]>;
         "vgr-help-icon-and-text": Omit<VgrHelpIconAndText, keyof VgrHelpIconAndTextAttributes> & { [K in keyof VgrHelpIconAndText & keyof VgrHelpIconAndTextAttributes]?: VgrHelpIconAndText[K] } & { [K in keyof VgrHelpIconAndText & keyof VgrHelpIconAndTextAttributes as `attr:${K}`]?: VgrHelpIconAndTextAttributes[K] } & { [K in keyof VgrHelpIconAndText & keyof VgrHelpIconAndTextAttributes as `prop:${K}`]?: VgrHelpIconAndText[K] };
         "vgr-icon": Omit<VgrIcon, keyof VgrIconAttributes> & { [K in keyof VgrIcon & keyof VgrIconAttributes]?: VgrIcon[K] } & { [K in keyof VgrIcon & keyof VgrIconAttributes as `attr:${K}`]?: VgrIconAttributes[K] } & { [K in keyof VgrIcon & keyof VgrIconAttributes as `prop:${K}`]?: VgrIcon[K] } & OneOf<"icon", VgrIcon["icon"], VgrIconAttributes["icon"]>;
+        "vgr-radio-button": Omit<VgrRadioButton, keyof VgrRadioButtonAttributes> & { [K in keyof VgrRadioButton & keyof VgrRadioButtonAttributes]?: VgrRadioButton[K] } & { [K in keyof VgrRadioButton & keyof VgrRadioButtonAttributes as `attr:${K}`]?: VgrRadioButtonAttributes[K] } & { [K in keyof VgrRadioButton & keyof VgrRadioButtonAttributes as `prop:${K}`]?: VgrRadioButton[K] };
         "vgr-text-field": Omit<VgrTextField, keyof VgrTextFieldAttributes> & { [K in keyof VgrTextField & keyof VgrTextFieldAttributes]?: VgrTextField[K] } & { [K in keyof VgrTextField & keyof VgrTextFieldAttributes as `attr:${K}`]?: VgrTextFieldAttributes[K] } & { [K in keyof VgrTextField & keyof VgrTextFieldAttributes as `prop:${K}`]?: VgrTextField[K] };
     }
 }
@@ -229,6 +289,7 @@ declare module "@stencil/core" {
             "vgr-button": LocalJSX.IntrinsicElements["vgr-button"] & JSXBase.HTMLAttributes<HTMLVgrButtonElement>;
             "vgr-help-icon-and-text": LocalJSX.IntrinsicElements["vgr-help-icon-and-text"] & JSXBase.HTMLAttributes<HTMLVgrHelpIconAndTextElement>;
             "vgr-icon": LocalJSX.IntrinsicElements["vgr-icon"] & JSXBase.HTMLAttributes<HTMLVgrIconElement>;
+            "vgr-radio-button": LocalJSX.IntrinsicElements["vgr-radio-button"] & JSXBase.HTMLAttributes<HTMLVgrRadioButtonElement>;
             "vgr-text-field": LocalJSX.IntrinsicElements["vgr-text-field"] & JSXBase.HTMLAttributes<HTMLVgrTextFieldElement>;
         }
     }
