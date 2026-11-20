@@ -29,6 +29,22 @@ export namespace Components {
         "vgrAriaLabel"?: string;
     }
     interface VgrCheckbox {
+        /**
+          * @default false
+         */
+        "checked": boolean;
+        /**
+          * @default false
+         */
+        "disabled": boolean;
+        /**
+          * @default false
+         */
+        "indeterminate": boolean;
+        "label": string;
+        "name"?: string;
+        "srOnlyDisabledReason"?: string;
+        "value"?: string;
     }
     interface VgrChoiceGroup {
         "error"?: string;
@@ -106,6 +122,10 @@ export interface VgrButtonCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLVgrButtonElement;
 }
+export interface VgrCheckboxCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLVgrCheckboxElement;
+}
 export interface VgrRadioButtonCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLVgrRadioButtonElement;
@@ -128,7 +148,18 @@ declare global {
         prototype: HTMLVgrButtonElement;
         new (): HTMLVgrButtonElement;
     };
+    interface HTMLVgrCheckboxElementEventMap {
+        "vgrChange": { value?: string; checked: boolean };
+    }
     interface HTMLVgrCheckboxElement extends Components.VgrCheckbox, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLVgrCheckboxElementEventMap>(type: K, listener: (this: HTMLVgrCheckboxElement, ev: VgrCheckboxCustomEvent<HTMLVgrCheckboxElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLVgrCheckboxElementEventMap>(type: K, listener: (this: HTMLVgrCheckboxElement, ev: VgrCheckboxCustomEvent<HTMLVgrCheckboxElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLVgrCheckboxElement: {
         prototype: HTMLVgrCheckboxElement;
@@ -208,6 +239,23 @@ declare namespace LocalJSX {
         "vgrAriaLabel"?: string;
     }
     interface VgrCheckbox {
+        /**
+          * @default false
+         */
+        "checked"?: boolean;
+        /**
+          * @default false
+         */
+        "disabled"?: boolean;
+        /**
+          * @default false
+         */
+        "indeterminate"?: boolean;
+        "label": string;
+        "name"?: string;
+        "onVgrChange"?: (event: VgrCheckboxCustomEvent<{ value?: string; checked: boolean }>) => void;
+        "srOnlyDisabledReason"?: string;
+        "value"?: string;
     }
     interface VgrChoiceGroup {
         "error"?: string;
@@ -291,6 +339,15 @@ declare namespace LocalJSX {
         "icon": string;
         "vgrAriaLabel": string;
     }
+    interface VgrCheckboxAttributes {
+        "label": string;
+        "name": string;
+        "value": string;
+        "disabled": boolean;
+        "srOnlyDisabledReason": string;
+        "checked": boolean;
+        "indeterminate": boolean;
+    }
     interface VgrChoiceGroupAttributes {
         "type": 'radio' | 'checkbox';
         "label": string;
@@ -330,7 +387,7 @@ declare namespace LocalJSX {
 
     interface IntrinsicElements {
         "vgr-button": Omit<VgrButton, keyof VgrButtonAttributes> & { [K in keyof VgrButton & keyof VgrButtonAttributes]?: VgrButton[K] } & { [K in keyof VgrButton & keyof VgrButtonAttributes as `attr:${K}`]?: VgrButtonAttributes[K] } & { [K in keyof VgrButton & keyof VgrButtonAttributes as `prop:${K}`]?: VgrButton[K] } & OneOf<"text", VgrButton["text"], VgrButtonAttributes["text"]>;
-        "vgr-checkbox": VgrCheckbox;
+        "vgr-checkbox": Omit<VgrCheckbox, keyof VgrCheckboxAttributes> & { [K in keyof VgrCheckbox & keyof VgrCheckboxAttributes]?: VgrCheckbox[K] } & { [K in keyof VgrCheckbox & keyof VgrCheckboxAttributes as `attr:${K}`]?: VgrCheckboxAttributes[K] } & { [K in keyof VgrCheckbox & keyof VgrCheckboxAttributes as `prop:${K}`]?: VgrCheckbox[K] } & OneOf<"label", VgrCheckbox["label"], VgrCheckboxAttributes["label"]>;
         "vgr-choice-group": Omit<VgrChoiceGroup, keyof VgrChoiceGroupAttributes> & { [K in keyof VgrChoiceGroup & keyof VgrChoiceGroupAttributes]?: VgrChoiceGroup[K] } & { [K in keyof VgrChoiceGroup & keyof VgrChoiceGroupAttributes as `attr:${K}`]?: VgrChoiceGroupAttributes[K] } & { [K in keyof VgrChoiceGroup & keyof VgrChoiceGroupAttributes as `prop:${K}`]?: VgrChoiceGroup[K] } & OneOf<"type", VgrChoiceGroup["type"], VgrChoiceGroupAttributes["type"]> & OneOf<"label", VgrChoiceGroup["label"], VgrChoiceGroupAttributes["label"]>;
         "vgr-help-icon-and-text": Omit<VgrHelpIconAndText, keyof VgrHelpIconAndTextAttributes> & { [K in keyof VgrHelpIconAndText & keyof VgrHelpIconAndTextAttributes]?: VgrHelpIconAndText[K] } & { [K in keyof VgrHelpIconAndText & keyof VgrHelpIconAndTextAttributes as `attr:${K}`]?: VgrHelpIconAndTextAttributes[K] } & { [K in keyof VgrHelpIconAndText & keyof VgrHelpIconAndTextAttributes as `prop:${K}`]?: VgrHelpIconAndText[K] };
         "vgr-icon": Omit<VgrIcon, keyof VgrIconAttributes> & { [K in keyof VgrIcon & keyof VgrIconAttributes]?: VgrIcon[K] } & { [K in keyof VgrIcon & keyof VgrIconAttributes as `attr:${K}`]?: VgrIconAttributes[K] } & { [K in keyof VgrIcon & keyof VgrIconAttributes as `prop:${K}`]?: VgrIcon[K] } & OneOf<"icon", VgrIcon["icon"], VgrIconAttributes["icon"]>;

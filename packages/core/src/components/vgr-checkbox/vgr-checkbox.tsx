@@ -1,14 +1,155 @@
-import { Component, Host, h } from '@stencil/core';
+import { Component, Element, Event, EventEmitter, Host, Listen, Prop, State, h } from '@stencil/core';
+import { check, chevronDown } from '../../assets/svgs.generated';
+
+let idCount = 0;
 
 @Component({
   tag: 'vgr-checkbox',
   scoped: true,
 })
 export class VgrCheckbox {
+  private readonly checkboxId = `vgr-checkbox-${idCount++}`;
+  private readonly reasonId = `${this.checkboxId}-reason`;
+  private readonly childrenId = `${this.checkboxId}-children`;
+  private inputEl?: HTMLInputElement;
+
+  @Element() el!: HTMLElement;
+
+  @Prop() label!: string;
+  @Prop() name?: string;
+  @Prop() value?: string;
+  @Prop() disabled = false;
+  @Prop() srOnlyDisabledReason?: string;
+  @Prop({ mutable: true }) checked: boolean = false;
+  @Prop({ mutable: true }) indeterminate: boolean = false;
+
+  @State() hasChildren = false;
+  @State() expanded = false;
+
+  @Event() vgrChange: EventEmitter<{ value?: string; checked: boolean }>;
+
+  componentWillLoad() {
+    this.hasChildren = this.getDirectChildren().length > 0;
+  }
+
+  componentDidLoad() {
+    if (this.hasChildren) this.syncFromChildren();
+  }
+
+  componentDidRender() {
+    if (this.inputEl) this.inputEl.indeterminate = this.indeterminate;
+  }
+
+  @Listen('vgrChange')
+  handleChildChange(event: Event) {
+    const target = event.target as HTMLElement;
+    if (target === this.el) return;
+    if (target.parentElement?.closest('vgr-checkbox') !== this.el) return;
+    this.syncFromChildren();
+  }
+
+  private getDirectChildren(): HTMLVgrCheckboxElement[] {
+    return Array.from(this.el.querySelectorAll('vgr-checkbox')).filter(child => child.parentElement?.closest('vgr-checkbox') === this.el);
+  }
+
+  private syncFromChildren() {
+    const children = this.getDirectChildren();
+    const all = children.every(child => child.checked);
+    const some = children.some(child => child.checked || child.indeterminate);
+    const checked = all;
+    const indeterminate = !all && some;
+    if (checked === this.checked && indeterminate === this.indeterminate) return;
+    this.checked = checked;
+    this.indeterminate = indeterminate;
+    this.vgrChange.emit({ value: this.value, checked: this.checked });
+  }
+
+  private setAllDescendants(checked: boolean) {
+    this.el.querySelectorAll('vgr-checkbox').forEach(child => {
+      child.checked = checked;
+      child.indeterminate = false;
+    });
+  }
+
+  private readonly handleChange = () => {
+    this.checked = this.inputEl.checked;
+    this.indeterminate = false;
+    if (this.hasChildren) this.setAllDescendants(this.checked);
+    this.vgrChange.emit({ value: this.value, checked: this.checked });
+  };
+
+  private readonly handleClick = (event: MouseEvent) => {
+    if (this.disabled) event.preventDefault();
+  };
+
+  private readonly toggleExpanded = () => {
+    this.expanded = !this.expanded;
+  };
+
   render() {
+    const hasReason = this.disabled && !!this.srOnlyDisabledReason;
+    const filled = this.checked || this.indeterminate;
+
+    const labelClasses = [
+      'flex items-center gap-2 py-1.5 text-base leading-6',
+      this.disabled ? 'text-neutral-disabled cursor-not-allowed' : 'text-neutral-text cursor-pointer',
+    ].join(' ');
+
+    const boxColor = this.disabled ? 'neutral-disabled' : 'primary-action';
+    const strokeClass = filled ? `stroke-${boxColor}` : this.disabled ? 'stroke-neutral-disabled' : 'stroke-neutral-text';
+    const fillClass = filled ? `fill-${boxColor}` : 'fill-transparent';
+
+    const boxClasses = [
+      'grid shrink-0 place-items-center w-6 h-6 rounded-sm',
+      'peer-focus-visible:outline-3 peer-focus-visible:outline-offset-3 peer-focus-visible:outline-primary-base-30',
+    ].join(' ');
+
     return (
       <Host>
-        <slot></slot>
+        <div class="flex items-center gap-1">
+          {this.hasChildren && (
+            <button
+              type="button"
+              class="flex size-8 shrink-0 items-center justify-center text-neutral-text"
+              aria-expanded={this.expanded ? 'true' : 'false'}
+              aria-controls={this.childrenId}
+              aria-label={`Undernivåer för ${this.label}`}
+              onClick={this.toggleExpanded}
+            >
+              <vgr-icon icon={chevronDown} class={this.expanded ? 'rotate-180' : ''}></vgr-icon>
+            </button>
+          )}
+          <label htmlFor={this.checkboxId} class={labelClasses}>
+            <input
+              type="checkbox"
+              class="peer sr-only"
+              id={this.checkboxId}
+              name={this.name}
+              value={this.value}
+              checked={this.checked}
+              onChange={this.handleChange}
+              onClick={this.handleClick}
+              ref={el => (this.inputEl = el)}
+              aria-disabled={this.disabled ? 'true' : undefined}
+              aria-describedby={hasReason ? this.reasonId : undefined}
+            />
+            <span class={boxClasses} aria-hidden="true">
+              <svg class="col-start-1 row-start-1 w-6 h-6" viewBox="0 0 24 24">
+                <rect x="1" y="1" width="22" height="22" rx="3" stroke-width="2" class={`${strokeClass} ${fillClass}`} />
+              </svg>
+              {this.checked && !this.indeterminate && <vgr-icon icon={check} class="col-start-1 row-start-1 text-white"></vgr-icon>}
+            </span>
+            {this.label}
+          </label>
+        </div>
+        {hasReason && (
+          <span id={this.reasonId} class="sr-only">
+            {this.srOnlyDisabledReason}
+          </span>
+        )}
+        <div id={this.childrenId} class={this.expanded ? 'ml-8' : 'hidden'}>
+          <slot></slot>
+        </div>
       </Host>
     );
   }
