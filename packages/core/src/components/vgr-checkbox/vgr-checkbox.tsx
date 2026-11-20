@@ -14,6 +14,7 @@ export class VgrCheckbox {
   private inputEl?: HTMLInputElement;
 
   @Element() el!: HTMLElement;
+  private isLast = false;
 
   @Prop() label!: string;
   @Prop() name?: string;
@@ -30,6 +31,9 @@ export class VgrCheckbox {
 
   componentWillLoad() {
     this.hasChildren = this.getDirectChildren().length > 0;
+    const top = this.el.closest('vgr-checkbox:not(vgr-checkbox vgr-checkbox)');
+    const all = top?.querySelectorAll('vgr-checkbox');
+    this.isLast = !!all?.length && all[all.length - 1] === this.el;
   }
 
   componentDidLoad() {
@@ -88,12 +92,13 @@ export class VgrCheckbox {
 
   render() {
     const hasReason = this.disabled && !!this.srOnlyDisabledReason;
-    const filled = this.checked || this.indeterminate;
 
-    const labelClasses = [
-      'flex items-center gap-2 py-1.5 text-base leading-6',
-      this.disabled ? 'text-neutral-disabled cursor-not-allowed' : 'text-neutral-text cursor-pointer',
-    ].join(' ');
+    const levelWrapperClasses = ['flex items-center gap-1', this.expanded ? 'bg-primary-base-surface-minimal rounded-t-lg' : '', this.isLast ? 'rounded-b-lg' : ''].join(' ');
+    const hostClasses = 'block w-fit [vgr-checkbox_&]:w-auto';
+    const childrenClasses = this.expanded ? 'ml-8 [&_[data-row]]:bg-primary-base-surface-minimal [&_[data-row]]:rounded-t-none' : 'hidden';
+    const labelClasses = ['flex items-center gap-2 p-3 text-base leading-6', this.disabled ? 'text-neutral-disabled cursor-not-allowed' : 'text-neutral-text cursor-pointer'].join(
+      ' ',
+    );
 
     const isFull = this.checked && !this.indeterminate;
     const strokeClass = this.disabled ? 'stroke-neutral-disabled' : this.checked || this.indeterminate ? 'stroke-primary-action' : 'stroke-neutral-text';
@@ -105,8 +110,8 @@ export class VgrCheckbox {
     ].join(' ');
 
     return (
-      <Host>
-        <div class="flex items-center gap-1">
+      <Host class={hostClasses}>
+        <div class={levelWrapperClasses} data-row="true">
           <label htmlFor={this.checkboxId} class={labelClasses}>
             <input
               type="checkbox"
@@ -130,7 +135,7 @@ export class VgrCheckbox {
                 )}
                 {this.indeterminate && <rect x="5" y="5" width="14" height="14" rx="1" class={fillClass} />}
               </svg>
-              {this.checked && !this.indeterminate && <vgr-icon icon={check} class="col-start-1 row-start-1 text-white"></vgr-icon>}
+              {this.checked && !this.indeterminate && <vgr-icon icon={check} class="col-start-1 row-start-1 text-white mt-px" size={2.5}></vgr-icon>}
             </span>
             {this.label}
           </label>
@@ -152,7 +157,7 @@ export class VgrCheckbox {
             {this.srOnlyDisabledReason}
           </span>
         )}
-        <div id={this.childrenId} class={this.expanded ? 'ml-8' : 'hidden'}>
+        <div id={this.childrenId} class={childrenClasses}>
           <slot></slot>
         </div>
       </Host>

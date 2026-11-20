@@ -10,7 +10,7 @@
     <script nomodule src="/build/vgregion-components.js"></script>
     <link rel="stylesheet" href="/styles.css" />
   </head>
-  <body style="background-color: var(--color-accent-brown-surface-minimal)">
+  <body style="background-color: var(--color-elevation-background); color: var(--color-neutral-text); padding: 1rem">
     <h2 class="text-2xl font-bold mb-2">Help icon and text</h2>
     <div class="flex flex-col gap-4 mb-6">
       <div class="flex justify-center"><vgr-help-icon-and-text id="helpIcon" /></div>
@@ -18,7 +18,7 @@
     <hr />
     <h2 class="text-2xl font-bold mb-2">Checkbox</h2>
     <div class="flex flex-col gap-4 mb-6">
-      <vgr-choice-group label="Välj en färg" optional="true" error="Välj minst ett alternativ">
+      <vgr-choice-group label="Välj några färger" optional="true">
         <vgr-checkbox label="Grön" name="myColor">
           <vgr-checkbox label="Mossgrön" name="myColor"></vgr-checkbox>
           <vgr-checkbox label="Skogsgrön" name="myColor"></vgr-checkbox>
@@ -48,7 +48,7 @@
     <hr />
     <h2 class="text-2xl font-bold mb-2">Radio button</h2>
     <div class="flex flex-col gap-4 mb-6">
-      <vgr-choice-group label="Välj en färg" optional="true" error="Välj minst ett alternativ">
+      <vgr-choice-group label="Välj en färg" required="true" error="Välj minst ett alternativ">
         <vgr-radio-button label="Grön" name="myColor"></vgr-radio-button>
         <vgr-radio-button label="Gul" name="myColor" disabled="true" sr-only-disabled-reason="Du har inte klickat på de andra radioen knapparna"></vgr-radio-button>
         <vgr-radio-button label="Blå" name="myColor"></vgr-radio-button>

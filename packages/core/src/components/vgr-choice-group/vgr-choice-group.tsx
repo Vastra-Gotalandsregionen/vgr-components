@@ -10,7 +10,7 @@ export class VgrChoiceGroup {
   private readonly groupId = `vgr-choice-group-${idCount++}`;
 
   @Prop() type!: 'radio' | 'checkbox';
-  @Prop() label!: string;
+  @Prop() label?: string;
   @Prop() helpText?: string;
   @Prop() error?: string;
   @Prop() required: boolean = false;
@@ -37,11 +37,13 @@ export class VgrChoiceGroup {
           aria-invalid={this.error ? 'true' : undefined}
           aria-describedby={describedBy}
         >
-          <legend class="flex items-center p-0 mb-3 text-base font-bold leading-text-field-label">
-            {this.label}
-            {this.required && <span class="text-status-error-text block ml-1">*</span>}
-            {this.optional && <span class="text-neutral-text-variant block ml-2 font-normal">(frivillig)</span>}
-          </legend>
+          {this.label && (
+            <legend class="flex items-center p-0 mb-3 text-base font-bold leading-text-field-label">
+              {this.label}
+              {this.required && <span class="text-status-error-text block ml-1">*</span>}
+              {this.optional && <span class="text-neutral-text-variant block ml-2 font-normal">(frivillig)</span>}
+            </legend>
+          )}
           <div class="flex flex-col gap-y-3 mb-2">
             <slot></slot>
           </div>

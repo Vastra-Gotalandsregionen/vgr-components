@@ -1,15 +1,13 @@
 import { Component, Host, Prop, h } from '@stencil/core';
 
-type IconSize = '3' | '4' | '5' | '6' | '8' | '10' | '12';
+type IconSize = '2.5' | '3' | '4' | '5' | '6';
 
 const sizeClasses: Record<IconSize, string> = {
+  '2.5': 'h-2.5',
   '3': 'h-3',
   '4': 'h-4',
   '5': 'h-5',
   '6': 'h-6',
-  '8': 'h-8',
-  '10': 'h-10',
-  '12': 'h-12',
 };
 
 @Component({

@@ -49,7 +49,7 @@ export namespace Components {
     interface VgrChoiceGroup {
         "error"?: string;
         "helpText"?: string;
-        "label": string;
+        "label"?: string;
         /**
           * @default false
          */
@@ -264,7 +264,7 @@ declare namespace LocalJSX {
     interface VgrChoiceGroup {
         "error"?: string;
         "helpText"?: string;
-        "label": string;
+        "label"?: string;
         /**
           * @default false
          */
@@ -397,7 +397,7 @@ declare namespace LocalJSX {
     interface IntrinsicElements {
         "vgr-button": Omit<VgrButton, keyof VgrButtonAttributes> & { [K in keyof VgrButton & keyof VgrButtonAttributes]?: VgrButton[K] } & { [K in keyof VgrButton & keyof VgrButtonAttributes as `attr:${K}`]?: VgrButtonAttributes[K] } & { [K in keyof VgrButton & keyof VgrButtonAttributes as `prop:${K}`]?: VgrButton[K] } & OneOf<"text", VgrButton["text"], VgrButtonAttributes["text"]>;
         "vgr-checkbox": Omit<VgrCheckbox, keyof VgrCheckboxAttributes> & { [K in keyof VgrCheckbox & keyof VgrCheckboxAttributes]?: VgrCheckbox[K] } & { [K in keyof VgrCheckbox & keyof VgrCheckboxAttributes as `attr:${K}`]?: VgrCheckboxAttributes[K] } & { [K in keyof VgrCheckbox & keyof VgrCheckboxAttributes as `prop:${K}`]?: VgrCheckbox[K] } & OneOf<"label", VgrCheckbox["label"], VgrCheckboxAttributes["label"]>;
-        "vgr-choice-group": Omit<VgrChoiceGroup, keyof VgrChoiceGroupAttributes> & { [K in keyof VgrChoiceGroup & keyof VgrChoiceGroupAttributes]?: VgrChoiceGroup[K] } & { [K in keyof VgrChoiceGroup & keyof VgrChoiceGroupAttributes as `attr:${K}`]?: VgrChoiceGroupAttributes[K] } & { [K in keyof VgrChoiceGroup & keyof VgrChoiceGroupAttributes as `prop:${K}`]?: VgrChoiceGroup[K] } & OneOf<"type", VgrChoiceGroup["type"], VgrChoiceGroupAttributes["type"]> & OneOf<"label", VgrChoiceGroup["label"], VgrChoiceGroupAttributes["label"]>;
+        "vgr-choice-group": Omit<VgrChoiceGroup, keyof VgrChoiceGroupAttributes> & { [K in keyof VgrChoiceGroup & keyof VgrChoiceGroupAttributes]?: VgrChoiceGroup[K] } & { [K in keyof VgrChoiceGroup & keyof VgrChoiceGroupAttributes as `attr:${K}`]?: VgrChoiceGroupAttributes[K] } & { [K in keyof VgrChoiceGroup & keyof VgrChoiceGroupAttributes as `prop:${K}`]?: VgrChoiceGroup[K] } & OneOf<"type", VgrChoiceGroup["type"], VgrChoiceGroupAttributes["type"]>;
         "vgr-help-icon-and-text": Omit<VgrHelpIconAndText, keyof VgrHelpIconAndTextAttributes> & { [K in keyof VgrHelpIconAndText & keyof VgrHelpIconAndTextAttributes]?: VgrHelpIconAndText[K] } & { [K in keyof VgrHelpIconAndText & keyof VgrHelpIconAndTextAttributes as `attr:${K}`]?: VgrHelpIconAndTextAttributes[K] } & { [K in keyof VgrHelpIconAndText & keyof VgrHelpIconAndTextAttributes as `prop:${K}`]?: VgrHelpIconAndText[K] };
         "vgr-icon": Omit<VgrIcon, keyof VgrIconAttributes> & { [K in keyof VgrIcon & keyof VgrIconAttributes]?: VgrIcon[K] } & { [K in keyof VgrIcon & keyof VgrIconAttributes as `attr:${K}`]?: VgrIconAttributes[K] } & { [K in keyof VgrIcon & keyof VgrIconAttributes as `prop:${K}`]?: VgrIcon[K] } & OneOf<"icon", VgrIcon["icon"], VgrIconAttributes["icon"]>;
         "vgr-radio-button": Omit<VgrRadioButton, keyof VgrRadioButtonAttributes> & { [K in keyof VgrRadioButton & keyof VgrRadioButtonAttributes]?: VgrRadioButton[K] } & { [K in keyof VgrRadioButton & keyof VgrRadioButtonAttributes as `attr:${K}`]?: VgrRadioButtonAttributes[K] } & { [K in keyof VgrRadioButton & keyof VgrRadioButtonAttributes as `prop:${K}`]?: VgrRadioButton[K] };
