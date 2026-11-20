@@ -40,6 +40,7 @@ export const VgrRadioButton: StencilVueComponent<JSX.VgrRadioButton> = /*@__PURE
   'name',
   'value',
   'label',
+  'srOnlyDisabledReason',
   'vgrChange'
 ], [
   'vgrChange'

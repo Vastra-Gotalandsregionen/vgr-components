@@ -89,14 +89,14 @@ export declare interface VgrIcon extends Components.VgrIcon {}
 
 @ProxyCmp({
   defineCustomElementFn: defineVgrRadioButton,
-  inputs: ['checked', 'disabled', 'label', 'name', 'value']
+  inputs: ['checked', 'disabled', 'label', 'name', 'srOnlyDisabledReason', 'value']
 })
 @Component({
   selector: 'vgr-radio-button',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['checked', 'disabled', 'label', 'name', 'value'],
+  inputs: ['checked', 'disabled', 'label', 'name', 'srOnlyDisabledReason', 'value'],
   outputs: ['vgrChange'],
 })
 export class VgrRadioButton {
