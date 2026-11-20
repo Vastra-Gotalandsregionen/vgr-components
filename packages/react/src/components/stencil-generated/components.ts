@@ -15,9 +15,10 @@ import { VgrCheckbox as VgrCheckboxElement, defineCustomElement as defineVgrChec
 import { VgrChoiceGroup as VgrChoiceGroupElement, defineCustomElement as defineVgrChoiceGroup } from '@vastra-gotalandsregionen/components-core/dist/components/vgr-choice-group.js';
 import { VgrHelpIconAndText as VgrHelpIconAndTextElement, defineCustomElement as defineVgrHelpIconAndText } from '@vastra-gotalandsregionen/components-core/dist/components/vgr-help-icon-and-text.js';
 import { VgrIcon as VgrIconElement, defineCustomElement as defineVgrIcon } from '@vastra-gotalandsregionen/components-core/dist/components/vgr-icon.js';
+import { VgrLeveledMultiselectFilter as VgrLeveledMultiselectFilterElement, defineCustomElement as defineVgrLeveledMultiselectFilter } from '@vastra-gotalandsregionen/components-core/dist/components/vgr-leveled-multiselect-filter.js';
 import { VgrRadioButton as VgrRadioButtonElement, defineCustomElement as defineVgrRadioButton } from '@vastra-gotalandsregionen/components-core/dist/components/vgr-radio-button.js';
 import { VgrTextField as VgrTextFieldElement, defineCustomElement as defineVgrTextField } from '@vastra-gotalandsregionen/components-core/dist/components/vgr-text-field.js';
-import type { VgrButtonCustomEvent, VgrRadioButtonCustomEvent } from '@vastra-gotalandsregionen/components-core';
+import type { VgrButtonCustomEvent, VgrCheckboxCustomEvent, VgrRadioButtonCustomEvent } from '@vastra-gotalandsregionen/components-core';
 import type { StencilReactComponent, EventName } from '@stencil/react-output-target/runtime';
 
 export type VgrButtonEvents = {
@@ -35,20 +36,24 @@ export const VgrButton: StencilReactComponent<VgrButtonElement, VgrButtonEvents,
     defineCustomElement: defineVgrButton,
 });
 
-export type VgrCheckboxEvents = NonNullable<unknown>;
+export type VgrCheckboxEvents = {
+  onVgrChange: EventName<VgrCheckboxCustomEvent<{ value?: string; checked: boolean }>>
+};
 
-export const VgrCheckbox: StencilReactComponent<VgrCheckboxElement, VgrCheckboxEvents, Components.VgrCheckbox> = /*@__PURE__*/ createComponent<VgrCheckboxElement, VgrCheckboxEvents, Components.VgrCheckbox>({
+export const VgrCheckbox: StencilReactComponent<VgrCheckboxElement, VgrCheckboxEvents, Components.VgrCheckbox, 'label'> = /*@__PURE__*/ createComponent<VgrCheckboxElement, VgrCheckboxEvents, Components.VgrCheckbox, 'label'>({
     tagName: 'vgr-checkbox',
     elementClass: VgrCheckboxElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
-    events: {} as VgrCheckboxEvents,
+    events: {
+      onVgrChange: 'vgrChange'
+    } as VgrCheckboxEvents,
     defineCustomElement: defineVgrCheckbox,
 });
 
 export type VgrChoiceGroupEvents = NonNullable<unknown>;
 
-export const VgrChoiceGroup: StencilReactComponent<VgrChoiceGroupElement, VgrChoiceGroupEvents, Components.VgrChoiceGroup, 'type' | 'label'> = /*@__PURE__*/ createComponent<VgrChoiceGroupElement, VgrChoiceGroupEvents, Components.VgrChoiceGroup, 'type' | 'label'>({
+export const VgrChoiceGroup: StencilReactComponent<VgrChoiceGroupElement, VgrChoiceGroupEvents, Components.VgrChoiceGroup, 'type'> = /*@__PURE__*/ createComponent<VgrChoiceGroupElement, VgrChoiceGroupEvents, Components.VgrChoiceGroup, 'type'>({
     tagName: 'vgr-choice-group',
     elementClass: VgrChoiceGroupElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -77,6 +82,17 @@ export const VgrIcon: StencilReactComponent<VgrIconElement, VgrIconEvents, Compo
     react: React,
     events: {} as VgrIconEvents,
     defineCustomElement: defineVgrIcon,
+});
+
+export type VgrLeveledMultiselectFilterEvents = NonNullable<unknown>;
+
+export const VgrLeveledMultiselectFilter: StencilReactComponent<VgrLeveledMultiselectFilterElement, VgrLeveledMultiselectFilterEvents, Components.VgrLeveledMultiselectFilter> = /*@__PURE__*/ createComponent<VgrLeveledMultiselectFilterElement, VgrLeveledMultiselectFilterEvents, Components.VgrLeveledMultiselectFilter>({
+    tagName: 'vgr-leveled-multiselect-filter',
+    elementClass: VgrLeveledMultiselectFilterElement,
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    react: React,
+    events: {} as VgrLeveledMultiselectFilterEvents,
+    defineCustomElement: defineVgrLeveledMultiselectFilter,
 });
 
 export type VgrRadioButtonEvents = {

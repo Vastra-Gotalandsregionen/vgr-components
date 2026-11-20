@@ -14,13 +14,13 @@ export class VgrCheckbox {
   private inputEl?: HTMLInputElement;
 
   @Element() el!: HTMLElement;
-  private isLast = false;
 
   @Prop() label!: string;
   @Prop() name?: string;
   @Prop() value?: string;
   @Prop() disabled = false;
   @Prop() srOnlyDisabledReason?: string;
+  @Prop() collapsibleChildren = false;
   @Prop({ mutable: true }) checked: boolean = false;
   @Prop({ mutable: true }) indeterminate: boolean = false;
 
@@ -31,9 +31,6 @@ export class VgrCheckbox {
 
   componentWillLoad() {
     this.hasChildren = this.getDirectChildren().length > 0;
-    const top = this.el.closest('vgr-checkbox:not(vgr-checkbox vgr-checkbox)');
-    const all = top?.querySelectorAll('vgr-checkbox');
-    this.isLast = !!all?.length && all[all.length - 1] === this.el;
   }
 
   componentDidLoad() {
@@ -92,26 +89,27 @@ export class VgrCheckbox {
 
   render() {
     const hasReason = this.disabled && !!this.srOnlyDisabledReason;
+    const showToggle = this.hasChildren && this.collapsibleChildren;
+    const childrenHidden = this.collapsibleChildren && !this.expanded;
 
-    const levelWrapperClasses = ['flex items-center gap-1', this.expanded ? 'bg-primary-base-surface-minimal rounded-t-lg' : '', this.isLast ? 'rounded-b-lg' : ''].join(' ');
-    const hostClasses = 'block w-fit [vgr-checkbox_&]:w-auto';
-    const childrenClasses = this.expanded ? 'ml-8 [&_[data-row]]:bg-primary-base-surface-minimal [&_[data-row]]:rounded-t-none' : 'hidden';
-    const labelClasses = ['flex items-center gap-2 p-3 text-base leading-6', this.disabled ? 'text-neutral-disabled cursor-not-allowed' : 'text-neutral-text cursor-pointer'].join(
-      ' ',
-    );
+    const labelClasses = [
+      'flex items-center gap-2 p-3 text-base leading-6',
+      this.disabled ? 'text-neutral-disabled cursor-not-allowed' : 'text-neutral-text cursor-pointer',
+      this.checked ? 'font-bold' : '',
+    ].join(' ');
 
     const isFull = this.checked && !this.indeterminate;
     const strokeClass = this.disabled ? 'stroke-neutral-disabled' : this.checked || this.indeterminate ? 'stroke-primary-action' : 'stroke-neutral-text';
     const fillClass = this.disabled ? 'fill-neutral-disabled' : 'fill-primary-action';
 
     const boxClasses = [
-      'grid shrink-0 place-items-center w-6 h-6 rounded-sm',
+      'grid shrink-0 place-items-center w-6 h-6 rounded-xs',
       'peer-focus-visible:outline-3 peer-focus-visible:outline-offset-3 peer-focus-visible:outline-primary-base-30',
     ].join(' ');
 
     return (
-      <Host class={hostClasses}>
-        <div class={levelWrapperClasses} data-row="true">
+      <Host class="block" expanded={this.expanded ? '' : undefined}>
+        <div class="flex items-center justify-between gap-1">
           <label htmlFor={this.checkboxId} class={labelClasses}>
             <input
               type="checkbox"
@@ -135,11 +133,11 @@ export class VgrCheckbox {
                 )}
                 {this.indeterminate && <rect x="5" y="5" width="14" height="14" rx="1" class={fillClass} />}
               </svg>
-              {this.checked && !this.indeterminate && <vgr-icon icon={check} class="col-start-1 row-start-1 text-white mt-px" size={2.5}></vgr-icon>}
+              {isFull && <vgr-icon icon={check} class="col-start-1 row-start-1 text-white mt-px" size={2.5}></vgr-icon>}
             </span>
             {this.label}
           </label>
-          {this.hasChildren && (
+          {showToggle && (
             <button
               type="button"
               class="flex size-8 shrink-0 items-center justify-center text-neutral-text cursor-pointer"
@@ -157,7 +155,7 @@ export class VgrCheckbox {
             {this.srOnlyDisabledReason}
           </span>
         )}
-        <div id={this.childrenId} class={childrenClasses}>
+        <div id={this.childrenId} class={childrenHidden ? 'hidden' : 'ml-8'}>
           <slot></slot>
         </div>
       </Host>

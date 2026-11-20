@@ -11,6 +11,7 @@ import { defineCustomElement as defineVgrCheckbox } from '@vastra-gotalandsregio
 import { defineCustomElement as defineVgrChoiceGroup } from '@vastra-gotalandsregionen/components-core/components/vgr-choice-group.js';
 import { defineCustomElement as defineVgrHelpIconAndText } from '@vastra-gotalandsregionen/components-core/components/vgr-help-icon-and-text.js';
 import { defineCustomElement as defineVgrIcon } from '@vastra-gotalandsregionen/components-core/components/vgr-icon.js';
+import { defineCustomElement as defineVgrLeveledMultiselectFilter } from '@vastra-gotalandsregionen/components-core/components/vgr-leveled-multiselect-filter.js';
 import { defineCustomElement as defineVgrRadioButton } from '@vastra-gotalandsregionen/components-core/components/vgr-radio-button.js';
 import { defineCustomElement as defineVgrTextField } from '@vastra-gotalandsregionen/components-core/components/vgr-text-field.js';
 @ProxyCmp({
@@ -44,17 +45,20 @@ export declare interface VgrButton extends Components.VgrButton {
 
 
 @ProxyCmp({
-  defineCustomElementFn: defineVgrCheckbox
+  defineCustomElementFn: defineVgrCheckbox,
+  inputs: ['checked', 'collapsibleChildren', 'disabled', 'indeterminate', 'label', 'name', 'srOnlyDisabledReason', 'value']
 })
 @Component({
   selector: 'vgr-checkbox',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: [],
+  inputs: ['checked', 'collapsibleChildren', 'disabled', 'indeterminate', { name: 'label', required: true }, 'name', 'srOnlyDisabledReason', 'value'],
+  outputs: ['vgrChange'],
 })
 export class VgrCheckbox {
   protected el: HTMLVgrCheckboxElement;
+  @Output() vgrChange = new EventEmitter<VgrCheckboxCustomEvent<{ value?: string; checked: boolean }>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -62,7 +66,12 @@ export class VgrCheckbox {
 }
 
 
-export declare interface VgrCheckbox extends Components.VgrCheckbox {}
+import type { VgrCheckboxCustomEvent } from '@vastra-gotalandsregionen/components-core/components';
+
+export declare interface VgrCheckbox extends Components.VgrCheckbox {
+
+  vgrChange: EventEmitter<VgrCheckboxCustomEvent<{ value?: string; checked: boolean }>>;
+}
 
 
 @ProxyCmp({
@@ -74,7 +83,7 @@ export declare interface VgrCheckbox extends Components.VgrCheckbox {}
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['error', 'helpText', { name: 'label', required: true }, 'optional', 'required', { name: 'type', required: true }],
+  inputs: ['error', 'helpText', 'label', 'optional', 'required', { name: 'type', required: true }],
 })
 export class VgrChoiceGroup {
   protected el: HTMLVgrChoiceGroupElement;
@@ -113,14 +122,14 @@ export declare interface VgrHelpIconAndText extends Components.VgrHelpIconAndTex
 
 @ProxyCmp({
   defineCustomElementFn: defineVgrIcon,
-  inputs: ['icon']
+  inputs: ['icon', 'size']
 })
 @Component({
   selector: 'vgr-icon',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: [{ name: 'icon', required: true }],
+  inputs: [{ name: 'icon', required: true }, 'size'],
 })
 export class VgrIcon {
   protected el: HTMLVgrIconElement;
@@ -132,6 +141,29 @@ export class VgrIcon {
 
 
 export declare interface VgrIcon extends Components.VgrIcon {}
+
+
+@ProxyCmp({
+  defineCustomElementFn: defineVgrLeveledMultiselectFilter,
+  inputs: ['initialVisible']
+})
+@Component({
+  selector: 'vgr-leveled-multiselect-filter',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['initialVisible'],
+})
+export class VgrLeveledMultiselectFilter {
+  protected el: HTMLVgrLeveledMultiselectFilterElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface VgrLeveledMultiselectFilter extends Components.VgrLeveledMultiselectFilter {}
 
 
 @ProxyCmp({

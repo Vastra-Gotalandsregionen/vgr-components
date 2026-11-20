@@ -36,6 +36,10 @@ export namespace Components {
         /**
           * @default false
          */
+        "collapsibleChildren": boolean;
+        /**
+          * @default false
+         */
         "disabled": boolean;
         /**
           * @default false
@@ -73,6 +77,12 @@ export namespace Components {
           * Height in Tailwind's spacing scale (4 = 16px, 6 = 24px). The width follows the icon's own proportions. Defaults to 1em, so the icon follows the surrounding font-size.
          */
         "size"?: IconSize;
+    }
+    interface VgrLeveledMultiselectFilter {
+        /**
+          * @default 10
+         */
+        "initialVisible": number;
     }
     interface VgrRadioButton {
         /**
@@ -187,6 +197,12 @@ declare global {
         prototype: HTMLVgrIconElement;
         new (): HTMLVgrIconElement;
     };
+    interface HTMLVgrLeveledMultiselectFilterElement extends Components.VgrLeveledMultiselectFilter, HTMLStencilElement {
+    }
+    var HTMLVgrLeveledMultiselectFilterElement: {
+        prototype: HTMLVgrLeveledMultiselectFilterElement;
+        new (): HTMLVgrLeveledMultiselectFilterElement;
+    };
     interface HTMLVgrRadioButtonElementEventMap {
         "vgrChange": { value?: string; checked: boolean };
     }
@@ -216,6 +232,7 @@ declare global {
         "vgr-choice-group": HTMLVgrChoiceGroupElement;
         "vgr-help-icon-and-text": HTMLVgrHelpIconAndTextElement;
         "vgr-icon": HTMLVgrIconElement;
+        "vgr-leveled-multiselect-filter": HTMLVgrLeveledMultiselectFilterElement;
         "vgr-radio-button": HTMLVgrRadioButtonElement;
         "vgr-text-field": HTMLVgrTextFieldElement;
     }
@@ -247,6 +264,10 @@ declare namespace LocalJSX {
           * @default false
          */
         "checked"?: boolean;
+        /**
+          * @default false
+         */
+        "collapsibleChildren"?: boolean;
         /**
           * @default false
          */
@@ -288,6 +309,12 @@ declare namespace LocalJSX {
           * Height in Tailwind's spacing scale (4 = 16px, 6 = 24px). The width follows the icon's own proportions. Defaults to 1em, so the icon follows the surrounding font-size.
          */
         "size"?: IconSize;
+    }
+    interface VgrLeveledMultiselectFilter {
+        /**
+          * @default 10
+         */
+        "initialVisible"?: number;
     }
     interface VgrRadioButton {
         /**
@@ -353,6 +380,7 @@ declare namespace LocalJSX {
         "value": string;
         "disabled": boolean;
         "srOnlyDisabledReason": string;
+        "collapsibleChildren": boolean;
         "checked": boolean;
         "indeterminate": boolean;
     }
@@ -370,6 +398,9 @@ declare namespace LocalJSX {
     interface VgrIconAttributes {
         "icon": string;
         "size": IconSize;
+    }
+    interface VgrLeveledMultiselectFilterAttributes {
+        "initialVisible": number;
     }
     interface VgrRadioButtonAttributes {
         "disabled": boolean;
@@ -400,6 +431,7 @@ declare namespace LocalJSX {
         "vgr-choice-group": Omit<VgrChoiceGroup, keyof VgrChoiceGroupAttributes> & { [K in keyof VgrChoiceGroup & keyof VgrChoiceGroupAttributes]?: VgrChoiceGroup[K] } & { [K in keyof VgrChoiceGroup & keyof VgrChoiceGroupAttributes as `attr:${K}`]?: VgrChoiceGroupAttributes[K] } & { [K in keyof VgrChoiceGroup & keyof VgrChoiceGroupAttributes as `prop:${K}`]?: VgrChoiceGroup[K] } & OneOf<"type", VgrChoiceGroup["type"], VgrChoiceGroupAttributes["type"]>;
         "vgr-help-icon-and-text": Omit<VgrHelpIconAndText, keyof VgrHelpIconAndTextAttributes> & { [K in keyof VgrHelpIconAndText & keyof VgrHelpIconAndTextAttributes]?: VgrHelpIconAndText[K] } & { [K in keyof VgrHelpIconAndText & keyof VgrHelpIconAndTextAttributes as `attr:${K}`]?: VgrHelpIconAndTextAttributes[K] } & { [K in keyof VgrHelpIconAndText & keyof VgrHelpIconAndTextAttributes as `prop:${K}`]?: VgrHelpIconAndText[K] };
         "vgr-icon": Omit<VgrIcon, keyof VgrIconAttributes> & { [K in keyof VgrIcon & keyof VgrIconAttributes]?: VgrIcon[K] } & { [K in keyof VgrIcon & keyof VgrIconAttributes as `attr:${K}`]?: VgrIconAttributes[K] } & { [K in keyof VgrIcon & keyof VgrIconAttributes as `prop:${K}`]?: VgrIcon[K] } & OneOf<"icon", VgrIcon["icon"], VgrIconAttributes["icon"]>;
+        "vgr-leveled-multiselect-filter": Omit<VgrLeveledMultiselectFilter, keyof VgrLeveledMultiselectFilterAttributes> & { [K in keyof VgrLeveledMultiselectFilter & keyof VgrLeveledMultiselectFilterAttributes]?: VgrLeveledMultiselectFilter[K] } & { [K in keyof VgrLeveledMultiselectFilter & keyof VgrLeveledMultiselectFilterAttributes as `attr:${K}`]?: VgrLeveledMultiselectFilterAttributes[K] } & { [K in keyof VgrLeveledMultiselectFilter & keyof VgrLeveledMultiselectFilterAttributes as `prop:${K}`]?: VgrLeveledMultiselectFilter[K] };
         "vgr-radio-button": Omit<VgrRadioButton, keyof VgrRadioButtonAttributes> & { [K in keyof VgrRadioButton & keyof VgrRadioButtonAttributes]?: VgrRadioButton[K] } & { [K in keyof VgrRadioButton & keyof VgrRadioButtonAttributes as `attr:${K}`]?: VgrRadioButtonAttributes[K] } & { [K in keyof VgrRadioButton & keyof VgrRadioButtonAttributes as `prop:${K}`]?: VgrRadioButton[K] };
         "vgr-text-field": Omit<VgrTextField, keyof VgrTextFieldAttributes> & { [K in keyof VgrTextField & keyof VgrTextFieldAttributes]?: VgrTextField[K] } & { [K in keyof VgrTextField & keyof VgrTextFieldAttributes as `attr:${K}`]?: VgrTextFieldAttributes[K] } & { [K in keyof VgrTextField & keyof VgrTextFieldAttributes as `prop:${K}`]?: VgrTextField[K] };
     }
@@ -413,6 +445,7 @@ declare module "@stencil/core" {
             "vgr-choice-group": LocalJSX.IntrinsicElements["vgr-choice-group"] & JSXBase.HTMLAttributes<HTMLVgrChoiceGroupElement>;
             "vgr-help-icon-and-text": LocalJSX.IntrinsicElements["vgr-help-icon-and-text"] & JSXBase.HTMLAttributes<HTMLVgrHelpIconAndTextElement>;
             "vgr-icon": LocalJSX.IntrinsicElements["vgr-icon"] & JSXBase.HTMLAttributes<HTMLVgrIconElement>;
+            "vgr-leveled-multiselect-filter": LocalJSX.IntrinsicElements["vgr-leveled-multiselect-filter"] & JSXBase.HTMLAttributes<HTMLVgrLeveledMultiselectFilterElement>;
             "vgr-radio-button": LocalJSX.IntrinsicElements["vgr-radio-button"] & JSXBase.HTMLAttributes<HTMLVgrRadioButtonElement>;
             "vgr-text-field": LocalJSX.IntrinsicElements["vgr-text-field"] & JSXBase.HTMLAttributes<HTMLVgrTextFieldElement>;
         }

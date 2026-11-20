@@ -19,6 +19,8 @@
     <h2 class="text-2xl font-bold mb-2">Checkbox</h2>
     <div class="flex flex-col gap-4 mb-6">
       <vgr-choice-group label="Välj några färger" optional="true">
+        <vgr-checkbox label="Lila" name="myColor"></vgr-checkbox>
+        <vgr-checkbox label="Orange" name="myColor"></vgr-checkbox>
         <vgr-checkbox label="Grön" name="myColor">
           <vgr-checkbox label="Mossgrön" name="myColor"></vgr-checkbox>
           <vgr-checkbox label="Skogsgrön" name="myColor"></vgr-checkbox>
@@ -30,6 +32,9 @@
             <vgr-checkbox label="Limeköttsgrön" name="myColor"></vgr-checkbox>
           </vgr-checkbox>
         </vgr-checkbox>
+      </vgr-choice-group>
+      Multiselect filter
+      <vgr-leveled-multiselect-filter>
         <vgr-checkbox label="Gul" name="myColor" disabled="true" sr-only-disabled-reason="Du har inte klickat på de andra valen"></vgr-checkbox>
         <vgr-checkbox label="Blå" name="myColor">
           <vgr-checkbox label="Mörkblå" name="myColor">
@@ -41,9 +46,13 @@
               </vgr-checkbox>
             </vgr-checkbox>
           </vgr-checkbox>
+          <vgr-checkbox label="Ljusblå" name="myColor">
+            <vgr-checkbox label="Duvblå" name="myColor"></vgr-checkbox>
+            <vgr-checkbox label="Himmelsblå" name="myColor"></vgr-checkbox>
+          </vgr-checkbox>
         </vgr-checkbox>
         <vgr-checkbox label="Röd" name="myColor"></vgr-checkbox>
-      </vgr-choice-group>
+      </vgr-leveled-multiselect-filter>
     </div>
     <hr />
     <h2 class="text-2xl font-bold mb-2">Radio button</h2>

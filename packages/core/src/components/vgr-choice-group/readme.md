@@ -5,14 +5,14 @@
 
 ## Properties
 
-| Property             | Attribute   | Description | Type                    | Default     |
-| -------------------- | ----------- | ----------- | ----------------------- | ----------- |
-| `error`              | `error`     |             | `string`                | `undefined` |
-| `helpText`           | `help-text` |             | `string`                | `undefined` |
-| `label` _(required)_ | `label`     |             | `string`                | `undefined` |
-| `optional`           | `optional`  |             | `boolean`               | `false`     |
-| `required`           | `required`  |             | `boolean`               | `false`     |
-| `type` _(required)_  | `type`      |             | `"checkbox" \| "radio"` | `undefined` |
+| Property            | Attribute   | Description | Type                    | Default     |
+| ------------------- | ----------- | ----------- | ----------------------- | ----------- |
+| `error`             | `error`     |             | `string`                | `undefined` |
+| `helpText`          | `help-text` |             | `string`                | `undefined` |
+| `label`             | `label`     |             | `string`                | `undefined` |
+| `optional`          | `optional`  |             | `boolean`               | `false`     |
+| `required`          | `required`  |             | `boolean`               | `false`     |
+| `type` _(required)_ | `type`      |             | `"checkbox" \| "radio"` | `undefined` |
 
 
 ## Slots
