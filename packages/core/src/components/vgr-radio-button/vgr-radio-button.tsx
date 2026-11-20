@@ -31,18 +31,25 @@ export class VgrRadioButton {
     this.vgrChange.emit({ value: this.value, checked: this.checked });
   };
 
-  render() {
-    const labelClasses = ['flex items-center gap-2 cursor-pointer py-1.5 text-base', this.disabled ? 'text-neutral-disabled' : 'text-neutral-text'].join(' ');
+  private readonly handleClick = (event: MouseEvent) => {
+    if (this.disabled) event.preventDefault();
+  };
 
-    const markerClasses = [
-      "after:content-[''] after:hidden peer-checked:after:block after:absolute after:top-1/2 after:left-1/2 after:-translate-1/2 after:w-3.5 after:h-3.5 after:rounded-full",
-      this.disabled ? 'after:bg-neutral-disabled' : 'after:bg-primary-action',
-    ];
-    const circleClasses = [
-      'relative w-6 h-6 rounded-full border-2',
-      this.disabled ? 'border-neutral-disabled' : 'border-neutral-text peer-hover:border-3 peer-hover:border-primary-action',
-      'peer-focus:outline-3 peer-focus:outline-offset-3 peer-focus:outline-primary-base-30',
-      markerClasses.join(' '),
+  render() {
+    const labelClasses = [
+      'flex items-center gap-2 py-1.5 text-base leading-6',
+      this.disabled ? 'text-neutral-disabled cursor-not-allowed' : 'text-neutral-text cursor-pointer',
+    ].join(' ');
+
+    const ringClasses = this.checked ? 'stroke-primary-action' : this.disabled ? 'stroke-neutral-disabled' : 'stroke-neutral-text';
+
+    const dotClasses = ['dot opacity-0', this.disabled ? 'fill-neutral-disabled' : 'fill-primary-action'].join(' ');
+
+    const svgClasses = [
+      'w-6 h-6 shrink-0 rounded-full',
+      'peer-focus-visible:outline-3 peer-focus-visible:outline-offset-3 peer-focus-visible:outline-primary-base-30',
+      'peer-checked:[&>.dot]:opacity-100',
+      this.disabled ? '' : 'peer-hover:[&>.ring-hover]:opacity-100',
     ].join(' ');
 
     return (
@@ -56,9 +63,15 @@ export class VgrRadioButton {
             value={this.value}
             checked={this.checked}
             onChange={this.handleChange}
+            onClick={this.handleClick}
             ref={el => (this.inputEl = el)}
+            aria-disabled={this.disabled ? 'true' : undefined}
           />
-          <div class={circleClasses}></div>
+          <svg class={svgClasses} viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="11" fill="none" stroke-width="2" class={ringClasses} />
+            <circle cx="12" cy="12" r="10.5" fill="none" stroke-width="3" class="ring-hover opacity-0 stroke-primary-action" />
+            <circle cx="12" cy="12" r="7" class={dotClasses} />
+          </svg>
           {this.label}
         </label>
       </Host>
