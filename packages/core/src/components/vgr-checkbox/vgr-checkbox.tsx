@@ -95,8 +95,10 @@ export class VgrCheckbox {
     const childrenHidden = this.collapsibleChildren && !this.expanded;
 
     const labelClasses = [
-      'flex items-center gap-2 py-3 pr-3 text-base leading-6',
-      this.isChild && this.collapsibleChildren ? 'pl-6' : 'pl-3',
+      'flex items-center gap-2 text-base leading-6',
+      this.collapsibleChildren ? 'p-3' : '',
+      this.isChild && !this.collapsibleChildren ? 'py-1.5' : '',
+      this.isChild && this.collapsibleChildren ? 'pl-6' : '',
       this.disabled ? 'text-neutral-disabled cursor-not-allowed' : 'text-neutral-text cursor-pointer',
     ].join(' ');
 
@@ -157,7 +159,7 @@ export class VgrCheckbox {
             {this.srOnlyDisabledReason}
           </span>
         )}
-        <div id={this.childrenId} class={childrenHidden ? 'hidden' : this.collapsibleChildren ? 'ml-3' : 'ml-6'}>
+        <div id={this.childrenId} class={childrenHidden ? 'hidden' : this.collapsibleChildren ? 'ml-3' : 'ml-5'}>
           <slot></slot>
         </div>
       </Host>

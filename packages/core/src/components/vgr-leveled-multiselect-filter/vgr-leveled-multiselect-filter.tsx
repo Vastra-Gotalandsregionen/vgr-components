@@ -1,4 +1,5 @@
 import { Component, Element, Host, Prop, State, h } from '@stencil/core';
+import { chevronDown } from '../../assets/svgs.generated';
 
 @Component({
   tag: 'vgr-leveled-multiselect-filter',
@@ -56,11 +57,12 @@ export class VgrLeveledMultiselectFilter {
         {showMoreButton && (
           <button
             type="button"
-            class="mt-2 cursor-pointer p-2 text-base font-bold text-primary-action underline"
+            class="cursor-pointer p-3 text-base text-primary-action hover:underline"
             aria-expanded={this.showAll ? 'true' : 'false'}
             onClick={this.toggleShowAll}
           >
             {this.showAll ? 'Visa färre' : 'Visa fler'}
+            <vgr-icon icon={chevronDown} class={`ml-2.5 ${this.showAll ? 'rotate-180' : ''}`} size={3}></vgr-icon>
           </button>
         )}
       </Host>
