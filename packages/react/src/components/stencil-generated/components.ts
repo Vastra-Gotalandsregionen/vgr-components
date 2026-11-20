@@ -14,6 +14,7 @@ import { VgrButton as VgrButtonElement, defineCustomElement as defineVgrButton }
 import { VgrHelpIconAndText as VgrHelpIconAndTextElement, defineCustomElement as defineVgrHelpIconAndText } from '@vastra-gotalandsregionen/components-core/dist/components/vgr-help-icon-and-text.js';
 import { VgrIcon as VgrIconElement, defineCustomElement as defineVgrIcon } from '@vastra-gotalandsregionen/components-core/dist/components/vgr-icon.js';
 import { VgrRadioButton as VgrRadioButtonElement, defineCustomElement as defineVgrRadioButton } from '@vastra-gotalandsregionen/components-core/dist/components/vgr-radio-button.js';
+import { VgrRadioGroup as VgrRadioGroupElement, defineCustomElement as defineVgrRadioGroup } from '@vastra-gotalandsregionen/components-core/dist/components/vgr-radio-group.js';
 import { VgrTextField as VgrTextFieldElement, defineCustomElement as defineVgrTextField } from '@vastra-gotalandsregionen/components-core/dist/components/vgr-text-field.js';
 import type { VgrButtonCustomEvent, VgrRadioButtonCustomEvent } from '@vastra-gotalandsregionen/components-core';
 import type { StencilReactComponent, EventName } from '@stencil/react-output-target/runtime';
@@ -68,6 +69,17 @@ export const VgrRadioButton: StencilReactComponent<VgrRadioButtonElement, VgrRad
       onVgrChange: 'vgrChange'
     } as VgrRadioButtonEvents,
     defineCustomElement: defineVgrRadioButton,
+});
+
+export type VgrRadioGroupEvents = NonNullable<unknown>;
+
+export const VgrRadioGroup: StencilReactComponent<VgrRadioGroupElement, VgrRadioGroupEvents, Components.VgrRadioGroup, 'label'> = /*@__PURE__*/ createComponent<VgrRadioGroupElement, VgrRadioGroupEvents, Components.VgrRadioGroup, 'label'>({
+    tagName: 'vgr-radio-group',
+    elementClass: VgrRadioGroupElement,
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    react: React,
+    events: {} as VgrRadioGroupEvents,
+    defineCustomElement: defineVgrRadioGroup,
 });
 
 export type VgrTextFieldEvents = NonNullable<unknown>;

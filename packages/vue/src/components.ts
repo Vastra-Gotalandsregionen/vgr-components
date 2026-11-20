@@ -47,6 +47,15 @@ export const VgrRadioButton: StencilVueComponent<JSX.VgrRadioButton> = /*@__PURE
 ]);
 
 
+export const VgrRadioGroup: StencilVueComponent<JSX.VgrRadioGroup> = /*@__PURE__*/ defineContainer<JSX.VgrRadioGroup>('vgr-radio-group', undefined, [
+  'label',
+  'helpText',
+  'error',
+  'required',
+  'optional'
+]);
+
+
 export const VgrTextField: StencilVueComponent<JSX.VgrTextField> = /*@__PURE__*/ defineContainer<JSX.VgrTextField>('vgr-text-field', undefined, [
   'type',
   'disabled',
