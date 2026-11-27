@@ -127,6 +127,8 @@ export namespace Components {
         "type": 'text' | 'textarea' | 'number' | 'email' | 'password' | 'tel' | 'url';
         "value": string | number;
     }
+    interface VgrToggle {
+    }
 }
 export interface VgrButtonCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -222,6 +224,12 @@ declare global {
         prototype: HTMLVgrTextFieldElement;
         new (): HTMLVgrTextFieldElement;
     };
+    interface HTMLVgrToggleElement extends Components.VgrToggle, HTMLStencilElement {
+    }
+    var HTMLVgrToggleElement: {
+        prototype: HTMLVgrToggleElement;
+        new (): HTMLVgrToggleElement;
+    };
     interface HTMLElementTagNameMap {
         "vgr-button": HTMLVgrButtonElement;
         "vgr-checkbox": HTMLVgrCheckboxElement;
@@ -231,6 +239,7 @@ declare global {
         "vgr-leveled-multiselect-filter": HTMLVgrLeveledMultiselectFilterElement;
         "vgr-radio-button": HTMLVgrRadioButtonElement;
         "vgr-text-field": HTMLVgrTextFieldElement;
+        "vgr-toggle": HTMLVgrToggleElement;
     }
 }
 declare namespace LocalJSX {
@@ -356,6 +365,8 @@ declare namespace LocalJSX {
         "type"?: 'text' | 'textarea' | 'number' | 'email' | 'password' | 'tel' | 'url';
         "value"?: string | number;
     }
+    interface VgrToggle {
+    }
 
     interface VgrButtonAttributes {
         "variant": VgrButtonVariant;
@@ -425,6 +436,7 @@ declare namespace LocalJSX {
         "vgr-leveled-multiselect-filter": Omit<VgrLeveledMultiselectFilter, keyof VgrLeveledMultiselectFilterAttributes> & { [K in keyof VgrLeveledMultiselectFilter & keyof VgrLeveledMultiselectFilterAttributes]?: VgrLeveledMultiselectFilter[K] } & { [K in keyof VgrLeveledMultiselectFilter & keyof VgrLeveledMultiselectFilterAttributes as `attr:${K}`]?: VgrLeveledMultiselectFilterAttributes[K] } & { [K in keyof VgrLeveledMultiselectFilter & keyof VgrLeveledMultiselectFilterAttributes as `prop:${K}`]?: VgrLeveledMultiselectFilter[K] };
         "vgr-radio-button": Omit<VgrRadioButton, keyof VgrRadioButtonAttributes> & { [K in keyof VgrRadioButton & keyof VgrRadioButtonAttributes]?: VgrRadioButton[K] } & { [K in keyof VgrRadioButton & keyof VgrRadioButtonAttributes as `attr:${K}`]?: VgrRadioButtonAttributes[K] } & { [K in keyof VgrRadioButton & keyof VgrRadioButtonAttributes as `prop:${K}`]?: VgrRadioButton[K] };
         "vgr-text-field": Omit<VgrTextField, keyof VgrTextFieldAttributes> & { [K in keyof VgrTextField & keyof VgrTextFieldAttributes]?: VgrTextField[K] } & { [K in keyof VgrTextField & keyof VgrTextFieldAttributes as `attr:${K}`]?: VgrTextFieldAttributes[K] } & { [K in keyof VgrTextField & keyof VgrTextFieldAttributes as `prop:${K}`]?: VgrTextField[K] };
+        "vgr-toggle": VgrToggle;
     }
 }
 export { LocalJSX as JSX };
@@ -439,6 +451,7 @@ declare module "@stencil/core" {
             "vgr-leveled-multiselect-filter": LocalJSX.IntrinsicElements["vgr-leveled-multiselect-filter"] & JSXBase.HTMLAttributes<HTMLVgrLeveledMultiselectFilterElement>;
             "vgr-radio-button": LocalJSX.IntrinsicElements["vgr-radio-button"] & JSXBase.HTMLAttributes<HTMLVgrRadioButtonElement>;
             "vgr-text-field": LocalJSX.IntrinsicElements["vgr-text-field"] & JSXBase.HTMLAttributes<HTMLVgrTextFieldElement>;
+            "vgr-toggle": LocalJSX.IntrinsicElements["vgr-toggle"] & JSXBase.HTMLAttributes<HTMLVgrToggleElement>;
         }
     }
 }
