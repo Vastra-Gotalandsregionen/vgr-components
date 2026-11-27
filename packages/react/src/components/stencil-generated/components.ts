@@ -18,7 +18,8 @@ import { VgrIcon as VgrIconElement, defineCustomElement as defineVgrIcon } from 
 import { VgrLeveledMultiselectFilter as VgrLeveledMultiselectFilterElement, defineCustomElement as defineVgrLeveledMultiselectFilter } from '@vastra-gotalandsregionen/components-core/dist/components/vgr-leveled-multiselect-filter.js';
 import { VgrRadioButton as VgrRadioButtonElement, defineCustomElement as defineVgrRadioButton } from '@vastra-gotalandsregionen/components-core/dist/components/vgr-radio-button.js';
 import { VgrTextField as VgrTextFieldElement, defineCustomElement as defineVgrTextField } from '@vastra-gotalandsregionen/components-core/dist/components/vgr-text-field.js';
-import type { VgrButtonCustomEvent, VgrCheckboxCustomEvent, VgrRadioButtonCustomEvent } from '@vastra-gotalandsregionen/components-core';
+import { VgrToggle as VgrToggleElement, defineCustomElement as defineVgrToggle } from '@vastra-gotalandsregionen/components-core/dist/components/vgr-toggle.js';
+import type { VgrButtonCustomEvent, VgrCheckboxCustomEvent, VgrRadioButtonCustomEvent, VgrToggleCustomEvent } from '@vastra-gotalandsregionen/components-core';
 import type { StencilReactComponent, EventName } from '@stencil/react-output-target/runtime';
 
 export type VgrButtonEvents = {
@@ -119,4 +120,19 @@ export const VgrTextField: StencilReactComponent<VgrTextFieldElement, VgrTextFie
     react: React,
     events: {} as VgrTextFieldEvents,
     defineCustomElement: defineVgrTextField,
+});
+
+export type VgrToggleEvents = {
+  onVgrChange: EventName<VgrToggleCustomEvent<{ value?: string; checked: boolean }>>
+};
+
+export const VgrToggle: StencilReactComponent<VgrToggleElement, VgrToggleEvents, Components.VgrToggle> = /*@__PURE__*/ createComponent<VgrToggleElement, VgrToggleEvents, Components.VgrToggle>({
+    tagName: 'vgr-toggle',
+    elementClass: VgrToggleElement,
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    react: React,
+    events: {
+      onVgrChange: 'vgrChange'
+    } as VgrToggleEvents,
+    defineCustomElement: defineVgrToggle,
 });

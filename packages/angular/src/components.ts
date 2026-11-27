@@ -14,6 +14,7 @@ import { defineCustomElement as defineVgrIcon } from '@vastra-gotalandsregionen/
 import { defineCustomElement as defineVgrLeveledMultiselectFilter } from '@vastra-gotalandsregionen/components-core/components/vgr-leveled-multiselect-filter.js';
 import { defineCustomElement as defineVgrRadioButton } from '@vastra-gotalandsregionen/components-core/components/vgr-radio-button.js';
 import { defineCustomElement as defineVgrTextField } from '@vastra-gotalandsregionen/components-core/components/vgr-text-field.js';
+import { defineCustomElement as defineVgrToggle } from '@vastra-gotalandsregionen/components-core/components/vgr-toggle.js';
 @ProxyCmp({
   defineCustomElementFn: defineVgrButton,
   inputs: ['disabled', 'icon', 'srOnlyDisabledReason', 'text', 'type', 'variant', 'vgrAriaLabel']
@@ -217,5 +218,35 @@ export class VgrTextField {
 
 
 export declare interface VgrTextField extends Components.VgrTextField {}
+
+
+@ProxyCmp({
+  defineCustomElementFn: defineVgrToggle,
+  inputs: ['checked', 'disabled', 'label', 'name', 'srOnlyDisabledReason', 'value']
+})
+@Component({
+  selector: 'vgr-toggle',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['checked', 'disabled', 'label', 'name', 'srOnlyDisabledReason', 'value'],
+  outputs: ['vgrChange'],
+})
+export class VgrToggle {
+  protected el: HTMLVgrToggleElement;
+  @Output() vgrChange = new EventEmitter<VgrToggleCustomEvent<{ value?: string; checked: boolean }>>();
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+import type { VgrToggleCustomEvent } from '@vastra-gotalandsregionen/components-core/components';
+
+export declare interface VgrToggle extends Components.VgrToggle {
+
+  vgrChange: EventEmitter<VgrToggleCustomEvent<{ value?: string; checked: boolean }>>;
+}
 
 

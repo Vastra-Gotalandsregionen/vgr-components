@@ -94,3 +94,16 @@ export const VgrTextField: StencilVueComponent<JSX.VgrTextField> = /*@__PURE__*/
 ]);
 
 
+export const VgrToggle: StencilVueComponent<JSX.VgrToggle> = /*@__PURE__*/ defineContainer<JSX.VgrToggle>('vgr-toggle', undefined, [
+  'disabled',
+  'checked',
+  'name',
+  'value',
+  'label',
+  'srOnlyDisabledReason',
+  'vgrChange'
+], [
+  'vgrChange'
+]);
+
+

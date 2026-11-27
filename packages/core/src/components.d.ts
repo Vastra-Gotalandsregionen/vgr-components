@@ -128,6 +128,18 @@ export namespace Components {
         "value": string | number;
     }
     interface VgrToggle {
+        /**
+          * @default false
+         */
+        "checked": boolean;
+        /**
+          * @default false
+         */
+        "disabled": boolean;
+        "label": string;
+        "name": string;
+        "srOnlyDisabledReason"?: string;
+        "value"?: string;
     }
 }
 export interface VgrButtonCustomEvent<T> extends CustomEvent<T> {
@@ -141,6 +153,10 @@ export interface VgrCheckboxCustomEvent<T> extends CustomEvent<T> {
 export interface VgrRadioButtonCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLVgrRadioButtonElement;
+}
+export interface VgrToggleCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLVgrToggleElement;
 }
 declare global {
     interface HTMLVgrButtonElementEventMap {
@@ -224,7 +240,18 @@ declare global {
         prototype: HTMLVgrTextFieldElement;
         new (): HTMLVgrTextFieldElement;
     };
+    interface HTMLVgrToggleElementEventMap {
+        "vgrChange": { value?: string; checked: boolean };
+    }
     interface HTMLVgrToggleElement extends Components.VgrToggle, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLVgrToggleElementEventMap>(type: K, listener: (this: HTMLVgrToggleElement, ev: VgrToggleCustomEvent<HTMLVgrToggleElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLVgrToggleElementEventMap>(type: K, listener: (this: HTMLVgrToggleElement, ev: VgrToggleCustomEvent<HTMLVgrToggleElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLVgrToggleElement: {
         prototype: HTMLVgrToggleElement;
@@ -366,6 +393,19 @@ declare namespace LocalJSX {
         "value"?: string | number;
     }
     interface VgrToggle {
+        /**
+          * @default false
+         */
+        "checked"?: boolean;
+        /**
+          * @default false
+         */
+        "disabled"?: boolean;
+        "label"?: string;
+        "name"?: string;
+        "onVgrChange"?: (event: VgrToggleCustomEvent<{ value?: string; checked: boolean }>) => void;
+        "srOnlyDisabledReason"?: string;
+        "value"?: string;
     }
 
     interface VgrButtonAttributes {
@@ -426,6 +466,14 @@ declare namespace LocalJSX {
         "error": string;
         "rows": number;
     }
+    interface VgrToggleAttributes {
+        "disabled": boolean;
+        "checked": boolean;
+        "name": string;
+        "value": string;
+        "label": string;
+        "srOnlyDisabledReason": string;
+    }
 
     interface IntrinsicElements {
         "vgr-button": Omit<VgrButton, keyof VgrButtonAttributes> & { [K in keyof VgrButton & keyof VgrButtonAttributes]?: VgrButton[K] } & { [K in keyof VgrButton & keyof VgrButtonAttributes as `attr:${K}`]?: VgrButtonAttributes[K] } & { [K in keyof VgrButton & keyof VgrButtonAttributes as `prop:${K}`]?: VgrButton[K] } & OneOf<"text", VgrButton["text"], VgrButtonAttributes["text"]>;
@@ -436,7 +484,7 @@ declare namespace LocalJSX {
         "vgr-leveled-multiselect-filter": Omit<VgrLeveledMultiselectFilter, keyof VgrLeveledMultiselectFilterAttributes> & { [K in keyof VgrLeveledMultiselectFilter & keyof VgrLeveledMultiselectFilterAttributes]?: VgrLeveledMultiselectFilter[K] } & { [K in keyof VgrLeveledMultiselectFilter & keyof VgrLeveledMultiselectFilterAttributes as `attr:${K}`]?: VgrLeveledMultiselectFilterAttributes[K] } & { [K in keyof VgrLeveledMultiselectFilter & keyof VgrLeveledMultiselectFilterAttributes as `prop:${K}`]?: VgrLeveledMultiselectFilter[K] };
         "vgr-radio-button": Omit<VgrRadioButton, keyof VgrRadioButtonAttributes> & { [K in keyof VgrRadioButton & keyof VgrRadioButtonAttributes]?: VgrRadioButton[K] } & { [K in keyof VgrRadioButton & keyof VgrRadioButtonAttributes as `attr:${K}`]?: VgrRadioButtonAttributes[K] } & { [K in keyof VgrRadioButton & keyof VgrRadioButtonAttributes as `prop:${K}`]?: VgrRadioButton[K] };
         "vgr-text-field": Omit<VgrTextField, keyof VgrTextFieldAttributes> & { [K in keyof VgrTextField & keyof VgrTextFieldAttributes]?: VgrTextField[K] } & { [K in keyof VgrTextField & keyof VgrTextFieldAttributes as `attr:${K}`]?: VgrTextFieldAttributes[K] } & { [K in keyof VgrTextField & keyof VgrTextFieldAttributes as `prop:${K}`]?: VgrTextField[K] };
-        "vgr-toggle": VgrToggle;
+        "vgr-toggle": Omit<VgrToggle, keyof VgrToggleAttributes> & { [K in keyof VgrToggle & keyof VgrToggleAttributes]?: VgrToggle[K] } & { [K in keyof VgrToggle & keyof VgrToggleAttributes as `attr:${K}`]?: VgrToggleAttributes[K] } & { [K in keyof VgrToggle & keyof VgrToggleAttributes as `prop:${K}`]?: VgrToggle[K] };
     }
 }
 export { LocalJSX as JSX };
