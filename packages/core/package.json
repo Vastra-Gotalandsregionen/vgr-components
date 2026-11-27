@@ -58,7 +58,7 @@
     "copy:styles-to-dist": "node -e \"require('fs').copyFileSync('.tailwind-build/styles.css', 'dist/styles.css')\"",
     "test": "stencil-test",
     "test:watch": "stencil-test --prod --watch",
-    "generate": "stencil generate",
+    "generate": "node scripts/generate-component.mjs",
     "generate:svgs": "node scripts/generate-svgs.mjs"
   },
   "devDependencies": {
