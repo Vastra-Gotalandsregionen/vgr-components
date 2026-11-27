@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
+import type { VgrInfoContent } from '@vastra-gotalandsregionen/components-core';
 import { html } from 'lit';
 
 interface VgrTextFieldArgs {
@@ -7,8 +8,7 @@ interface VgrTextFieldArgs {
   value: string;
   placeholder: string;
   helpText: string;
-  infoTitle: string;
-  infoText: string;
+  info?: VgrInfoContent;
   error: string;
   rows: number;
   disabled: boolean;
@@ -17,12 +17,6 @@ interface VgrTextFieldArgs {
   optional: boolean;
   autoComplete: boolean;
 }
-
-const toInfo = ({
-  infoTitle,
-  infoText,
-}: Pick<VgrTextFieldArgs, 'infoTitle' | 'infoText'>) =>
-  infoText ? { title: infoTitle || undefined, text: infoText } : undefined;
 
 const meta: Meta<VgrTextFieldArgs> = {
   title: 'Components/VgrTextField',
@@ -45,10 +39,10 @@ const meta: Meta<VgrTextFieldArgs> = {
     value: { control: 'text' },
     placeholder: { control: 'text' },
     helpText: { control: 'text' },
-    infoTitle: { control: 'text', description: 'Rubrik i inforutan (valfri)' },
-    infoText: {
-      control: 'text',
-      description: 'Text i inforutan. Tom text ger ingen inforuta.',
+    info: {
+      control: 'object',
+      description:
+        'Innehållet i inforutan: `text` och en valfri `title`. Utelämnas den visas ingen inforuta.',
     },
     error: { control: 'text' },
     rows: {
@@ -71,8 +65,7 @@ const meta: Meta<VgrTextFieldArgs> = {
     value: '',
     placeholder: '',
     helpText: '',
-    infoTitle: '',
-    infoText: '',
+    info: undefined,
     error: '',
     rows: 4,
     disabled: false,
@@ -89,7 +82,7 @@ const meta: Meta<VgrTextFieldArgs> = {
         .value=${args.value}
         .placeholder=${args.placeholder}
         .helpText=${args.helpText}
-        .info=${toInfo(args)}
+        .info=${args.info}
         .error=${args.error}
         .rows=${args.rows}
         .disabled=${args.disabled}
@@ -130,17 +123,19 @@ export const WithHelpText: Story = {
 export const WithInfo: Story = {
   args: {
     label: 'Personnummer',
-    infoText:
-      'Personnumret används för att identifiera dig i våra system. Ange tolv siffror.',
+    info: {
+      text: 'Personnumret används för att identifiera dig i våra system. Ange tolv siffror.',
+    },
   },
 };
 
 export const WithInfoAndTitle: Story = {
   args: {
     label: 'Dokumenttyp',
-    infoTitle: 'Regionövergripande dokument',
-    infoText:
-      'Inkluderar övergripande dokument som gäller för alla verksamheter och förvaltningar i Västra Götalandsregionen.',
+    info: {
+      title: 'Regionövergripande dokument',
+      text: 'Inkluderar övergripande dokument som gäller för alla verksamheter och förvaltningar i Västra Götalandsregionen.',
+    },
   },
 };
 

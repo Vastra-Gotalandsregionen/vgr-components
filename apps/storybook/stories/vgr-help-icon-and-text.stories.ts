@@ -1,38 +1,38 @@
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
+import type { VgrInfoContent } from '@vastra-gotalandsregionen/components-core';
 import { html } from 'lit';
 
 interface VgrHelpIconAndTextArgs {
-  infoTitle: string;
-  infoText: string;
+  info: VgrInfoContent;
   vgrAriaLabel: string;
 }
-
-const toInfo = ({ infoTitle, infoText }: VgrHelpIconAndTextArgs) => ({
-  title: infoTitle || undefined,
-  text: infoText,
-});
 
 const meta: Meta<VgrHelpIconAndTextArgs> = {
   title: 'Components/VgrHelpIconAndText',
   component: 'vgr-help-icon-and-text',
   tags: ['autodocs'],
   argTypes: {
-    infoTitle: { control: 'text', description: 'Rubrik i rutan (valfri)' },
-    infoText: { control: 'text' },
+    info: {
+      control: 'object',
+      description: 'Innehållet i rutan: `text` och en valfri `title`',
+    },
     vgrAriaLabel: {
       control: 'text',
       description: 'Etikett på knappen. Tom ger standardtexten.',
     },
   },
   args: {
-    infoTitle: '',
-    infoText:
-      'Här står en kort förklaring som hjälper användaren att förstå vad som ska fyllas i.',
+    info: {
+      text: 'Här står en kort förklaring som hjälper användaren att förstå vad som ska fyllas i.',
+    },
     vgrAriaLabel: '',
   },
   render: (args) => html`
     <div style="padding: 6rem 2rem;">
-      <vgr-help-icon-and-text .info=${toInfo(args)}></vgr-help-icon-and-text>
+      <vgr-help-icon-and-text
+        .info=${args.info}
+        .vgrAriaLabel=${args.vgrAriaLabel || undefined}
+      ></vgr-help-icon-and-text>
     </div>
   `,
 };
@@ -43,13 +43,19 @@ type Story = StoryObj<VgrHelpIconAndTextArgs>;
 export const Default: Story = {};
 
 export const WithTitle: Story = {
-  args: { infoTitle: 'Regionövergripande dokument' },
+  args: {
+    info: {
+      title: 'Regionövergripande dokument',
+      text: 'Här står en kort förklaring som hjälper användaren att förstå vad som ska fyllas i.',
+    },
+  },
 };
 
 export const LongText: Story = {
   args: {
-    infoText:
-      'Det här är en betydligt längre förklaring som sträcker sig över flera rader, för att vi ska se hur rutan och pilen beter sig när innehållet blir större.',
+    info: {
+      text: 'Det här är en betydligt längre förklaring som sträcker sig över flera rader, för att vi ska se hur rutan och pilen beter sig när innehållet blir större.',
+    },
   },
 };
 
@@ -59,7 +65,7 @@ export const NearRightEdge: Story = {
   render: (args) => html`
     <div style="padding: 6rem 0; display: flex; justify-content: flex-end;">
       <vgr-help-icon-and-text
-        .info=${toInfo(args)}
+        .info=${args.info}
         .vgrAriaLabel=${args.vgrAriaLabel || undefined}
       ></vgr-help-icon-and-text>
     </div>
@@ -71,7 +77,7 @@ export const NearLeftEdge: Story = {
   render: (args) => html`
     <div style="padding: 6rem 0;">
       <vgr-help-icon-and-text
-        .info=${toInfo(args)}
+        .info=${args.info}
         .vgrAriaLabel=${args.vgrAriaLabel || undefined}
       ></vgr-help-icon-and-text>
     </div>
@@ -83,7 +89,7 @@ export const InsideScrollablePage: Story = {
   render: (args) => html`
     <div style="height: 150vh; padding-top: 80vh; padding-left: 2rem;">
       <vgr-help-icon-and-text
-        .info=${toInfo(args)}
+        .info=${args.info}
         .vgrAriaLabel=${args.vgrAriaLabel || undefined}
       ></vgr-help-icon-and-text>
     </div>
