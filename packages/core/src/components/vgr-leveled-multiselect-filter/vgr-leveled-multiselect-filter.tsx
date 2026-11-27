@@ -13,6 +13,10 @@ export class VgrLeveledMultiselectFilter {
   @State() showAll = false;
   @State() topLevelCount = 0;
 
+  componentWillLoad() {
+    this.topLevelCount = this.getTopLevel().length;
+  }
+
   componentDidRender() {
     this.applyToCheckboxes();
   }
@@ -26,8 +30,6 @@ export class VgrLeveledMultiselectFilter {
     topLevel.forEach((checkbox, index) => {
       checkbox.hidden = !this.showAll && index >= this.initialVisible;
     });
-
-    if (topLevel.length !== this.topLevelCount) this.topLevelCount = topLevel.length;
   }
 
   private readonly toggleShowAll = () => {
