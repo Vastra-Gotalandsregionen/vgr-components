@@ -28,6 +28,8 @@ export class VgrChoiceGroup {
 
     const isRadio = this.type === 'radio';
 
+    const containerClasses = this.error ? 'w-fit border-3 border-status-error-text rounded-checkbox-bg p-6 pr-12 mb-2' : '';
+
     return (
       <Host>
         <fieldset
@@ -37,15 +39,19 @@ export class VgrChoiceGroup {
           aria-invalid={this.error ? 'true' : undefined}
           aria-describedby={describedBy}
         >
-          {this.label && (
-            <legend class="flex items-center p-0 mb-3 text-base font-bold leading-text-field-label">
-              {this.label}
-              {this.required && <span class="text-status-error-text block ml-1">*</span>}
-              {this.optional && <span class="text-neutral-text-variant block ml-2 font-normal">(frivillig)</span>}
-            </legend>
-          )}
-          <div class="flex flex-col gap-y-3 mb-2">
-            <slot></slot>
+          <div class={containerClasses}>
+            {this.label && (
+              <div>
+                <legend class="flex items-center p-0 mb-3 text-base font-bold leading-text-field-label">
+                  {this.label}
+                  {this.required && <span class="text-status-error-text block ml-1">*</span>}
+                  {this.optional && <span class="text-neutral-text-variant block ml-2 font-normal">(frivillig)</span>}
+                </legend>
+              </div>
+            )}
+            <div class="flex flex-col gap-y-3 mb-2">
+              <slot></slot>
+            </div>
           </div>
           {showHelp && (
             <p id={helperId} class="block text-neutral-text-variant leading-text-field-help-text">
