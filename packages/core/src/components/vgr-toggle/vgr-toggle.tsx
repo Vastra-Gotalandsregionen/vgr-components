@@ -1,4 +1,4 @@
-import { Component, Event, EventEmitter, Host, Listen, Prop, h } from '@stencil/core';
+import { Component, Event, EventEmitter, Host, Prop, h } from '@stencil/core';
 
 let idCount = 0;
 
@@ -20,14 +20,6 @@ export class VgrToggle {
 
   @Event() vgrChange: EventEmitter<{ value?: string; checked: boolean }>;
 
-  @Listen('change', { target: 'document' })
-  handleGroupChange(event: Event) {
-    const target = event.target as HTMLInputElement;
-    if (!this.inputEl || target === this.inputEl) return;
-    if (!this.name || target.name !== this.name || target.form !== this.inputEl.form) return;
-    this.checked = this.inputEl.checked;
-  }
-
   private readonly handleChange = () => {
     this.checked = this.inputEl.checked;
     this.vgrChange.emit({ value: this.value, checked: this.checked });
@@ -42,7 +34,7 @@ export class VgrToggle {
 
     const labelClasses = ['flex items-center gap-2 text-base leading-6', this.disabled ? 'text-neutral-disabled cursor-not-allowed' : 'text-neutral-text cursor-pointer'].join(' ');
 
-    const rectClass = ['', this.disabled ? 'fill-neutral-disabled' : this.checked ? 'fill-primary-action' : 'fill-neutral-text-variant'].join(' ');
+    const rectClass = [this.disabled ? 'fill-neutral-disabled' : this.checked ? 'fill-primary-action' : 'fill-neutral-text-variant'].join(' ');
 
     return (
       <Host>
@@ -62,12 +54,12 @@ export class VgrToggle {
             aria-describedby={hasReason ? this.reasonId : undefined}
           />
           <svg
-            class="w-10 h-5 peer-focus-visible:outline-3 peer-focus-visible:outline-offset-3 peer-focus-visible:outline-primary-base-30 rounded-xl"
+            class="shrink-0 w-10 h-5 peer-focus-visible:outline-3 peer-focus-visible:outline-offset-3 peer-focus-visible:outline-primary-base-30 rounded-xl"
             viewBox="0 0 40 20"
             aria-hidden="true"
           >
             <rect width="40" height="20" rx="10" class={rectClass} />
-            <circle cx="10" cy="10" r="9" class={`fill-white transition-transform ${this.checked ? 'translate-x-5' : 'translate-x-0'}`} />
+            <circle cx="10" cy="10" r="9" class={`fill-white transition-transform motion-reduce:transition-none ${this.checked ? 'translate-x-5' : 'translate-x-0'}`} />
           </svg>
           {this.label}
         </label>
