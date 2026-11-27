@@ -13,6 +13,7 @@ export class VgrCheckbox {
   private readonly childrenId = `${this.checkboxId}-children`;
   private inputEl?: HTMLInputElement;
   private isChild = false;
+  private isLastInList = false;
 
   @Element() el!: HTMLElement;
 
@@ -33,6 +34,15 @@ export class VgrCheckbox {
   componentWillLoad() {
     this.isChild = !!this.el.parentElement?.closest('vgr-checkbox');
     this.hasChildren = this.getDirectChildren().length > 0;
+
+    this.isLastInList = true;
+    let node: HTMLElement = this.el;
+    while (node.parentElement?.closest('vgr-checkbox')) {
+      for (let sibling = node.nextElementSibling; sibling; sibling = sibling.nextElementSibling) {
+        if (sibling.tagName === 'VGR-CHECKBOX') this.isLastInList = false;
+      }
+      node = node.parentElement.closest('vgr-checkbox') as HTMLElement;
+    }
   }
 
   componentDidLoad() {
@@ -93,6 +103,15 @@ export class VgrCheckbox {
     const hasReason = this.disabled && !!this.srOnlyDisabledReason;
     const showToggle = this.hasChildren && this.collapsibleChildren;
     const childrenHidden = this.collapsibleChildren && !this.expanded;
+    const hasBg = this.collapsibleChildren && (this.isChild || this.expanded);
+    const showBottomRound = this.isLastInList && !(this.hasChildren && this.expanded);
+
+    const rowClasses = [
+      'flex items-center justify-between gap-1',
+      hasBg ? 'bg-primary-base-surface-minimal' : '',
+      hasBg && !this.isChild ? 'rounded-t-checkbox-bg' : '',
+      hasBg && showBottomRound ? 'rounded-b-checkbox-bg' : '',
+    ].join(' ');
 
     const labelClasses = [
       'flex items-center gap-2 text-base leading-6',
@@ -112,8 +131,8 @@ export class VgrCheckbox {
     ].join(' ');
 
     return (
-      <Host class="block" expanded={this.expanded ? '' : undefined}>
-        <div class="flex items-center justify-between gap-1">
+      <Host class="block">
+        <div class={rowClasses}>
           <label htmlFor={this.checkboxId} class={labelClasses}>
             <input
               type="checkbox"

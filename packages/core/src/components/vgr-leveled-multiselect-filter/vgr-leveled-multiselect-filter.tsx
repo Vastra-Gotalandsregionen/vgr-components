@@ -39,19 +39,11 @@ export class VgrLeveledMultiselectFilter {
   };
 
   render() {
-    const treeClasses = [
-      'block w-fit',
-      '[&_vgr-checkbox[expanded]:not(vgr-checkbox_vgr-checkbox)]:overflow-hidden',
-      '[&_vgr-checkbox[expanded]:not(vgr-checkbox_vgr-checkbox)]:rounded-lg',
-      '[&_vgr-checkbox[expanded]:not(vgr-checkbox_vgr-checkbox)>div:first-child]:bg-primary-base-surface-minimal',
-      '[&_vgr-checkbox[expanded]_vgr-checkbox>div:first-child]:bg-primary-base-surface-minimal',
-    ].join(' ');
-
     const showMoreButton = this.topLevelCount > this.initialVisible;
 
     return (
       <Host class="block">
-        <div class={treeClasses}>
+        <div class="block w-fit">
           <slot></slot>
         </div>
         {showMoreButton && (

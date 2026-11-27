@@ -4,6 +4,7 @@
 @theme {
   /* Border radius */
   --radius-text-field: 0.625rem;
+  --radius-checkbox-bg: 1.25rem;
   /* Line height */
   --leading-text-field-label: 150%;
   --leading-text-field-help-text: 100%;
