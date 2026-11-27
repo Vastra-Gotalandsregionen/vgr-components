@@ -42,6 +42,8 @@ export class VgrToggle {
 
     const labelClasses = ['flex items-center gap-2 text-base leading-6', this.disabled ? 'text-neutral-disabled cursor-not-allowed' : 'text-neutral-text cursor-pointer'].join(' ');
 
+    const rectClass = ['', this.disabled ? 'fill-neutral-disabled' : this.checked ? 'fill-primary-action' : 'fill-neutral-text-variant'].join(' ');
+
     return (
       <Host>
         <label htmlFor={this.toggleId} class={labelClasses}>
@@ -59,6 +61,14 @@ export class VgrToggle {
             aria-disabled={this.disabled ? 'true' : undefined}
             aria-describedby={hasReason ? this.reasonId : undefined}
           />
+          <svg
+            class="w-10 h-5 peer-focus-visible:outline-3 peer-focus-visible:outline-offset-3 peer-focus-visible:outline-primary-base-30 rounded-xl"
+            viewBox="0 0 40 20"
+            aria-hidden="true"
+          >
+            <rect width="40" height="20" rx="10" class={rectClass} />
+            <circle cx="10" cy="10" r="9" class={`fill-white transition-transform ${this.checked ? 'translate-x-5' : 'translate-x-0'}`} />
+          </svg>
           {this.label}
         </label>
         {hasReason && (
