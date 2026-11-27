@@ -19,6 +19,19 @@
 |      | The default slot |
 
 
+## Dependencies
+
+### Depends on
+
+- [vgr-icon](../vgr-icon)
+
+### Graph
+```mermaid
+graph TD;
+  vgr-leveled-multiselect-filter --> vgr-icon
+  style vgr-leveled-multiselect-filter fill:#f9f,stroke:#333,stroke-width:4px
+```
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*

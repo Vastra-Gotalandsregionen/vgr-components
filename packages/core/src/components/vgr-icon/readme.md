@@ -20,6 +20,7 @@
  - [vgr-button](../vgr-button)
  - [vgr-checkbox](../vgr-checkbox)
  - [vgr-help-icon-and-text](../vgr-help-icon-and-text)
+ - [vgr-leveled-multiselect-filter](../vgr-leveled-multiselect-filter)
 
 ### Graph
 ```mermaid
@@ -27,6 +28,7 @@ graph TD;
   vgr-button --> vgr-icon
   vgr-checkbox --> vgr-icon
   vgr-help-icon-and-text --> vgr-icon
+  vgr-leveled-multiselect-filter --> vgr-icon
   style vgr-icon fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
