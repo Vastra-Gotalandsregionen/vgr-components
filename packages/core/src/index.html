@@ -10,20 +10,71 @@
     <script nomodule src="/build/vgregion-components.js"></script>
     <link rel="stylesheet" href="/styles.css" />
   </head>
-  <body style="background-color: var(--color-accent-brown-surface-minimal)">
+  <body style="background-color: var(--color-elevation-background); color: var(--color-neutral-text); padding: 1rem">
     <h2 class="text-2xl font-bold mb-2">Help icon and text</h2>
     <div class="flex flex-col gap-4 mb-6">
       <div class="flex justify-center"><vgr-help-icon-and-text id="helpIcon" /></div>
     </div>
     <hr />
+    <h2 class="text-2xl font-bold mb-2">Checkbox</h2>
+    <div class="flex flex-col gap-4 mb-6">
+      <vgr-choice-group label="Välj några färger" optional="true" error="Du har inte valt några färger">
+        <vgr-checkbox label="Lila" name="myColor"></vgr-checkbox>
+        <vgr-checkbox label="Orange" name="myColor"></vgr-checkbox>
+        <vgr-checkbox label="Grön" name="myColor">
+          <vgr-checkbox label="Mossgrön" name="myColor"></vgr-checkbox>
+          <vgr-checkbox label="Skogsgrön" name="myColor"></vgr-checkbox>
+          <vgr-checkbox label="Limegrön" name="myColor">
+            <vgr-checkbox label="Limeskalsgrön" name="myColor">
+              <vgr-checkbox label="Torkad limeskalsgrön" name="myColor"></vgr-checkbox>
+              <vgr-checkbox label="Färsk limeskalsgrön" name="myColor"></vgr-checkbox>
+            </vgr-checkbox>
+            <vgr-checkbox label="Limeköttsgrön" name="myColor"></vgr-checkbox>
+          </vgr-checkbox>
+        </vgr-checkbox>
+      </vgr-choice-group>
+      Multiselect filter
+      <vgr-leveled-multiselect-filter>
+        <vgr-checkbox label="Rosa" name="myColor" disabled="true" checked="true"></vgr-checkbox>
+        <vgr-checkbox label="Gul" name="myColor" disabled="true" sr-only-disabled-reason="Du har inte klickat på de andra valen"></vgr-checkbox>
+        <vgr-checkbox label="Blå" name="myColor">
+          <vgr-checkbox label="Mörkblå" name="myColor">
+            <vgr-checkbox label="Lite mörk blå" name="myColor"></vgr-checkbox>
+            <vgr-checkbox label="Jättemörk blå" name="myColor">
+              <vgr-checkbox label="Midnattsblå" name="myColor">
+                <vgr-checkbox label="Midvinternattsblå" name="myColor"></vgr-checkbox>
+                <vgr-checkbox label="Midsommarnattsblå" name="myColor"></vgr-checkbox>
+              </vgr-checkbox>
+            </vgr-checkbox>
+          </vgr-checkbox>
+          <vgr-checkbox label="Ljusblå" name="myColor">
+            <vgr-checkbox label="Duvblå" name="myColor"></vgr-checkbox>
+            <vgr-checkbox label="Himmelsblå" name="myColor"></vgr-checkbox>
+          </vgr-checkbox>
+        </vgr-checkbox>
+        <vgr-checkbox label="Röd" name="myColor"></vgr-checkbox>
+        <vgr-checkbox label="Brun" name="myColor"></vgr-checkbox>
+        <vgr-checkbox label="Svart" name="myColor"></vgr-checkbox>
+        <vgr-checkbox label="Okra" name="myColor"></vgr-checkbox>
+        <vgr-checkbox label="Grön" name="myColor"></vgr-checkbox>
+        <vgr-checkbox label="Grå" name="myColor"></vgr-checkbox>
+        <vgr-checkbox label="Guld" name="myColor"></vgr-checkbox>
+        <vgr-checkbox label="Silver" name="myColor"></vgr-checkbox>
+        <vgr-checkbox label="Leopard" name="myColor"></vgr-checkbox>
+        <vgr-checkbox label="Magenta" name="myColor"></vgr-checkbox>
+        <vgr-checkbox label="Cyan" name="myColor"></vgr-checkbox>
+        <vgr-checkbox label="Scharlakansfeberfärgad" name="myColor"></vgr-checkbox>
+      </vgr-leveled-multiselect-filter>
+    </div>
+    <hr />
     <h2 class="text-2xl font-bold mb-2">Radio button</h2>
     <div class="flex flex-col gap-4 mb-6">
-      <vgr-radio-group label="Välj en färg" optional="true" error="Välj minst ett alternativ">
+      <vgr-choice-group label="Välj en färg" required="true" error="Välj minst ett alternativ">
         <vgr-radio-button label="Grön" name="myColor"></vgr-radio-button>
         <vgr-radio-button label="Gul" name="myColor" disabled="true" sr-only-disabled-reason="Du har inte klickat på de andra radioen knapparna"></vgr-radio-button>
         <vgr-radio-button label="Blå" name="myColor"></vgr-radio-button>
         <vgr-radio-button label="Röd" name="myColor"></vgr-radio-button>
-      </vgr-radio-group>
+      </vgr-choice-group>
     </div>
     <hr />
     <h2 class="text-2xl font-bold mb-2">Buttons</h2>

@@ -28,15 +28,57 @@ export namespace Components {
         "variant": VgrButtonVariant;
         "vgrAriaLabel"?: string;
     }
+    interface VgrCheckbox {
+        /**
+          * @default false
+         */
+        "checked": boolean;
+        /**
+          * @default false
+         */
+        "disabled": boolean;
+        /**
+          * @default false
+         */
+        "indeterminate": boolean;
+        "label": string;
+        "name"?: string;
+        "srOnlyDisabledReason"?: string;
+        "value"?: string;
+    }
+    interface VgrChoiceGroup {
+        "error"?: string;
+        "helpText"?: string;
+        "label"?: string;
+        /**
+          * @default false
+         */
+        "optional": boolean;
+        /**
+          * @default false
+         */
+        "required": boolean;
+        "type": 'radio' | 'checkbox';
+    }
     interface VgrHelpIconAndText {
         "info"?: VgrInfoContent;
         "vgrAriaLabel"?: string;
     }
     interface VgrIcon {
         /**
-          * SVG markup for the icon. Must come from our own icon package, never from user input, since it is rendered with innerHTML.
+          * SVG markup for the icon. Must come from one of our own icon sources, never from user input, since it is rendered with innerHTML.
          */
         "icon": string;
+        /**
+          * Height in Tailwind's spacing scale (4 = 16px, 6 = 24px). The width follows the icon's own proportions. Defaults to 1em, so the icon follows the surrounding font-size.
+         */
+        "size"?: IconSize;
+    }
+    interface VgrLeveledMultiselectFilter {
+        /**
+          * @default 10
+         */
+        "initialVisible": number;
     }
     interface VgrRadioButton {
         /**
@@ -51,19 +93,6 @@ export namespace Components {
         "name": string;
         "srOnlyDisabledReason"?: string;
         "value"?: string;
-    }
-    interface VgrRadioGroup {
-        "error"?: string;
-        "helpText"?: string;
-        "label": string;
-        /**
-          * @default false
-         */
-        "optional": boolean;
-        /**
-          * @default false
-         */
-        "required": boolean;
     }
     interface VgrTextField {
         /**
@@ -103,6 +132,10 @@ export interface VgrButtonCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLVgrButtonElement;
 }
+export interface VgrCheckboxCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLVgrCheckboxElement;
+}
 export interface VgrRadioButtonCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLVgrRadioButtonElement;
@@ -125,6 +158,29 @@ declare global {
         prototype: HTMLVgrButtonElement;
         new (): HTMLVgrButtonElement;
     };
+    interface HTMLVgrCheckboxElementEventMap {
+        "vgrChange": { value?: string; checked: boolean };
+    }
+    interface HTMLVgrCheckboxElement extends Components.VgrCheckbox, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLVgrCheckboxElementEventMap>(type: K, listener: (this: HTMLVgrCheckboxElement, ev: VgrCheckboxCustomEvent<HTMLVgrCheckboxElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLVgrCheckboxElementEventMap>(type: K, listener: (this: HTMLVgrCheckboxElement, ev: VgrCheckboxCustomEvent<HTMLVgrCheckboxElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLVgrCheckboxElement: {
+        prototype: HTMLVgrCheckboxElement;
+        new (): HTMLVgrCheckboxElement;
+    };
+    interface HTMLVgrChoiceGroupElement extends Components.VgrChoiceGroup, HTMLStencilElement {
+    }
+    var HTMLVgrChoiceGroupElement: {
+        prototype: HTMLVgrChoiceGroupElement;
+        new (): HTMLVgrChoiceGroupElement;
+    };
     interface HTMLVgrHelpIconAndTextElement extends Components.VgrHelpIconAndText, HTMLStencilElement {
     }
     var HTMLVgrHelpIconAndTextElement: {
@@ -136,6 +192,12 @@ declare global {
     var HTMLVgrIconElement: {
         prototype: HTMLVgrIconElement;
         new (): HTMLVgrIconElement;
+    };
+    interface HTMLVgrLeveledMultiselectFilterElement extends Components.VgrLeveledMultiselectFilter, HTMLStencilElement {
+    }
+    var HTMLVgrLeveledMultiselectFilterElement: {
+        prototype: HTMLVgrLeveledMultiselectFilterElement;
+        new (): HTMLVgrLeveledMultiselectFilterElement;
     };
     interface HTMLVgrRadioButtonElementEventMap {
         "vgrChange": { value?: string; checked: boolean };
@@ -154,12 +216,6 @@ declare global {
         prototype: HTMLVgrRadioButtonElement;
         new (): HTMLVgrRadioButtonElement;
     };
-    interface HTMLVgrRadioGroupElement extends Components.VgrRadioGroup, HTMLStencilElement {
-    }
-    var HTMLVgrRadioGroupElement: {
-        prototype: HTMLVgrRadioGroupElement;
-        new (): HTMLVgrRadioGroupElement;
-    };
     interface HTMLVgrTextFieldElement extends Components.VgrTextField, HTMLStencilElement {
     }
     var HTMLVgrTextFieldElement: {
@@ -168,10 +224,12 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "vgr-button": HTMLVgrButtonElement;
+        "vgr-checkbox": HTMLVgrCheckboxElement;
+        "vgr-choice-group": HTMLVgrChoiceGroupElement;
         "vgr-help-icon-and-text": HTMLVgrHelpIconAndTextElement;
         "vgr-icon": HTMLVgrIconElement;
+        "vgr-leveled-multiselect-filter": HTMLVgrLeveledMultiselectFilterElement;
         "vgr-radio-button": HTMLVgrRadioButtonElement;
-        "vgr-radio-group": HTMLVgrRadioGroupElement;
         "vgr-text-field": HTMLVgrTextFieldElement;
     }
 }
@@ -197,15 +255,58 @@ declare namespace LocalJSX {
         "variant"?: VgrButtonVariant;
         "vgrAriaLabel"?: string;
     }
+    interface VgrCheckbox {
+        /**
+          * @default false
+         */
+        "checked"?: boolean;
+        /**
+          * @default false
+         */
+        "disabled"?: boolean;
+        /**
+          * @default false
+         */
+        "indeterminate"?: boolean;
+        "label": string;
+        "name"?: string;
+        "onVgrChange"?: (event: VgrCheckboxCustomEvent<{ value?: string; checked: boolean }>) => void;
+        "srOnlyDisabledReason"?: string;
+        "value"?: string;
+    }
+    interface VgrChoiceGroup {
+        "error"?: string;
+        "helpText"?: string;
+        "label"?: string;
+        /**
+          * @default false
+         */
+        "optional"?: boolean;
+        /**
+          * @default false
+         */
+        "required"?: boolean;
+        "type": 'radio' | 'checkbox';
+    }
     interface VgrHelpIconAndText {
         "info"?: VgrInfoContent;
         "vgrAriaLabel"?: string;
     }
     interface VgrIcon {
         /**
-          * SVG markup for the icon. Must come from our own icon package, never from user input, since it is rendered with innerHTML.
+          * SVG markup for the icon. Must come from one of our own icon sources, never from user input, since it is rendered with innerHTML.
          */
         "icon": string;
+        /**
+          * Height in Tailwind's spacing scale (4 = 16px, 6 = 24px). The width follows the icon's own proportions. Defaults to 1em, so the icon follows the surrounding font-size.
+         */
+        "size"?: IconSize;
+    }
+    interface VgrLeveledMultiselectFilter {
+        /**
+          * @default 10
+         */
+        "initialVisible"?: number;
     }
     interface VgrRadioButton {
         /**
@@ -221,19 +322,6 @@ declare namespace LocalJSX {
         "onVgrChange"?: (event: VgrRadioButtonCustomEvent<{ value?: string; checked: boolean }>) => void;
         "srOnlyDisabledReason"?: string;
         "value"?: string;
-    }
-    interface VgrRadioGroup {
-        "error"?: string;
-        "helpText"?: string;
-        "label": string;
-        /**
-          * @default false
-         */
-        "optional"?: boolean;
-        /**
-          * @default false
-         */
-        "required"?: boolean;
     }
     interface VgrTextField {
         /**
@@ -278,11 +366,32 @@ declare namespace LocalJSX {
         "icon": string;
         "vgrAriaLabel": string;
     }
+    interface VgrCheckboxAttributes {
+        "label": string;
+        "name": string;
+        "value": string;
+        "disabled": boolean;
+        "srOnlyDisabledReason": string;
+        "checked": boolean;
+        "indeterminate": boolean;
+    }
+    interface VgrChoiceGroupAttributes {
+        "type": 'radio' | 'checkbox';
+        "label": string;
+        "helpText": string;
+        "error": string;
+        "required": boolean;
+        "optional": boolean;
+    }
     interface VgrHelpIconAndTextAttributes {
         "vgrAriaLabel": string;
     }
     interface VgrIconAttributes {
         "icon": string;
+        "size": IconSize;
+    }
+    interface VgrLeveledMultiselectFilterAttributes {
+        "initialVisible": number;
     }
     interface VgrRadioButtonAttributes {
         "disabled": boolean;
@@ -291,13 +400,6 @@ declare namespace LocalJSX {
         "value": string;
         "label": string;
         "srOnlyDisabledReason": string;
-    }
-    interface VgrRadioGroupAttributes {
-        "label": string;
-        "helpText": string;
-        "error": string;
-        "required": boolean;
-        "optional": boolean;
     }
     interface VgrTextFieldAttributes {
         "type": 'text' | 'textarea' | 'number' | 'email' | 'password' | 'tel' | 'url';
@@ -316,10 +418,12 @@ declare namespace LocalJSX {
 
     interface IntrinsicElements {
         "vgr-button": Omit<VgrButton, keyof VgrButtonAttributes> & { [K in keyof VgrButton & keyof VgrButtonAttributes]?: VgrButton[K] } & { [K in keyof VgrButton & keyof VgrButtonAttributes as `attr:${K}`]?: VgrButtonAttributes[K] } & { [K in keyof VgrButton & keyof VgrButtonAttributes as `prop:${K}`]?: VgrButton[K] } & OneOf<"text", VgrButton["text"], VgrButtonAttributes["text"]>;
+        "vgr-checkbox": Omit<VgrCheckbox, keyof VgrCheckboxAttributes> & { [K in keyof VgrCheckbox & keyof VgrCheckboxAttributes]?: VgrCheckbox[K] } & { [K in keyof VgrCheckbox & keyof VgrCheckboxAttributes as `attr:${K}`]?: VgrCheckboxAttributes[K] } & { [K in keyof VgrCheckbox & keyof VgrCheckboxAttributes as `prop:${K}`]?: VgrCheckbox[K] } & OneOf<"label", VgrCheckbox["label"], VgrCheckboxAttributes["label"]>;
+        "vgr-choice-group": Omit<VgrChoiceGroup, keyof VgrChoiceGroupAttributes> & { [K in keyof VgrChoiceGroup & keyof VgrChoiceGroupAttributes]?: VgrChoiceGroup[K] } & { [K in keyof VgrChoiceGroup & keyof VgrChoiceGroupAttributes as `attr:${K}`]?: VgrChoiceGroupAttributes[K] } & { [K in keyof VgrChoiceGroup & keyof VgrChoiceGroupAttributes as `prop:${K}`]?: VgrChoiceGroup[K] } & OneOf<"type", VgrChoiceGroup["type"], VgrChoiceGroupAttributes["type"]>;
         "vgr-help-icon-and-text": Omit<VgrHelpIconAndText, keyof VgrHelpIconAndTextAttributes> & { [K in keyof VgrHelpIconAndText & keyof VgrHelpIconAndTextAttributes]?: VgrHelpIconAndText[K] } & { [K in keyof VgrHelpIconAndText & keyof VgrHelpIconAndTextAttributes as `attr:${K}`]?: VgrHelpIconAndTextAttributes[K] } & { [K in keyof VgrHelpIconAndText & keyof VgrHelpIconAndTextAttributes as `prop:${K}`]?: VgrHelpIconAndText[K] };
         "vgr-icon": Omit<VgrIcon, keyof VgrIconAttributes> & { [K in keyof VgrIcon & keyof VgrIconAttributes]?: VgrIcon[K] } & { [K in keyof VgrIcon & keyof VgrIconAttributes as `attr:${K}`]?: VgrIconAttributes[K] } & { [K in keyof VgrIcon & keyof VgrIconAttributes as `prop:${K}`]?: VgrIcon[K] } & OneOf<"icon", VgrIcon["icon"], VgrIconAttributes["icon"]>;
+        "vgr-leveled-multiselect-filter": Omit<VgrLeveledMultiselectFilter, keyof VgrLeveledMultiselectFilterAttributes> & { [K in keyof VgrLeveledMultiselectFilter & keyof VgrLeveledMultiselectFilterAttributes]?: VgrLeveledMultiselectFilter[K] } & { [K in keyof VgrLeveledMultiselectFilter & keyof VgrLeveledMultiselectFilterAttributes as `attr:${K}`]?: VgrLeveledMultiselectFilterAttributes[K] } & { [K in keyof VgrLeveledMultiselectFilter & keyof VgrLeveledMultiselectFilterAttributes as `prop:${K}`]?: VgrLeveledMultiselectFilter[K] };
         "vgr-radio-button": Omit<VgrRadioButton, keyof VgrRadioButtonAttributes> & { [K in keyof VgrRadioButton & keyof VgrRadioButtonAttributes]?: VgrRadioButton[K] } & { [K in keyof VgrRadioButton & keyof VgrRadioButtonAttributes as `attr:${K}`]?: VgrRadioButtonAttributes[K] } & { [K in keyof VgrRadioButton & keyof VgrRadioButtonAttributes as `prop:${K}`]?: VgrRadioButton[K] };
-        "vgr-radio-group": Omit<VgrRadioGroup, keyof VgrRadioGroupAttributes> & { [K in keyof VgrRadioGroup & keyof VgrRadioGroupAttributes]?: VgrRadioGroup[K] } & { [K in keyof VgrRadioGroup & keyof VgrRadioGroupAttributes as `attr:${K}`]?: VgrRadioGroupAttributes[K] } & { [K in keyof VgrRadioGroup & keyof VgrRadioGroupAttributes as `prop:${K}`]?: VgrRadioGroup[K] } & OneOf<"label", VgrRadioGroup["label"], VgrRadioGroupAttributes["label"]>;
         "vgr-text-field": Omit<VgrTextField, keyof VgrTextFieldAttributes> & { [K in keyof VgrTextField & keyof VgrTextFieldAttributes]?: VgrTextField[K] } & { [K in keyof VgrTextField & keyof VgrTextFieldAttributes as `attr:${K}`]?: VgrTextFieldAttributes[K] } & { [K in keyof VgrTextField & keyof VgrTextFieldAttributes as `prop:${K}`]?: VgrTextField[K] };
     }
 }
@@ -328,10 +432,12 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "vgr-button": LocalJSX.IntrinsicElements["vgr-button"] & JSXBase.HTMLAttributes<HTMLVgrButtonElement>;
+            "vgr-checkbox": LocalJSX.IntrinsicElements["vgr-checkbox"] & JSXBase.HTMLAttributes<HTMLVgrCheckboxElement>;
+            "vgr-choice-group": LocalJSX.IntrinsicElements["vgr-choice-group"] & JSXBase.HTMLAttributes<HTMLVgrChoiceGroupElement>;
             "vgr-help-icon-and-text": LocalJSX.IntrinsicElements["vgr-help-icon-and-text"] & JSXBase.HTMLAttributes<HTMLVgrHelpIconAndTextElement>;
             "vgr-icon": LocalJSX.IntrinsicElements["vgr-icon"] & JSXBase.HTMLAttributes<HTMLVgrIconElement>;
+            "vgr-leveled-multiselect-filter": LocalJSX.IntrinsicElements["vgr-leveled-multiselect-filter"] & JSXBase.HTMLAttributes<HTMLVgrLeveledMultiselectFilterElement>;
             "vgr-radio-button": LocalJSX.IntrinsicElements["vgr-radio-button"] & JSXBase.HTMLAttributes<HTMLVgrRadioButtonElement>;
-            "vgr-radio-group": LocalJSX.IntrinsicElements["vgr-radio-group"] & JSXBase.HTMLAttributes<HTMLVgrRadioGroupElement>;
             "vgr-text-field": LocalJSX.IntrinsicElements["vgr-text-field"] & JSXBase.HTMLAttributes<HTMLVgrTextFieldElement>;
         }
     }
