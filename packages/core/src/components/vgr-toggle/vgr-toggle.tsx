@@ -14,15 +14,14 @@ export class VgrToggle {
   @Prop() disabled = false;
   @Prop({ mutable: true }) checked: boolean = false;
   @Prop() name: string;
-  @Prop() value?: string;
   @Prop() label: string;
   @Prop() srOnlyDisabledReason?: string;
 
-  @Event() vgrChange: EventEmitter<{ value?: string; checked: boolean }>;
+  @Event() vgrChange: EventEmitter<{ checked: boolean }>;
 
   private readonly handleChange = () => {
     this.checked = this.inputEl.checked;
-    this.vgrChange.emit({ value: this.value, checked: this.checked });
+    this.vgrChange.emit({ checked: this.checked });
   };
 
   private readonly handleClick = (event: MouseEvent) => {
@@ -45,7 +44,6 @@ export class VgrToggle {
             class="peer sr-only"
             id={this.toggleId}
             name={this.name}
-            value={this.value}
             checked={this.checked}
             onChange={this.handleChange}
             onClick={this.handleClick}

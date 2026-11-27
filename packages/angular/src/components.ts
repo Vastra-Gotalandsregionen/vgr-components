@@ -222,19 +222,19 @@ export declare interface VgrTextField extends Components.VgrTextField {}
 
 @ProxyCmp({
   defineCustomElementFn: defineVgrToggle,
-  inputs: ['checked', 'disabled', 'label', 'name', 'srOnlyDisabledReason', 'value']
+  inputs: ['checked', 'disabled', 'label', 'name', 'srOnlyDisabledReason']
 })
 @Component({
   selector: 'vgr-toggle',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['checked', 'disabled', 'label', 'name', 'srOnlyDisabledReason', 'value'],
+  inputs: ['checked', 'disabled', 'label', 'name', 'srOnlyDisabledReason'],
   outputs: ['vgrChange'],
 })
 export class VgrToggle {
   protected el: HTMLVgrToggleElement;
-  @Output() vgrChange = new EventEmitter<VgrToggleCustomEvent<{ value?: string; checked: boolean }>>();
+  @Output() vgrChange = new EventEmitter<VgrToggleCustomEvent<{ checked: boolean }>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -246,7 +246,7 @@ import type { VgrToggleCustomEvent } from '@vastra-gotalandsregionen/components-
 
 export declare interface VgrToggle extends Components.VgrToggle {
 
-  vgrChange: EventEmitter<VgrToggleCustomEvent<{ value?: string; checked: boolean }>>;
+  vgrChange: EventEmitter<VgrToggleCustomEvent<{ checked: boolean }>>;
 }
 
 

@@ -14,14 +14,13 @@
 | `label`                | `label`                   |             | `string`  | `undefined` |
 | `name`                 | `name`                    |             | `string`  | `undefined` |
 | `srOnlyDisabledReason` | `sr-only-disabled-reason` |             | `string`  | `undefined` |
-| `value`                | `value`                   |             | `string`  | `undefined` |
 
 
 ## Events
 
-| Event       | Description | Type                                                 |
-| ----------- | ----------- | ---------------------------------------------------- |
-| `vgrChange` |             | `CustomEvent<{ value?: string; checked: boolean; }>` |
+| Event       | Description | Type                                 |
+| ----------- | ----------- | ------------------------------------ |
+| `vgrChange` |             | `CustomEvent<{ checked: boolean; }>` |
 
 
 ----------------------------------------------

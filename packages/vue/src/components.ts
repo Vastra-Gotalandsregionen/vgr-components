@@ -98,7 +98,6 @@ export const VgrToggle: StencilVueComponent<JSX.VgrToggle> = /*@__PURE__*/ defin
   'disabled',
   'checked',
   'name',
-  'value',
   'label',
   'srOnlyDisabledReason',
   'vgrChange'

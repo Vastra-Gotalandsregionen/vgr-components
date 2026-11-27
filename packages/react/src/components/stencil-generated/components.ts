@@ -123,7 +123,7 @@ export const VgrTextField: StencilReactComponent<VgrTextFieldElement, VgrTextFie
 });
 
 export type VgrToggleEvents = {
-  onVgrChange: EventName<VgrToggleCustomEvent<{ value?: string; checked: boolean }>>
+  onVgrChange: EventName<VgrToggleCustomEvent<{ checked: boolean }>>
 };
 
 export const VgrToggle: StencilReactComponent<VgrToggleElement, VgrToggleEvents, Components.VgrToggle> = /*@__PURE__*/ createComponent<VgrToggleElement, VgrToggleEvents, Components.VgrToggle>({

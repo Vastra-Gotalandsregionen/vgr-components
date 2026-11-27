@@ -139,7 +139,6 @@ export namespace Components {
         "label": string;
         "name": string;
         "srOnlyDisabledReason"?: string;
-        "value"?: string;
     }
 }
 export interface VgrButtonCustomEvent<T> extends CustomEvent<T> {
@@ -241,7 +240,7 @@ declare global {
         new (): HTMLVgrTextFieldElement;
     };
     interface HTMLVgrToggleElementEventMap {
-        "vgrChange": { value?: string; checked: boolean };
+        "vgrChange": { checked: boolean };
     }
     interface HTMLVgrToggleElement extends Components.VgrToggle, HTMLStencilElement {
         addEventListener<K extends keyof HTMLVgrToggleElementEventMap>(type: K, listener: (this: HTMLVgrToggleElement, ev: VgrToggleCustomEvent<HTMLVgrToggleElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -403,9 +402,8 @@ declare namespace LocalJSX {
         "disabled"?: boolean;
         "label"?: string;
         "name"?: string;
-        "onVgrChange"?: (event: VgrToggleCustomEvent<{ value?: string; checked: boolean }>) => void;
+        "onVgrChange"?: (event: VgrToggleCustomEvent<{ checked: boolean }>) => void;
         "srOnlyDisabledReason"?: string;
-        "value"?: string;
     }
 
     interface VgrButtonAttributes {
@@ -470,7 +468,6 @@ declare namespace LocalJSX {
         "disabled": boolean;
         "checked": boolean;
         "name": string;
-        "value": string;
         "label": string;
         "srOnlyDisabledReason": string;
     }
