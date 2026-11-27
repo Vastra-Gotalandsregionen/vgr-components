@@ -12,8 +12,10 @@ export class VgrCheckbox {
   private readonly reasonId = `${this.checkboxId}-reason`;
   private readonly childrenId = `${this.checkboxId}-children`;
   private inputEl?: HTMLInputElement;
+
   private isChild = false;
   private isLastInList = false;
+  private isCollapsible = false;
 
   @Element() el!: HTMLElement;
 
@@ -22,7 +24,6 @@ export class VgrCheckbox {
   @Prop() value?: string;
   @Prop() disabled = false;
   @Prop() srOnlyDisabledReason?: string;
-  @Prop() collapsibleChildren = false;
   @Prop({ mutable: true }) checked: boolean = false;
   @Prop({ mutable: true }) indeterminate: boolean = false;
 
@@ -33,6 +34,7 @@ export class VgrCheckbox {
 
   componentWillLoad() {
     this.isChild = !!this.el.parentElement?.closest('vgr-checkbox');
+    this.isCollapsible = !!this.el.closest('vgr-leveled-multiselect-filter');
     this.hasChildren = this.getDirectChildren().length > 0;
 
     this.isLastInList = true;
@@ -101,9 +103,9 @@ export class VgrCheckbox {
 
   render() {
     const hasReason = this.disabled && !!this.srOnlyDisabledReason;
-    const showToggle = this.hasChildren && this.collapsibleChildren;
-    const childrenHidden = this.collapsibleChildren && !this.expanded;
-    const hasBg = this.collapsibleChildren && (this.isChild || this.expanded);
+    const showToggle = this.hasChildren && this.isCollapsible;
+    const childrenHidden = this.isCollapsible && !this.expanded;
+    const hasBg = this.isCollapsible && (this.isChild || this.expanded);
     const showBottomRound = this.isLastInList && !(this.hasChildren && this.expanded);
 
     const rowClasses = [
@@ -115,9 +117,9 @@ export class VgrCheckbox {
 
     const labelClasses = [
       'flex items-center gap-2 text-base leading-6',
-      this.collapsibleChildren ? 'p-3' : '',
-      this.isChild && !this.collapsibleChildren ? 'py-1.5' : '',
-      this.isChild && this.collapsibleChildren ? 'pl-6' : '',
+      this.isCollapsible ? 'p-3' : '',
+      this.isChild && !this.isCollapsible ? 'py-1.5' : '',
+      this.isChild && this.isCollapsible ? 'pl-6' : '',
       this.disabled ? 'text-neutral-disabled cursor-not-allowed' : 'text-neutral-text cursor-pointer',
     ].join(' ');
 
@@ -178,7 +180,7 @@ export class VgrCheckbox {
             {this.srOnlyDisabledReason}
           </span>
         )}
-        <div id={this.childrenId} class={childrenHidden ? 'hidden' : this.collapsibleChildren ? 'ml-3' : 'ml-5'}>
+        <div id={this.childrenId} class={childrenHidden ? 'hidden' : this.isCollapsible ? 'ml-3' : 'ml-5'}>
           <slot></slot>
         </div>
       </Host>

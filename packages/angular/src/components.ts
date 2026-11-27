@@ -46,14 +46,14 @@ export declare interface VgrButton extends Components.VgrButton {
 
 @ProxyCmp({
   defineCustomElementFn: defineVgrCheckbox,
-  inputs: ['checked', 'collapsibleChildren', 'disabled', 'indeterminate', 'label', 'name', 'srOnlyDisabledReason', 'value']
+  inputs: ['checked', 'disabled', 'indeterminate', 'label', 'name', 'srOnlyDisabledReason', 'value']
 })
 @Component({
   selector: 'vgr-checkbox',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['checked', 'collapsibleChildren', 'disabled', 'indeterminate', { name: 'label', required: true }, 'name', 'srOnlyDisabledReason', 'value'],
+  inputs: ['checked', 'disabled', 'indeterminate', { name: 'label', required: true }, 'name', 'srOnlyDisabledReason', 'value'],
   outputs: ['vgrChange'],
 })
 export class VgrCheckbox {

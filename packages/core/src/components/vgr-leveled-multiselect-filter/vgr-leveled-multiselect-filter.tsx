@@ -22,10 +22,6 @@ export class VgrLeveledMultiselectFilter {
   }
 
   private applyToCheckboxes() {
-    this.el.querySelectorAll('vgr-checkbox').forEach(checkbox => {
-      checkbox.collapsibleChildren = true;
-    });
-
     const topLevel = this.getTopLevel();
     topLevel.forEach((checkbox, index) => {
       checkbox.hidden = !this.showAll && index >= this.initialVisible;

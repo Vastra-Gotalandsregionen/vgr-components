@@ -10,7 +10,6 @@
 | Property               | Attribute                 | Description | Type      | Default     |
 | ---------------------- | ------------------------- | ----------- | --------- | ----------- |
 | `checked`              | `checked`                 |             | `boolean` | `false`     |
-| `collapsibleChildren`  | `collapsible-children`    |             | `boolean` | `false`     |
 | `disabled`             | `disabled`                |             | `boolean` | `false`     |
 | `indeterminate`        | `indeterminate`           |             | `boolean` | `false`     |
 | `label` _(required)_   | `label`                   |             | `string`  | `undefined` |

@@ -29,7 +29,6 @@ export const VgrCheckbox: StencilVueComponent<JSX.VgrCheckbox> = /*@__PURE__*/ d
   'value',
   'disabled',
   'srOnlyDisabledReason',
-  'collapsibleChildren',
   'checked',
   'indeterminate',
   'vgrChange'

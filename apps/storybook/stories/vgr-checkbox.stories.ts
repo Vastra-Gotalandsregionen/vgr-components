@@ -9,7 +9,6 @@ type CheckboxArgs = {
   indeterminate: boolean;
   disabled: boolean;
   srOnlyDisabledReason: string;
-  collapsibleChildren: boolean;
 };
 
 const meta: Meta<CheckboxArgs> = {
@@ -32,7 +31,6 @@ const meta: Meta<CheckboxArgs> = {
     indeterminate: { control: 'boolean' },
     disabled: { control: 'boolean' },
     srOnlyDisabledReason: { control: 'text' },
-    collapsibleChildren: { control: 'boolean' },
   },
   args: {
     label: 'Alternativ',
@@ -42,7 +40,6 @@ const meta: Meta<CheckboxArgs> = {
     indeterminate: false,
     disabled: false,
     srOnlyDisabledReason: '',
-    collapsibleChildren: false,
   },
   render: (args) => html`
     <vgr-checkbox
@@ -53,7 +50,6 @@ const meta: Meta<CheckboxArgs> = {
       .indeterminate=${args.indeterminate}
       .disabled=${args.disabled}
       .srOnlyDisabledReason=${args.srOnlyDisabledReason || undefined}
-      .collapsibleChildren=${args.collapsibleChildren}
     ></vgr-checkbox>
   `,
 };
@@ -63,31 +59,15 @@ export default meta;
 type Story = StoryObj<CheckboxArgs>;
 
 const renderTree: Story['render'] = (args) => html`
-  <vgr-checkbox
-    .label=${args.label}
-    .collapsibleChildren=${args.collapsibleChildren}
-  >
+  <vgr-checkbox .label=${args.label}>
     <vgr-checkbox
       label="Undernivå 1"
       value="child-1"
       .checked=${true}
-      .collapsibleChildren=${args.collapsibleChildren}
     ></vgr-checkbox>
-    <vgr-checkbox
-      label="Undernivå 2"
-      value="child-2"
-      .collapsibleChildren=${args.collapsibleChildren || nothing}
-    >
-      <vgr-checkbox
-        label="Undernivå 2.1"
-        value="child-2-1"
-        .collapsibleChildren=${args.collapsibleChildren}
-      ></vgr-checkbox>
-      <vgr-checkbox
-        label="Undernivå 2.2"
-        value="child-2-2"
-        .collapsibleChildren=${args.collapsibleChildren}
-      ></vgr-checkbox>
+    <vgr-checkbox label="Undernivå 2" value="child-2">
+      <vgr-checkbox label="Undernivå 2.1" value="child-2-1"></vgr-checkbox>
+      <vgr-checkbox label="Undernivå 2.2" value="child-2-2"></vgr-checkbox>
     </vgr-checkbox>
   </vgr-checkbox>
 `;
@@ -111,10 +91,5 @@ export const Disabled: Story = {
 
 export const Nested: Story = {
   args: { label: 'Överordnad nivå' },
-  render: renderTree,
-};
-
-export const Collapsible: Story = {
-  args: { label: 'Överordnad nivå', collapsibleChildren: true },
   render: renderTree,
 };

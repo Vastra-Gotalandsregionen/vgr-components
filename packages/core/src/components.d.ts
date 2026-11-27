@@ -36,10 +36,6 @@ export namespace Components {
         /**
           * @default false
          */
-        "collapsibleChildren": boolean;
-        /**
-          * @default false
-         */
         "disabled": boolean;
         /**
           * @default false
@@ -267,10 +263,6 @@ declare namespace LocalJSX {
         /**
           * @default false
          */
-        "collapsibleChildren"?: boolean;
-        /**
-          * @default false
-         */
         "disabled"?: boolean;
         /**
           * @default false
@@ -380,7 +372,6 @@ declare namespace LocalJSX {
         "value": string;
         "disabled": boolean;
         "srOnlyDisabledReason": string;
-        "collapsibleChildren": boolean;
         "checked": boolean;
         "indeterminate": boolean;
     }
