@@ -42,7 +42,7 @@ export class VgrLeveledMultiselectFilter {
     const showMoreButton = this.topLevelCount > this.initialVisible;
 
     return (
-      <Host class="block">
+      <Host class="block w-fit">
         <div class="block w-fit">
           <slot></slot>
         </div>
